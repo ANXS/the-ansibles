@@ -1,0 +1,22 @@
+# file: roles/common/tasks/timezone.yml
+
+- name: Common | timezone | Symlink the correct localtime - pt.1
+  file: path=/etc/localtime state=absent
+
+- name: Common | timezone | Symlink the correct localtime - pt.2 (/etc/localtime)
+  file: src=/usr/share/zoneinfo/$timezone dest=/etc/localtime state=link owner=root group=root mode=0644
+
+- name: Common | timezone | Make sure the dependencies are installed
+  apt: pkg=$item
+  with_items: $timezone_dependencies
+
+- name: Common | timezone | Update the hardware clock
+  command: dpkg-reconfigure -f noninteractive tzdata
+
+- name: Common | timezone | Make sure ntpd is running and enabled
+  service: name=ntp state=restarted enabled=yes
+
+- name: Common | timezone | Configure the ntp servers (/etc/ntp.conf)
+  template: src=ntp/ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+    - restart ntp

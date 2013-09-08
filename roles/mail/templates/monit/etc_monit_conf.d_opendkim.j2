@@ -1,0 +1,6 @@
+check process tomcat with pidfile "/var/run/opendkim/opendkim.pid"
+  group mail
+  start program = "/etc/init.d/opendkim start"
+  stop program = "/etc/init.d/opendkim stop"
+  if failed host localhost port 12345 type tcp then restart
+  if 5 restarts within 5 cycles then timeout

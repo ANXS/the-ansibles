@@ -1,0 +1,4 @@
+# file: roles/common/tasks/git.yml
+
+- name: Common | git | Make sure git is installed
+  apt: pkg=git

@@ -1,0 +1,5 @@
+# file: roles/nginx/tasks/modules/http_ssl_module.yml
+
+# flag: --with-http_ssl_module
+
+# no contents necessary

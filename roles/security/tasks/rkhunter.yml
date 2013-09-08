@@ -1,0 +1,5 @@
+# file: roles/security/tasks/rkhunter.yml
+
+- name: Security | rkhunter | Make sure rkhunter is installed
+  apt: pkg=rkhunter
+  sudo: yes

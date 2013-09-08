@@ -1,0 +1,49 @@
+# tmpreaper.conf
+# - local configuration for tmpreaper's daily run
+#
+# This is only used if /etc/cron.daily/tmpreaper was also updated,
+# i.e. there's a line ". /etc/tmpreaper.conf" in that file.
+# The shell code that used to be here (pre version 1.6.7) is now
+# in the cron.daily script.
+
+# Remove the next line if you understand the possible security implications of
+# having tmpreaper run automatically;
+# see /usr/share/doc/tmpreaper/README.security.gz
+
+SHOWWARNING={{tmpreaper_show_warning}}
+
+# TMPREAPER_TIME
+#       is the max. age of files before they're removed.
+#       default:
+#       the TMPTIME value in /etc/default/rcS if it's there, else
+#       TMPREAPER_TIME=7d (for 7 days)
+#       I recommend setting the value in /etc/default/rcS, as
+#       that is used to clean out /tmp whenever the system is booted.
+#
+# TMPREAPER_PROTECT_EXTRA
+#       are extra patterns that you may want to protect.
+#       Example:
+#       TMPREAPER_PROTECT_EXTRA='/tmp/isdnctrl* /tmp/important*'
+#
+# TMPREAPER_DIRS
+#       are the directories to clean up.
+#       *never* supply / here! That will wipe most of your system!
+#       Example:
+#       TMPREAPER_DIRS='/tmp/. /var/tmp/.'
+#
+# TMPREAPER_DELAY
+#       defines the maximum (randomized) delay before starting processing.
+#       See the manpage entry for --delay. Default is 256.
+#       Example:
+#       TMPREAPER_DELAY='256'
+#
+# TMPREAPER_ADDITIONALOPTIONS
+#       extra options that are passed to tmpreaper, e.g. --all
+
+# uncomment and change the next line to overrule the /etc/default/rcS value
+# TMPREAPER_TIME=7d
+
+TMPREAPER_PROTECT_EXTRA='{{tmpreaper_protect_extra}}'
+TMPREAPER_DIRS='{{tmpreaper_dirs}}'
+TMPREAPER_DELAY='{{tmpreaper_delay}}'
+TMPREAPER_ADDITIONALOPTIONS='{{tmpreaper_additional_options}}'

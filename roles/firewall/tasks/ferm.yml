@@ -1,0 +1,12 @@
+# file: roles/common/tasks/ferm.yml
+
+- name: Firewall | Make sure ferm is installed
+  apt: pkg=ferm
+
+- name: Firewall | Make sure the directory for firewall rules exist
+  file: path=/etc/ferm state=directory
+
+- name: Firewall | Copy the firewall rules
+  copy: src=etc_ferm_ferm.conf dest=/etc/ferm/ferm.conf owner=root group=root mode=0644
+  notify:
+    - reload ferm

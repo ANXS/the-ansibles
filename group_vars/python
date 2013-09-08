@@ -1,0 +1,6 @@
+python_packages:
+  - python
+  - python-dev
+  - libevent-dev
+  - cython
+  - python3

@@ -1,0 +1,116 @@
+# --- auth configuration
+groups:
+  #- name: somegroup
+  #  gid: somegroupid
+
+users:
+  - name: TODO
+    passwd: 'TODO'
+    comment: TODO
+    uid: 2000
+    shell: /bin/bash
+    groups:
+    - sudo
+    - adm
+    - staff
+    append: yes
+
+keys:
+  - user: TODO
+    key: "TODO_SSH_key"
+
+# --- hostname identification
+fqdn: TODO_String
+hostname: TODO_String
+
+# --- timezone configuration
+timezone: UTC
+
+# --- monit configuration
+monit_protection: true
+
+# --- nginx
+nginx_install_method: "source"
+nginx_version: 1.5.3
+
+# --- mysql configuration
+mysql_root_password: 'TODO_String'
+
+# --- mail configuration
+
+mail_server_hostname: TODO_String
+
+mail_virtual_domains:
+  - name: TODO_String
+    pk_id: TODO_Int
+    primary_user: TODO_String
+  - name: TODO
+    pk_id: TODO_Int
+    primary_user: TODO_String
+mail_virtual_users:
+  - address: TODO_email
+    password_hash: TODO_password_sha_hash
+    domain_pk_id: TODO_Int
+  - address: TODO_email
+    password_hash: TODO_password_sha_hash
+    domain_pk_id: TODO_Int
+
+
+# --- vpn configuration
+openvpn_key_country: TODO
+openvpn_key_province: TODO
+openvpn_key_city: TODO
+openvpn_key_org: TODO
+openvpn_key_email: TODO
+openvpn_key_ou: TODO
+openvpn_key_cn: TODO
+openvpn_key_name: TODO
+
+# --- znc configuration
+
+znc_listeners:
+  - id: 1
+    AllowIRC: true
+    AllowWeb: true
+    Port: 6789
+    IPv4: true
+    IPv6: true
+    SSL: true
+
+znc_users:
+  - name: TODO_String
+    Pass: TODO_password_hash
+    Admin: true
+    Allow: '*'
+    Nick: TODO_String
+    AltNick: TODO_String
+    Ident: TODO_String
+    RealName: TODO_String
+    Buffer: 5000
+    AutoClearChanBuffer: true
+    ChanModes: '+stn'
+    DenyLoadMod: false
+    DenySetBindHost: false
+    JoinTries: 10
+    PrependTimestamp: true
+    AppendTimestamp: false
+    TimestampFormat: '[%H:%M:%S]'
+    MaxNetworks: 1
+    MultiClients: true
+    QuitMsg: bye!
+    Modules:
+      - name: controlpanel
+      - name: perform
+      - name: block_motd
+      - name: clientnotify
+      - name: chansaver
+    Networks:
+      - name: freenode
+        Server: chat.freenode.net 6665
+        FloodBurst: 4
+        FloodRate: 1.00
+        IRCConnectEnabled: true
+        modules:
+          - name: kickrejoin
+          - name: nickserv
+          - name: savebuff

@@ -1,0 +1,5 @@
+# file: roles/auth/tasks/users.yml
+
+- name: Auth | Make sure the users are present
+  user: name={{ item.name }} uid={{ item.uid }} password={{ item.passwd }} shell={{ item.shell }} comment={{ item.comment }} groups={{ ",".join(item.groups) }} append={{ item.append }}
+  with_items: $users

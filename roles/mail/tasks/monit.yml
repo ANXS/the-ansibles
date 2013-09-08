@@ -1,0 +1,10 @@
+# file: roles/mail/tasks/monit.yml
+
+- name: Mail | Copy the monit service files
+  template: src=monit/etc_monit_conf.d_$item.j2 dest=/etc/monit/conf.d/$item
+  with_items:
+    - postfix
+    - dovecot
+    - opendkim
+    - postgrey
+    - tomcat

@@ -1,0 +1,60 @@
+# file: roles/mailserver/tasks/dovecot.yml
+
+- name: Mail | dovecot | Make sure dovecot and its dependencies are installed
+  apt: pkg=$item state=installed
+  with_items: $dovecote_packages
+
+- name: Mail | dovecot | Ensure mail directories are in place
+  file: state=directory path=/srv/data/mail/decrypted/${item.name}/${item.primary_user} owner=$mailserver_user group=dovecot
+  with_items:
+    - ${mail_virtual_domains}
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 1 (/etc/dovecot/dovecot.conf)
+  copy: src=dovecot/etc_dovecot_dovecot.conf dest=/etc/dovecot/dovecot.conf
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 2 (/etc/dovecot/conf.d/10-mail.conf)
+  template: src=dovecot/etc_dovecot_conf.d_10-mail.conf.j2 dest=/etc/dovecot/conf.d/10-mail.conf
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 3 (/etc/dovecot/conf.d/10-auth.conf)
+  copy: src=dovecot/etc_dovecot_conf.d_10-auth.conf dest=/etc/dovecot/conf.d/10-auth.conf
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 4 (/etc/dovecot/conf.d/auth-sql.conf.ext)
+  template: src=dovecot/etc_dovecot_conf.d_auth-sql.conf.ext.j2 dest=/etc/dovecot/conf.d/auth-sql.conf.ext
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 5 (/etc/dovecot/conf.d/10-master.conf)
+  template: src=dovecot/etc_dovecot_conf.d_10-master.conf.j2 dest=/etc/dovecot/conf.d/10-master.conf
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 6 (/etc/dovecot/conf.d/10-ssl.conf)
+  copy: src=dovecot/etc_dovecot_conf.d_10-ssl.conf dest=/etc/dovecot/conf.d/10-ssl.conf
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 7 (/etc/dovecot/conf.d/15-lda.conf)
+  template: src=dovecot/etc_dovecot_conf.d_15-lda.conf.j2 dest=/etc/dovecot/conf.d/15-lda.conf
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Update the dovecot configuration - pt. 8 (/etc/dovecot/dovecot-sql.conf.ext)
+  template: src=dovecot/etc_dovecot_dovecot-sql.conf.ext.j2 dest=/etc/dovecot/dovecot-sql.conf.ext
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Ensure correct permissions on Dovecot config directory - pt. 1
+  shell: chown -R $mailserver_user:dovecot /etc/dovecot
+  notify:
+    - restart dovecot
+
+- name: Mail | dovecot | Ensure correct permissions on Dovecot config directory - pt. 2
+  shell: chmod -R o-rwx /etc/dovecot
+  notify:
+    - restart dovecot

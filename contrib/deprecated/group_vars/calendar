@@ -1,0 +1,16 @@
+calendar_user: caldavd
+calendar_group: caldavd
+calendar_uid: 3021
+calendar_gid: 3021
+
+calendar_serverHostName: ''
+calendar_HTTPPort: 0
+calendar_SSLPort: 8443
+
+calendar_users:
+  - uid: TODO
+    name: TODO
+    password: TODO
+
+calendar_sudoers_username: superuser
+calendar_sudoers_password: superuser

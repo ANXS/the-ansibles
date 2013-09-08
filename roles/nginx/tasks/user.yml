@@ -1,0 +1,21 @@
+# file: roles/nginx/tasks/user.yml
+
+- name: Nginx | Make sure the nginx group is present
+  action: group gid=$nginx_gid name=$nginx_group state=present
+  sudo: yes
+
+- name: Nginx | Make sure the www directory is present
+  action: file path=$nginx_www_dir state=directory
+  sudo: yes
+
+- name: Nginx | Make sure the nginx user is present
+  user: uid=$nginx_uid name=$nginx_user group=$nginx_group home=$nginx_www_dir shell=/bin/false state=present comment="Nginx user"
+  sudo: yes
+
+- name: Nginx | Set the right directory permissions for the www directory
+  action: file path=$nginx_www_dir owner=$nginx_user group=$nginx_group mode=0755 state=directory
+  sudo: yes
+
+- name: Nginx | Set the right expiration on the nginx user
+  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 $nginx_user"
+  sudo: yes

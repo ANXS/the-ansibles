@@ -1,0 +1,5 @@
+# file: roles/common/tasks/tools.yml
+
+- name: Common | tools | Make sure some basic tools are installed
+  apt: pkg=$item
+  with_items: $tools

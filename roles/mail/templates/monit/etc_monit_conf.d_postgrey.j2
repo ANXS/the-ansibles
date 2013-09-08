@@ -1,0 +1,6 @@
+check process postgrey with pidfile /var/run/postgrey.pid
+  group postgrey
+  start program = "/etc/init.d/postgrey start"
+  stop  program = "/etc/init.d/postgrey stop"
+  if failed host 127.0.0.1 port 10023 type tcp then restart
+  if 5 restarts within 5 cycles then timeout

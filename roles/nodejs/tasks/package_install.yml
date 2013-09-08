@@ -1,0 +1,7 @@
+# file: roles/nodejs/tasks/install_package.yml
+
+- name: Node.js | Add the nodejs chris-lea repository
+  apt_repository: repo=ppa:chris-lea/node.js
+
+- name: Node.js | Make sure nodejs is installed
+  apt: pkg=nodejs=$nodejs_version

@@ -1,0 +1,5 @@
+# file: roles/netatalk/handlers/main.yml
+
+- name: restart netatalk
+  service: name=netatalk state=restarted
+  sudo: yes

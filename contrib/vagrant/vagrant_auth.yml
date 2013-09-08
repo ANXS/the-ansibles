@@ -1,0 +1,12 @@
+---
+- name: Collecting facts
+  hosts: all
+  gather_facts: yes
+
+- name: Setup users
+  hosts: vagrant
+  vars_files:
+    - auth_vars
+  tasks:
+    - include: ../../roles/auth/tasks/users.yml
+    - include: ../../roles/auth/tasks/keys.yml

@@ -1,0 +1,7 @@
+# file: roles/nginx/tasks/modules/http_uwsgi_module.yml
+
+# flag:
+
+- name: Make sure the /etc/uwsgi exists with the right permissions
+  file: path=/etc/uwsgi owner=root group=root mode=0755 recurse=true state=directory
+  sudo: yes

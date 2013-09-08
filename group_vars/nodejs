@@ -1,0 +1,9 @@
+nodejs_dependencies:
+  - python-software-properties
+  - python
+  - g++
+  - make
+
+nodejs_install_method: "source"   # "package" also possible
+
+nodejs_version: 0.10.17

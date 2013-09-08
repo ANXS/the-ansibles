@@ -1,0 +1,21 @@
+# file: roles/znc/tasks/user.yml
+
+- name: ZNC | (user) Make sure the znc group is present
+  action: group gid=$znc_gid name=$znc_group state=present
+  sudo: yes
+
+- name: ZNC | (user) Make sure the znc user directory is present
+  action: file path="/app/home/$znc_user" state=directory
+  sudo: yes
+
+- name: ZNC | (user) Make sure the znc user is present
+  user: uid=$znc_uid name=$znc_user group=$znc_group home="/app/home/$znc_user" shell=/bin/bash system=yes state=present comment="znc user"
+  sudo: yes
+
+- name: ZNC | (user) Set the right znc user directory permissions
+  action: file path="/app/home/$znc_user" owner=$znc_user group=$znc_group mode=0700 state=directory
+  sudo: yes
+
+- name: ZNC | (user) Set the right expiration on the znc user
+  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 $znc_user"
+  sudo: yes

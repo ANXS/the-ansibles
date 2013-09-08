@@ -1,0 +1,7 @@
+# file: roles/vpn/tasks/dnsmasq.conf
+
+- name: VPN | dnsmasq | Make sure dnsmasq is installed
+  apt: pkg=dnsmasq state=installed
+
+- name: VPN | dnsmasq | Update the dnsmasq configuration (/etc/dnsmasq.conf)
+  copy: src=dnsmasq/etc_dnsmasq.conf dest=/etc/dnsmasq.conf owner=root group=root mode=0644

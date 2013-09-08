@@ -1,0 +1,16 @@
+# file: roles/ssl/tasks/wildcard.yml
+
+- name: SSL | Make sure the ssl certs directory exists
+  file: path=/etc/ssl/certs owner=root group=root state=directory
+
+- name: SSL | Make sure the ssl private directory exists
+  file: path=/etc/ssl/private owner=root group=root state=directory
+
+- name: SSL | Copy the wildcard SSL cert into place (/etc/ssl/certs/wildcard_public_cert.crt)
+  copy: src=wildcard/wildcard_public_cert.crt dest=/etc/ssl/certs/wildcard_public_cert.crt owner=root group=root
+
+- name: SSL | Copy the wildcard SSL pem into place (/etc/ssl/certs/wildcard_ca.pem)
+  copy: src=wildcard/wildcard_ca.pem dest=/etc/ssl/certs/wildcard_ca.pem owner=root group=root
+
+- name: SSL | Copy the wildcard SSL key into place (/etc/ssl/private/wildcard_private.key)
+  copy: src=wildcard/wildcard_private.key dest=/etc/ssl/private/wildcard_private.key owner=root group=root

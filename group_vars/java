@@ -1,0 +1,11 @@
+java_install_JDK: true
+java_install_clojure: true
+java_install_maven: true
+java_install_scala: true
+
+jdk_download_url: "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz"
+jdk_download_filename: jdk-7u25-linux-x64.tar.gz
+jdk_version: jdk1.7.0_25
+
+scala_version: 2.9.2            # 2.8.0
+scala_version_download: 2.9.2   # 2.8.0.final

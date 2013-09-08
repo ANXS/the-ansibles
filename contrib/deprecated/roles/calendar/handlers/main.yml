@@ -1,0 +1,5 @@
+# file: roles/calendar/handlers/main.yml
+
+- name: restart calendarserver
+  command: /etc/init.d/calendarserver restart
+  sudo: yes

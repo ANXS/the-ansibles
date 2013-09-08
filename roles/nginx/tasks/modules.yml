@@ -1,0 +1,22 @@
+# roles/nginx/tasks/modules.yml
+
+- include: source_install/modules/http_stub_status_module.yml
+  when: nginx_source_modules_include.http_stub_status_module is defined
+
+- include: source_install/modules/http_uwsgi_module.yml
+  when: nginx_source_modules_include.http_uwsgi_module is defined
+
+- include: source_install/modules/http_ssl_module.yml
+  when: nginx_source_modules_include.http_ssl_module is defined
+
+- include: source_install/modules/http_gzip_static_module.yml
+  when: nginx_source_modules_include.http_gzip_static_module is defined
+
+- include: source_install/modules/ipv6.yml
+  when: nginx_source_modules_include.ipv6 is defined
+
+- include: source_install/modules/google_perftools_module.yml
+  when: nginx_source_modules_include.google_perftools_module is defined
+
+- include: source_install/modules/upload_progress_module.yml
+  when: nginx_source_modules_include.upload_progress_module is defined

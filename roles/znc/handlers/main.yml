@@ -1,0 +1,4 @@
+# file: roles/znc/handlers/main.yml
+
+- name: restart znc
+  service: name=znc state=restarted

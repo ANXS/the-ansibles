@@ -1,0 +1,103 @@
+# --- auth configuration
+groups:
+  #- name: somegroup
+  #  gid: somegroupid
+
+users:
+  - name: vagrant
+    passwd: '$6$yamanote$gSPglFOaTkiWBH.LuUAJXC/Q/uYOigfI.Ydy8jGbUHD9JgUMVl7nMAWAoICrNToYMqcT.Gfw9/EBh5xEX2WK20'
+    comment: vagrant
+    uid: 1000
+    shell: /bin/bash
+    groups:
+    - vagrant
+    - adm
+    - cdrom
+    - sudo
+    - dip
+    - plugdev
+    - lpadmin
+    - sambashare
+    - admin
+    - staff
+    append: no
+  - name: TODO_String
+    passwd: 'TODO_pw_hash'
+    comment: TODO_String
+    uid: 2000
+    shell: /bin/bash
+    groups:
+    - adm
+    - sudo
+    - admin
+    - staff
+    append: yes
+
+keys:
+  - user: vagrant
+    key: "TODO_SSH_key"
+  - user: ohaiomin
+    key: "TODO_SSH_key"
+
+
+# --- machine info
+machine_cpu_count: 1
+machine_memory_in_mb: 1024
+
+# --- hostname identification
+fqdn: vagrantbox.dev
+hostname: vagrantbox
+
+# --- timezone configuration
+timezone: UTC
+
+# --- monit configuration
+monit_protection: true
+
+# --- nginx
+nginx_install_method: "source"
+nginx_version: 1.5.3
+nginx_setup_default: true
+nginx_worker_processes: 2
+nginx_source_modules_include:
+  http_uwsgi_module: " "
+  google_perftools_module: "--with-google_perftools_module"
+  http_ssl_module: "--with-http_ssl_module"
+  http_gzip_static_module: "--with-http_gzip_static_module"
+  ipv6: "--with-ipv6"
+  http_stub_status_module: "--with-http_stub_status_module"
+  upload_progress_module: "--add-module=/tmp/nginx-upload-progress-module"
+nginx_status_remote_ip_var: remote_addr
+nginx_status_authorized_ips:
+  - 127.0.0.1/32
+nginx_upload_progress_version: 0.9.0
+
+# --- java
+java_install_JDK: true
+java_install_clojure: true
+java_install_maven: true
+java_install_scala: true
+
+# --- mysql
+mysql_root_password: 'TODO_String'
+
+# --- openvpn
+openvpn_key_country: TODO_2CHAR
+openvpn_key_province: TODO_String
+openvpn_key_city: TODO_String
+openvpn_key_org: TODO_String
+openvpn_key_email: TODO_String
+openvpn_key_ou: TODO_String
+openvpn_key_cn: TODO_String
+openvpn_key_name: TODO_String
+
+# --- mail
+
+mail_virtual_domains:
+  - name: testbox.dev
+    pk_id: 1
+    primary_user: testuser
+mail_virtual_users:
+  - address: testuser@testbox.dev
+    password_hash: $6$PiljHIjqNxwJUnSM$EO06gKiNs00dIr3cd5NaAaz30Yyvvy456ieLmbwCzpxjE8OHeZjHKmXPKufywNNk6xs7PPDUIdX/3923o.HfM.
+    domain_pk_id: 1

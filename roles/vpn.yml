@@ -1,0 +1,7 @@
+# file: roles/vpn.yml
+
+- hosts: vpn
+  name: vpn
+  tasks:
+    - include: vpn/tasks/dnsmasq.yml
+    - include: vpn/tasks/openvpn.yml

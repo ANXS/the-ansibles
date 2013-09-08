@@ -1,0 +1,34 @@
+# file:roles/vpn/tasks/openvpn.yml
+
+- name: VPN | openvpn | Make sure openvpn is installed
+  apt: pkg=openvpn state=installed
+
+- name: VPN | openvpn | Copy easy-rsa setup scripts to prevent a future wipe-out
+  command: cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
+
+- name: VPN | openvpn | Update the easy-rsa variables file for easy generation
+  template: src=openvpn/etc_openvpn_easy-rsa_2.0_vars.j2 dest=/etc/openvpn/easy-rsa/2.0/vars
+
+- name: VPN | openvpn | Enable IPv4 traffic forwarding - pt. 1 (etc/sysctl.conf)
+  lineinfile: dest=/etc/sysctl.conf regexp="^net.ipv4.ip_forward" line="net.ipv4.ip_forward=1"
+
+- name: VPN | openvpn | Enable IPv4 traffic forwarding - pt. 2 (/proc/sys/net/ipv4/ip_forward)
+  command: echo 1 > /proc/sys/net/ipv4/ip_forward
+
+- name: VPN | openvpn | Make sure the client config directory is present
+  file: path=/etc/openvpn/ccd state=directory owner=root group=root mode=0644
+
+- name: VPN | openvpn | Update the OpenVPN configuration (/etc/openvpn/server.conf)
+  template: src=openvpn/etc_openvpn_server.conf.j2 dest=/etc/openvpn/server.conf
+
+- name: VPN | openvpn | Allow OpenVPN through firewall
+  shell: $item
+  with_items:
+    - iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+    - iptables -A FORWARD -s 10.8.0.0/24 -j ACCEPT
+    - iptables -A FORWARD -j REJECT
+    - iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+    - iptables -A INPUT -i tun+ -j ACCEPT
+    - iptables -A FORWARD -i tun+ -j ACCEPT
+    - iptables -A INPUT -i tap+ -j ACCEPT
+    - iptables -A FORWARD -i tap+ -j ACCEPT

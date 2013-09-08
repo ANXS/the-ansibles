@@ -1,0 +1,47 @@
+# file: roles/mailserver/tasks/postfix.yml
+
+- name: Mail | postfix | Make sure postfix and its dependencies are installed
+  apt: pkg=$item state=installed
+  with_items: $postfix_packages
+
+- name: Mail | postfix | Create database user for mail server
+  mysql_user: user=$mail_mysql_username password=$mail_mysql_password state=present priv="mailserver.*:ALL"
+
+- name: Mail | postfix | Create database for mail server
+  mysql_db: name=$mail_mysql_database state=present
+
+- name: Mail | postfix | Copy the sql file for sql postfix provisioning
+  template: src=postfix/etc_postfix_mailserver.sql.j2 dest=/etc/postfix/mailserver.sql owner=root group=root mode=0600
+
+- name: Mail | postfix | Provision the sql database for postfix
+  mysql_db: name=$mail_mysql_database state=import target=/etc/postfix/mailserver.sql
+
+- name: Mail | postfix | Update the postfix config files - pt. 1 (/etc/postfix/main.cf)
+  template: src=postfix/etc_postfix_main.cf.j2 dest=/etc/postfix/main.cf owner=root group=root
+  notify:
+    - restart postfix
+
+- name: Mail | postfix | Update the postfix config files - pt. 2 (/etc/postfix/smtp_header_checks)
+  copy: src=postfix/etc_postfix_smtp_header_checks dest=/etc/postfix/smtp_header_checks owner=root group=root
+  notify:
+    - restart postfix
+
+- name: Mail | postfix | Update the postfix config files - pt. 3 (/etc/postfix/master.cf)
+  template: src=postfix/etc_postfix_master.cf.j2 dest=/etc/postfix/master.cf owner=root group=root
+  notify:
+    - restart postfix
+
+- name: Mail | postfix | Update the postfix config files - pt. 4 (/etc/postfix/mysql-virtual-mailbox-domains.cf)
+  template: src=postfix/etc_postfix_mysql-virtual-mailbox-domains.cf.j2 dest=/etc/postfix/mysql-virtual-mailbox-domains.cf owner=root group=root
+  notify:
+    - restart postfix
+
+- name: Mail | postfix | Update the postfix config files - pt. 5 (/etc/postfix/mysql-virtual-mailbox-maps.cf)
+  template: src=postfix/etc_postfix_mysql-virtual-mailbox-maps.cf.j2 dest=/etc/postfix/mysql-virtual-mailbox-maps.cf owner=root group=root
+  notify:
+    - restart postfix
+
+- name: Mail | postfix | Update the postfix config files - pt. 6 (/etc/postfix/mysql-virtual-alias-maps.cf)
+  template: src=postfix/etc_postfix_mysql-virtual-alias-maps.cf.j2 dest=/etc/postfix/mysql-virtual-alias-maps.cf owner=root group=root
+  notify:
+    - restart postfix

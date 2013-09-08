@@ -1,0 +1,38 @@
+# file: roles/mailserver/tasks/solr.yml
+
+- name: Install Solr and related packages
+  apt: pkg=$item state=installed
+  with_items: $solr_packages
+
+- name: Correct a Debian bug by moving the Solr schema file (/etc/solr/conf/schema.xml)
+  copy: src=solr/etc_solr_conf_schema.xml dest=/etc/solr/conf/schema.xml group=root owner=root
+
+- name: Update the Solr/Tomcat configuration - pt. 1 (/etc/tomcat6/server.xml)
+  copy: src=solr/etc_tomcat6_server.xml dest=/etc/tomcat6/server.xml group=tomcat6 owner=root
+  notify:
+    - restart solr
+    - restart dovecot
+
+- name: Update the Solr/Tomcat configuration - pt. 2 (/etc/solr/conf/solrconfig.xml)
+  copy: src=solr/etc_solr_conf_solrconfig.xml dest=/etc/solr/conf/solrconfig.xml group=root owner=root
+  notify:
+    - restart solr
+    - restart dovecot
+
+- name: Make sure the Solr index directory exists
+  file: state=directory path=/srv/data/mail/decrypted/solr group=tomcat6 owner=tomcat6
+  notify:
+    - restart solr
+    - restart dovecot
+
+- name: Download additional Solr-contrib jars (fix) - pt. 1
+  get_url: url=http://mirrors.ibiblio.org/pub/mirrors/maven2/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar dest=/usr/share/solr/WEB-INF/lib/commons-beanutils-1.7.0.jar owner=root group=root mode=0644
+  notify:
+    - restart solr
+    - restart dovecot
+
+- name: Download additional Solr-contrib jars (fix) - pt. 2
+  get_url: url=http://mirrors.ibiblio.org/pub/mirrors/maven2/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar dest=/usr/share/solr/WEB-INF/lib/commons-collections-3.2.1.jar owner=root group=root mode=0644
+  notify:
+    - restart solr
+    - restart dovecot

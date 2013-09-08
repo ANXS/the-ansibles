@@ -1,0 +1,30 @@
+# file: roles/nginx/tasks/install_source.yml
+
+- name: Nginx | Download the nginx source in /tmp if not yet present
+  command: wget http://nginx.org/download/nginx-$nginx_version.tar.gz chdir=/tmp creates=/tmp/nginx-$nginx_version.tar.gz
+
+- include: commons.yml
+
+- include: modules.yml
+
+- name: Nginx | Upload the nginx install script
+  template: src=nginx-setup.sh dest=/tmp/nginx-$nginx_version-setup.sh owner=root group=root mode=0755
+  sudo: yes
+
+- name: Nginx | Install nginx using the install script
+  raw: /tmp/nginx-$nginx_version-setup.sh
+  sudo: yes
+
+- name: Nginx | Update the symbolic link to the nginx install
+  file: path=/usr/local/etc/nginx src=/usr/local/etc/nginx-$nginx_version state=link force=yes
+  sudo: yes
+
+- name: Nginx | Install the upstart init script
+  template: src=nginx.init.j2 dest=/etc/init.d/nginx owner=root group=root mode=0755
+  sudo: yes
+  notify:
+    - restart nginx
+
+- name: Nginx | Register nginx for autostart
+  service: name=nginx enabled=yes
+  sudo: yes

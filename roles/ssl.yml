@@ -1,0 +1,6 @@
+# file: roles/common.yml
+
+- hosts: all
+  name: SSL for machines
+  tasks:
+    - include: ssl/tasks/wildcard.yml

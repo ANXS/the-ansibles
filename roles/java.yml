@@ -1,0 +1,13 @@
+# file: roles/java.yml
+
+- hosts: java
+  name: (oracle) JDK - clojure - maven - scala
+  tasks:
+    - include: java/tasks/JDK.yml
+      when: java_install_JDK == true
+    - include: java/tasks/clojure.yml
+      when: java_install_clojure == true
+    - include: java/tasks/maven.yml
+      when: java_install_maven == true
+    - include: java/tasks/scala.yml
+      when: java_install_scala == true

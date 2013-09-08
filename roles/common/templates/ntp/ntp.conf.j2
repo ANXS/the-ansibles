@@ -1,0 +1,35 @@
+driftfile /var/lib/ntp/ntp.drift
+# statistics will be logged
+statsdir /var/log/ntpstats/
+
+leapfile /etc/ntp.leapseconds
+
+statistics loopstats peerstats clockstats
+filegen loopstats file loopstats type day enable
+filegen peerstats file peerstats type day enable
+filegen clockstats file clockstats type day enable
+
+
+#Specification of one or more NTP servers
+server 0.pool.ntp.org iburst
+restrict 0.pool.ntp.org nomodify notrap noquery
+server 1.pool.ntp.org iburst
+restrict 1.pool.ntp.org nomodify notrap noquery
+server 2.pool.ntp.org iburst
+restrict 2.pool.ntp.org nomodify notrap noquery
+server 3.pool.ntp.org iburst
+restrict 3.pool.ntp.org nomodify notrap noquery
+
+# Use Ubuntu's ntp server as a fallback.
+server ntp.ubuntu.com
+
+restrict default kod notrap nomodify nopeer noquery
+restrict 127.0.0.1 nomodify
+restrict -6 default kod notrap nomodify nopeer noquery
+restrict -6 ::1 nomodify
+
+
+# It is best practice to use a high stratum undisciplined clock, if you have a real CMOS clock
+# Except cases where you have a low stratum server, or a virtualized system without a real CMOS clock
+server  127.127.1.0 # local clock
+fudge   127.127.1.0 stratum 10

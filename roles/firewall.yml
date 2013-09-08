@@ -1,0 +1,8 @@
+# file: roles/firewall.yml
+
+- hosts: firewall
+  name: firewall
+  tasks:
+    - include: firewall/tasks/ferm.yml
+  handlers:
+    - include: firewall/handlers/ferm.yml

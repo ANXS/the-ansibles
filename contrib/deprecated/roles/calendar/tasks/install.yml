@@ -1,0 +1,30 @@
+# file: roles/calendar/tasks/install.yml
+
+- name: Calendar | Make sure calendarserver is installed
+  apt: pkg=calendarserver state=installed
+
+- name: Calendar | Make sure the data directory exists
+  file: path=/srv/data/dav/decrypted/dataroot/ owner=$calendar_user group=$calendar_group state=directory
+
+- name: Calendar | Make sure the document directory exists
+  file: path=/srv/data/dav/decrypted/docroot/ owner=$calendar_user group=$calendar_group state=directory
+
+- name: Calendar | Update the calendarserv configuration - pt. 1 (/etc/caldavd/caldavd.plist)
+  template: src=etc_caldavd_caldavd.plist.j2 dest=/etc/caldavd/caldavd.plist owner=root group=root mode=0644
+  notify:
+    - restart calendarserver
+
+- name: Calendar | Update the calendarserv configuration - pt. 2 (/etc/caldavd/accounts.xml)
+  template: src=etc_caldavd_accounts.xml.j2 dest=/etc/caldavd/accounts.xml owner=root group=root mode=0644
+  notify:
+    - restart calendarserver
+
+- name: Calendar | Update the calendarserv configuration - pt. 3 (/etc/caldavd/sudoers.plist)
+  template: src=etc_caldavd_sudoers.xml.j2 dest=/etc/caldavd/sudoers.plist owner=root group=root mode=0644
+  notify:
+    - restart calendarserver
+
+- name: Calendar | Update the calendarserv configuration - pt. 4 (/etc/default/calendarserver)
+  copy: src=etc_default_calendarserver dest=/etc/default/calendarserver owner=root group=root mode=0644
+  notify:
+    - restart calendarserver

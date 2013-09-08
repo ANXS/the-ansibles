@@ -1,0 +1,4 @@
+# file: roles/znc/tasks/monit.yml
+
+- name: ZNC | (Monit) Copy the ZNC monit service file
+  template: src=etc_monit_conf.d_znc.j2 dest=/etc/monit/conf.d/znc

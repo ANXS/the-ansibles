@@ -1,0 +1,10 @@
+# file: roles/nodejs.yml
+
+- hosts: nodejs
+  name: nodejs
+  tasks:
+    - include: nodejs/tasks/dependencies.yml
+    - include: nodejs/tasks/source_install.yml
+      when: nodejs_install_method == "source"
+    - include: nodejs/tasks/package_install.yml
+      when: nodejs_install_method == "package"

@@ -1,0 +1,5 @@
+# file: roles/mail/handlers/postfix.yml
+
+- name: restart postfix
+  service: name=postfix state=restarted
+  sudo: yes

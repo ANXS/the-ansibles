@@ -1,0 +1,6 @@
+# file: roles/python.yml
+
+- hosts: python
+  name: python
+  tasks:
+    - include: python/tasks/install.yml

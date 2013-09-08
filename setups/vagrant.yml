@@ -1,0 +1,18 @@
+# file: setups/site.yml
+
+- name: Collecting facts
+  hosts: all
+  gather_facts: yes
+
+- include: ../roles/auth.yml          # Installed for all
+- include: ../roles/common.yml        # Installed for all
+- include: ../roles/security.yml      # Installed for all
+- include: ../roles/ssl.yml           # Installed for all
+- include: ../roles/monit.yml         # Installed for monit
+- include: ../roles/python.yml        # Installed for python
+- include: ../roles/nginx.yml         # Installed for nginx
+- include: ../roles/java.yml          # Installed for java
+- include: ../roles/mysql.yml         # Installed for mysql
+- include: ../roles/nodejs.yml        # Installed for nodejs
+- include: ../roles/netatalk.yml      # Installed for fileserver
+- include: ../roles/znc.yml           # Installed for znc

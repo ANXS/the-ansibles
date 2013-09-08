@@ -1,0 +1,4 @@
+# file: roles/common/handlers/timezone.yml
+
+- name: restart ntp
+  action: service name=ntp state=restarted

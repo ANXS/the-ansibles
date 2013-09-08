@@ -1,0 +1,16 @@
+# file: roles/python/tasks/python.yml
+
+- name: Python | Make sure python packages are installed
+  apt: pkg=$item
+  with_items: $python_packages
+
+# Ubuntu's python-setuptools, python-pip and python-virtualenv packages ar broken
+- name: Python | Get the setuptools install-script
+  get_url: dest=/tmp url=http://python-distribute.org/distribute_setup.py mode=0644
+
+- name: Python | Make sure pip is installed (from script)
+  raw: cd /tmp && python distribute_setup.py && /usr/local/bin/easy_install pip
+
+- name: Python | Make sure virtualenv is installed
+  pip: name=virtualenv
+  sudo: yes

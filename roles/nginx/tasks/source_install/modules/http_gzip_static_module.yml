@@ -1,0 +1,5 @@
+# file: roles/nginx/tasks/modules/http_gzip_static_module.yml
+
+# flag: --with-http_gzip_static_module
+
+# no contents necessary

@@ -1,0 +1,51 @@
+# file: roles/mailserver/tasks/opendkim.yml
+
+- name: Mail | opendkim | Make sure OpenDKIM and dependencies are installed
+  apt: pkg=$item state=installed
+  with_items: $opendkim_packages
+
+- name: Mail | opendkim | Make sure the OpenDKIM config directory is present
+  file: state=directory path=/etc/opendkim group=opendkim owner=opendkim
+
+- name: Mail | opendkim | Make sure the OpenDKIM key directories are present
+  file: state=directory path=/etc/opendkim/keys/${item.name} group=opendkim owner=opendkim
+  with_items:
+    - $mail_virtual_domains
+
+- name: Mail | opendkim | Generate OpenDKIM keys
+  command: opendkim-genkey -r -d ${item.name} -D /etc/opendkim/keys/${item.name}/ creates=/etc/opendkim/keys/${item.name}/default.private
+  with_items:
+    - $mail_virtual_domains
+
+- name: Mail | opendkim | Update the OpenDKIM configuration - pt. 1 (/etc/opendkim/KeyTable)
+  template: src=opendkim/etc_opendkim_KeyTable.j2 dest=/etc/opendkim/KeyTable owner=opendkim group=opendkim
+  notify:
+    - restart opendkim
+    - restart postfix
+
+- name: Mail | opendkim | Update the OpenDKIM configuration - pt. 2 (/etc/opendkim/SigningTable)
+  template: src=opendkim/etc_opendkim_SigningTable.j2 dest=/etc/opendkim/SigningTable owner=opendkim group=opendkim
+  notify:
+    - restart opendkim
+    - restart postfix
+
+- name: Mail | opendkim | Update the OpenDKIM configuration - pt. 3 (/etc/opendkim/TrustedHosts)
+  template: src=opendkim/etc_opendkim_TrustedHosts.j2 dest=/etc/opendkim/TrustedHosts owner=opendkim group=opendkim
+  notify:
+    - restart opendkim
+    - restart postfix
+
+- name: Mail | opendkim | Update the OpenDKIM configuration - pt. 4 (/etc/opendkim.conf)
+  copy: src=opendkim/etc_opendkim.conf dest=/etc/opendkim.conf owner=opendkim group=opendkim
+  notify:
+    - restart opendkim
+    - restart postfix
+
+- name: Mail | opendkim | Set OpenDKIM config directory permissions - pt.1 (/etc/opendkim)
+  command: chmod -R go-rwx /etc/opendkim
+
+- name: Mail | opendkim | Set OpenDKIM config directory permissions - pt.2 (/etc/opendkim)
+  command: chown -R opendkim:opendkim /etc/opendkim
+  notify:
+    - restart opendkim
+    - restart postfix

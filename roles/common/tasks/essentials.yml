@@ -1,0 +1,5 @@
+# file: roles/common/tasks/apt.yml
+
+- name: Common | essentials | Make sure some standard packages and dependencies are installed
+  apt: pkg=$item
+  with_items: $essentials

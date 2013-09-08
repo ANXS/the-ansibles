@@ -1,0 +1,7 @@
+# file: roles/common/tasks/directories.yml
+
+- name: Common | directories | /srv/www
+  file: path=/srv/www state=directory owner=www-data group=www-data
+
+- name: Common | directory | /srv/data
+  file: path=/srv/data state=directory owner=root group=root mode=0755

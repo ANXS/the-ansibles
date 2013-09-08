@@ -1,0 +1,52 @@
+# file: roles/mailserver/tasks/dspam.yml
+
+- name: Mail | dspam | Make sure dspam and its dependencies are installed
+  apt: pkg=$item state=installed
+  with_items: $dspam_packages
+
+- name: Mail | dspam | Create dspam directory
+  file: state=directory path=/srv/data/mail/decrypted/dspam group=dspam owner=dspam
+
+- name: Mail | dspam | Put dspam configuration files in place - pt. 1
+  copy: src=dspam/etc_dspam_default.prefs dest=/etc/dspam/default.prefs owner=dspam group=dspam
+  notify:
+    - restart postfix
+    - restart dovecot
+
+- name: Mail | dspam | Put dspam configuration files in place - pt. 2
+  template: src=dspam/etc_dspam_dspam.conf.j2 dest=/etc/dspam/dspam.conf owner=dspam group=dspam
+  notify:
+    - restart postfix
+    - restart dovecot
+
+- name: Mail | dspam | Put dspam configuration files in place - pt. 3
+  copy: src=dspam/etc_postfix_dspam_filter_access dest=/etc/postfix/dspam_filter_access owner=root group=root
+  notify:
+    - restart postfix
+    - restart dovecot
+
+- name: Mail | dspam | Put dspam configuration files in place - pt. 4
+  copy: src=dovecot/etc_dovecot_conf.d_20-imap.conf dest=/etc/dovecot/conf.d/20-imap.conf owner=$mailserver_user group=dovecot
+  notify:
+    - restart postfix
+    - restart dovecot
+
+- name: Mail | dspam | Put dspam configuration files in place - pt. 5
+  copy: src=dovecot/etc_dovecot_conf.d_90-plugin.conf dest=/etc/dovecot/conf.d/90-plugin.conf owner=$mailserver_user group=dovecot
+  notify:
+    - restart postfix
+    - restart dovecot
+
+- name: Mail | dspam | Configure dspam - get rid of the footer
+  shell: dspam_admin change preference default signatureLocation headers
+  notify:
+    - restart postfix
+    - restart dovecot
+
+- name: Mail | dspam | Put dspam configuration files in place - pt. 6
+  copy: src=dspam/dot_dovecot.sieve dest=/srv/data/mail/decrypted/${item.name}/${item.primary_user}/.dovecot.sieve owner=$mailserver_user group=dovecot
+  with_items:
+    - ${mail_virtual_domains}
+  notify:
+    - restart postfix
+    - restart dovecot

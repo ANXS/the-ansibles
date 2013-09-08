@@ -1,0 +1,6 @@
+geo ${{nginx_status_remote_ip_var}} $authorized_ip {
+  default no;
+{% for ip in nginx_status_authorized_ips %}
+  {{ip}} yes;
+{% endfor %}
+}

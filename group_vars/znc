@@ -1,0 +1,80 @@
+znc_version: 1.0
+
+znc_user: znc
+znc_uid: 3030
+znc_group: znc
+znc_gid: 3030
+
+znc_dependencies:
+  - build-essential
+  - libssl-dev
+  - openssl
+  - swig
+  - automake
+  - libtool
+  - libsasl2-dev
+  - checkinstall
+  - g++
+  - pkg-config
+  - python3-dev
+  - libperl-dev
+
+znc_monit_port: 6789
+
+znc_listeners:
+  - id: 1
+    AllowIRC: true
+    AllowWeb: true
+    Port: 6789
+    IPv4: true
+    IPv6: true
+    SSL: true
+
+# --- znc configuration
+
+znc_listeners:
+  - id: 1
+    AllowIRC: true
+    AllowWeb: true
+    Port: 6789
+    IPv4: true
+    IPv6: true
+    SSL: true
+
+znc_users:
+  - name: TODO_String
+    Pass: TODO_password_hash
+    Admin: true
+    Allow: '*'
+    Nick: TODO_String
+    AltNick: TODO_String
+    Ident: TODO_String
+    RealName: TODO_String
+    Buffer: 5000
+    AutoClearChanBuffer: true
+    ChanModes: '+stn'
+    DenyLoadMod: false
+    DenySetBindHost: false
+    JoinTries: 10
+    PrependTimestamp: true
+    AppendTimestamp: false
+    TimestampFormat: '[%H:%M:%S]'
+    MaxNetworks: 1
+    MultiClients: true
+    QuitMsg: bye!
+    Modules:
+      - name: controlpanel
+      - name: perform
+      - name: block_motd
+      - name: clientnotify
+      - name: chansaver
+    Networks:
+      - name: freenode
+        Server: chat.freenode.net 6665
+        FloodBurst: 4
+        FloodRate: 1.00
+        IRCConnectEnabled: true
+        modules:
+          - name: kickrejoin
+          - name: nickserv
+          - name: savebuff

@@ -1,0 +1,17 @@
+# file: roles/mail.yml
+
+- hosts: mail
+  name: mail
+  tasks:
+    - include: mail/tasks/postfix.yml
+    - include: mail/tasks/dovecot.yml
+    - include: mail/tasks/opendkim.yml
+    - include: mail/tasks/dspam.yml
+    - include: mail/tasks/solr.yml
+    - include: mail/tasks/monit.yml
+      when: monit_protection == true
+  handlers:
+    - include: mail/handlers/postfix.yml
+    - include: mail/handlers/dovecot.yml
+    - include: mail/handlers/opendkim.yml
+    - include: mail/handlers/solr.yml

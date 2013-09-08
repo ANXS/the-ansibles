@@ -1,0 +1,12 @@
+---
+- name: Collecting facts
+  hosts: all
+  gather_facts: yes
+
+- name: Setup users
+  hosts: all
+  vars_files:
+    - ../auth_vars/pjanio
+  tasks:
+    - include: auth/tasks/users.yml
+    - include: auth/tasks/keys.yml

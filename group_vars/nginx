@@ -1,0 +1,100 @@
+nginx_dependencies:
+  - zlib1g-dev
+  - libpcre3
+  - libpcre3-dev
+  - openssl
+  - libssl-dev
+  - libgoogle-perftools-dev
+  - make
+  - git
+
+nginx_install_method: "source" # package also possible
+
+nginx_version: 1.5.3
+nginx_user: www-data
+nginx_group: www-data
+nginx_uid: 33
+nginx_gid: 33
+
+nginx_dir: /etc/nginx
+nginx_www_dir: /srv/www
+nginx_log_dir: /var/log/nginx
+nginx_binary: /usr/sbin/nginx
+nginx_pid: /var/run/nginx.pid
+
+nginx_setup_default: true
+
+# nginx install from source settings
+nginx_source_install_prefix: /usr/local/etc
+nginx_source_install_conf_path: /etc/nginx/nginx.conf
+
+nginx_source_modules_include:
+# <modulename-as-in-modules.yml>: <configure-flag>
+  http_uwsgi_module: " "
+  google_perftools_module: "--with-google_perftools_module"
+  http_ssl_module: "--with-http_ssl_module"
+  http_gzip_static_module: "--with-http_gzip_static_module"
+  ipv6: "--with-ipv6"
+  http_stub_status_module: "--with-http_stub_status_module"
+  upload_progress_module: "--add-module=/tmp/nginx-upload-progress-module"
+
+nginx_source_modules_exclude:
+  - mail_pop3_module
+  - mail_imap_module
+  - mail_smtp_module
+
+# nginx.conf settings
+nginx_daemon_disable: false
+nginx_gzip: 'on'
+nginx_gzip_http_version: 1.1
+nginx_gzip_comp_level: 2
+nginx_gzip_proxied: expired no-cache no-store private auth
+nginx_gzip_vary: 'on'
+nginx_gzip_buffers:
+nginx_gzip_min_length: 10240
+nginx_gzip_types:
+  - text/plain
+  - text/css
+  - text/xml
+  - text/csv
+  - text/javascript
+  - application/x-javascript
+  - application/xml
+  - application/xml+rss
+  - application/javascript
+  - application/postscript
+  - application/pdf
+  - application/ecmascript
+  - application/json
+  - image/svg+xml
+nginx_keepalive: on
+nginx_keepalive_timeoute: 30
+nginx_client_body_timeout: 10
+nginx_client_header_timeout: 10
+nginx_send_timeout: 10
+nginx_buffers: 'on'
+nginx_client_body_buffer_size: 8k
+nginx_client_header_buffer_size: 1k
+nginx_client_max_body_size: 2m
+nginx_large_client_header_buffers: 2 1k
+nginx_worker_processes: 4
+nginx_worker_connections: 1024
+nginx_worker_rlimit_nofile:
+nginx_multi_accept: 'on'
+nginx_event:
+nginx_server_names_hash_bucket_size: 64
+nginx_sendfile: 'on'
+nginx_disable_access_log: false
+nginx_default_site_enabled: true
+nginx_types_hash_max_size: 2048
+nginx_types_hash_bucket_size: 64
+nginx_proxy_read_timeout:
+nginx_client_max_body_size:
+
+# nginx-http_stub_status_module settings
+nginx_status_remote_ip_var: remote_addr
+nginx_status_authorized_ips:
+  - 127.0.0.1/32
+
+# nginx-upload_progress_module
+nginx_upload_progress_version: 0.9.0

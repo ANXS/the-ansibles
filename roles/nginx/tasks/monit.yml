@@ -1,0 +1,4 @@
+# file: roles/nginx/tasks/monit.yml
+
+- name: Copy the nginx monit service file
+  template: src=etc_monit_conf.d_nginx.j2 dest=/etc/monit/conf.d/nginx

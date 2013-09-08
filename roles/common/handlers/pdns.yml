@@ -1,0 +1,5 @@
+# file: roles/common/handlers/pdns.yml
+
+- name: restart pdns
+  action: service name=pdns-recursor state=restarted enabled=yes
+  sudo: yes

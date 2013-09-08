@@ -1,0 +1,4 @@
+# file: roles/firewall/handlers/ferm.yml
+
+- name: reload ferm
+  command: /etc/init.d/ferm reload

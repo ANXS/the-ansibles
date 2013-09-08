@@ -1,0 +1,18 @@
+# file: roles/nginx.yml
+
+- hosts: nginx
+  name: nginx
+  tasks:
+    - include: nginx/tasks/dependencies.yml
+    - include: nginx/tasks/user.yml
+    - include: nginx/tasks/source_install.yml
+      when: nginx_install_method == "source"
+    - include: nginx/tasks/package_install.yml
+      when: nginx_install_method == "package"
+    - include: nginx/tasks/configure.yml
+    - include: nginx/tasks/default.yml
+      when: nginx_setup_default == true
+    - include: nginx/tasks/monit.yml
+      when: monit_protection == true
+  handlers:
+    - include: nginx/handlers/main.yml

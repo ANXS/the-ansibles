@@ -1,0 +1,6 @@
+# file: roles/nginx/tasks/dependencies.yml
+
+- name: Nginx | Make sure the nginx dependencies are installed
+  apt: pkg=$item
+  with_items: $nginx_dependencies
+  sudo: yes
