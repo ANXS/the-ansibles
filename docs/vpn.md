@@ -14,17 +14,21 @@ cp openssl-1.0.0.cnf openssl.cnf
 . /etc/openvpn/easy-rsa/2.0/build-ca
 ```
 
+and complete the questions...
+
 ```bash
 . /etc/openvpn/easy-rsa/2.0/build-key-server server
 ```
 
-and complete the questions.
+and complete the questions... (Challenge password and optional company can be left blank, acknowledge yes twice)
 
 Now, for each client you wish to connect to the server (substitute <client_name>):
 
 ```bash
 . /etc/openvpn/easy-rsa/2.0/build-key <client_name>
 ```
+
+and complete the questions... (Challenge password and optional company can be left blank, acknowledge yes twice)
 
 Now Generate Diffie-Hellman parameters:
 
@@ -42,7 +46,7 @@ cp /etc/openvpn/easy-rsa/2.0/keys/server.crt /etc/openvpn
 cp /etc/openvpn/easy-rsa/2.0/keys/server.key /etc/openvpn
 ```
 
-and (2) to the clients. For this: copy the client certificates (`ca.crt`, `<client_name>.crt` and `<client_name>.key`) from /etc/openvpn/easy-rsa/2.0/keys/ to the remote machines using scp or other means (Change <client_name>)
+and (2) to the clients. For this: copy the client certificates (`ca.crt`, `<client_name>.crt` and `<client_name>.key`) from /etc/openvpn/easy-rsa/2.0/keys/ to the remote machines using scp or other means (substitute client_name)
 
 
 ### DnsMasq
@@ -119,7 +123,7 @@ comp-lzo
 </cert>
 <key>
 -----BEGIN PRIVATE KEY-----
-...copy content from <client_name.key...
+...copy content from <client_name>.key...
 -----END PRIVATE KEY-----
 </key>
 ```

@@ -41,7 +41,7 @@ mail.domain.com
 smtp.domain.com
 ```
 
-#### Reverse PTR
+#### Reverse PTR (whenever):
 Login to your hosting providers dashboard, and set the reverse PTR setting.
 
 
