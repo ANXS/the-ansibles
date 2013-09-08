@@ -84,7 +84,7 @@ ansible-playbook -i cloudbox setups/cloudbox_2.yml -u <USER> --sudo (--ask-sudo-
 
 ### Post-install
 
-1. OpenVPN needs a bit of manual configuration. It's easy though: follow [the instructions](vpn.md)
+1. OpenVPN needs a bit of manual configuration. It's easy though: follow [the instructions](vpn.md). Same for [mail](mail.md).
 
 2. Reboot the machine.
 
