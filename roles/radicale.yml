@@ -1,7 +1,0 @@
-# file: roles/radicale.yml
-
-- hosts: radicale
-  name: radicale
-  tasks:
-    - include: radicale/tasks/install.yml
-

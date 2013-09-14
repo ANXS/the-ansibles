@@ -1,9 +1,0 @@
-# file: roles/calendar.yml
-
-- hosts: calendar
-  name: calendar
-  tasks:
-    - include: ssl/tasks/wildcard.yml
-    - include: calendar/tasks/install.yml
-  handlers:
-    - include: calendar/handlers/main.yml
