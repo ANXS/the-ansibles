@@ -5,3 +5,4 @@
   tasks:
     - include: zeromq/tasks/dependencies.yml
     - include: zeromq/tasks/install.yml
+    - include: zeromq/tasks/jzmq.yml

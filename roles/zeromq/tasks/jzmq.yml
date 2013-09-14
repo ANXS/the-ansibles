@@ -1,0 +1,19 @@
+# file: roles/zeromq/tasks/jzmq.yml
+
+- name: Zeromq | Download the (storm) jzmq source from the git repo
+  git: repo=https://github.com/nathanmarz/jzmq.git dest=/tmp/jzmq
+
+- name: Zeromq | Patch jzmq install for ubuntu - pt. 1
+  shell: touch classdist_noinst.stamp chdir=/tmp/jzmq/src
+
+- name: Zeromq | Patch jzmq install for ubuntu - pt. 2
+  shell: javac -classpath /usr/local/java/jdk/bin:.:./. -d . org/zeromq/ZMQ.java org/zeromq/ZMQException.java org/zeromq/ZMQQueue.java org/zeromq/ZMQForwarder.java org/zeromq/ZMQStreamer.java chdir=/tmp/jzmq/src
+
+- name: Zeromq | prepare the jzmq source
+  shell: ./autogen.sh chdir=/tmp/jzmq
+
+- name: Zeromq | configure and make the jzmq source
+  shell: cd /tmp/jzmq && export JAVA_HOME=/usr/local/java/jdk && ./configure && make -j $machine_cpu_count
+
+- name: Zeromq | make install jzmq
+  shell: cd /tmp/jzmq && sudo make install
