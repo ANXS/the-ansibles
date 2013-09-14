@@ -1,0 +1,29 @@
+# file: roles/cassandra/tasks/install.yml
+
+- name: Cassandra | Download the cassandra source in /tmp if not yet present
+  command: wget http://archive.apache.org/dist/cassandra/$cassandra_version/apache-cassandra-$cassandra_version-bin.tar.gz chdir=/tmp creates=/tmp/apache-cassandra-$cassandra_version-bin.tar.gz
+
+- name: Cassandra | Expand the cassandra source in /usr/local/etc
+  command: tar -xvzf /tmp/apache-cassandra-$cassandra_version-bin.tar.gz chdir=/usr/local/etc creates=/usr/local/etc/apache-cassandra-$cassandra_version
+
+- name: Cassandra | Update the cassandra install permissions
+  file: path=/usr/local/etc/apache-cassandra-$cassandra_version owner=$cassandra_user group=$cassandra_group state=directory recurse=yes
+
+- name: Cassandra | Update the symbolic link to the cassandra install
+  file: path=/usr/local/etc/cassandra src=/usr/local/etc/apache-cassandra-$cassandra_version state=link force=yes
+
+- name: Cassandra | Inform the system where the cassandra-cli binary is located
+  command: update-alternatives --install "/usr/bin/cassandra-cli" "cassandra-cli" "/usr/local/etc/cassandra/bin/cassandra-cli" 1
+
+- name: Cassandra | Inform the system that this cassandra-cli binary must be the default
+  command: update-alternatives --set cassandra-cli /usr/local/etc/cassandra/bin/cassandra-cli
+
+- name: Cassandra | Make sure the local working (data) directory for cassandra is present
+  file: path=$cassandra_data_root_dir owner=$cassandra_user group=$cassandra_group mode=0750 state=directory
+
+- name: Cassandra | Make sure the working subdirectories for cassandra are present
+  file: path=$cassandra_data_root_dir/$item owner=$cassandra_user group=$cassandra_group mode=0750 state=directory
+  with_items:
+    - data
+    - commitlog
+    - saved_caches

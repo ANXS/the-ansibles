@@ -1,0 +1,5 @@
+# file: roles/cassandra/tasks/dependencies.yml
+
+- name: Cassandra | Make sure the cassandra dependencies are installed
+  apt: pkg=$item
+  with_items: $cassandra_dependencies

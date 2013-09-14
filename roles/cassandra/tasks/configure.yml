@@ -1,0 +1,7 @@
+# file: roles/cassandra/tasks/configure.yml
+
+- name: Cassandra | Update the cassandra configuration
+  template: src=usr_local_etc_cassandra_conf_$item.j2 dest=/usr/local/etc/cassandra/conf/$item owner=$cassandra_user group=$cassandra_group mode=0644
+  with_items:
+    - "cassandra.yaml"
+    - "cassandra-env.sh"
