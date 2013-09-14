@@ -73,7 +73,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "vagrant_auth.yml"
-    ansible.inventory_file = "../../site"
+    ansible.inventory_file = "../../vagrant"
     ansible.sudo = true
     ansible.limit = BOX_NAME
   end
