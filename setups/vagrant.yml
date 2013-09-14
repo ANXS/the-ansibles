@@ -19,3 +19,4 @@
 - include: ../roles/znc.yml           # Installed for znc
 - include: ../roles/cassandra.yml     # Installed for cassandra
 - include: ../roles/zookeeper.yml     # Installed for zookeeper
+- include: ../roles/zeromq.yml        # Installed for zeromq

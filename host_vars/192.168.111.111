@@ -124,3 +124,6 @@ zookeeper_id: 1
 zookeeper_servers:
   1: localhost
 
+# --- zeromq
+zeromq_version: 2.1.7
+

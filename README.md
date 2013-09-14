@@ -24,9 +24,10 @@ Ordered alphabetically. Some have [instructions](docs/) (so *RTFM*).
 | nodejs | installs [nodejs](http://nodejs.org/) - You can choose to install it through a package, or build it from source |
 | python | installs python & dependencies (python, python-dev, libevent-dev, cython, python3) |
 | security | installs & configures [fail2ban](http://www.fail2ban.org/), [rkhunter](http://rkhunter.sourceforge.net/) and [lynis](http://www.rootkit.nl/projects/lynis.html) |
-| ssl | moves ssl certificates to the host (required for other playbooks) |
+| ssl | moves ssl certificates to the host (dependency for other roles) |
 | supervisor | installs & configures [supervisord](http://supervisord.org/) |
 | vpn | installs & configures [OpenVPN](http://openvpn.net/index.php/open-source.html) |
+| zeromq | installs [ØMQ](http://zeromq.org/) socket library (dependency for other roles) |
 | znc | installs & configures [ZNC](http://wiki.znc.in/) IRC bouncer |
 | zookeeper | installs & configures [Zookeeper](http://zookeeper.apache.org/) |
 

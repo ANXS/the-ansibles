@@ -42,3 +42,6 @@ testbox
 
 [zookeeper:children]
 testbox
+
+[zeromq:children]
+testbox

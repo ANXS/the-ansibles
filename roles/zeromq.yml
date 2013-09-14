@@ -1,0 +1,7 @@
+# file: roles/zeromq.yml
+
+- hosts: zeromq
+  name: zeromq
+  tasks:
+    - include: zeromq/tasks/dependencies.yml
+    - include: zeromq/tasks/install.yml

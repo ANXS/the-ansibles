@@ -1,0 +1,9 @@
+zeromq_dependencies:
+  - build-essential
+  - binutils-doc
+  - g++
+  - uuid-dev
+  - make
+  - automake
+
+zeromq_version: 2.1.7

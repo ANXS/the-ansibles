@@ -1,0 +1,5 @@
+# file: roles/zeromq/tasks/dependencies.yml
+
+- name: Zeromq | Make sure the zeromq dependencies are installed
+  apt: pkg=$item
+  with_items: $zeromq_dependencies
