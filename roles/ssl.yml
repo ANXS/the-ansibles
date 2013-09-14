@@ -1,4 +1,4 @@
-# file: roles/common.yml
+# file: roles/ssl.yml
 
 - hosts: all
   name: SSL for machines
