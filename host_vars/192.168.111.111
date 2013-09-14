@@ -51,7 +51,13 @@ hostname: vagrantbox
 # --- timezone configuration
 timezone: UTC
 
-# --- monit configuration
+# --- supervisor
+supervisor_version: 3.0b2
+supervisor_inet_port: 8010
+supervisor_inet_username: supervisor
+supervisor_inet_password: supervisor
+
+# --- monit
 monit_protection: true
 
 # --- nginx
@@ -92,7 +98,6 @@ openvpn_key_cn: TODO_String
 openvpn_key_name: TODO_String
 
 # --- mail
-
 mail_virtual_domains:
   - name: testbox.dev
     pk_id: 1
@@ -101,3 +106,11 @@ mail_virtual_users:
   - address: testuser@testbox.dev
     password_hash: $6$PiljHIjqNxwJUnSM$EO06gKiNs00dIr3cd5NaAaz30Yyvvy456ieLmbwCzpxjE8OHeZjHKmXPKufywNNk6xs7PPDUIdX/3923o.HfM.
     domain_pk_id: 1
+
+# --- cassandra
+cassandra_version: "1.2.8"
+cassandra_user: "cassandra"
+cassandra_group: "cassandra"
+cassandra_uid: 3050
+cassandra_gid: 3050
+

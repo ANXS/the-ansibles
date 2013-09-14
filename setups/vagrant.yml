@@ -10,9 +10,11 @@
 - include: ../roles/ssl.yml           # Installed for all
 - include: ../roles/monit.yml         # Installed for monit
 - include: ../roles/python.yml        # Installed for python
+- include: ../roles/supervisor.yml    # Installed for all
 - include: ../roles/nginx.yml         # Installed for nginx
 - include: ../roles/java.yml          # Installed for java
 - include: ../roles/mysql.yml         # Installed for mysql
 - include: ../roles/nodejs.yml        # Installed for nodejs
 - include: ../roles/netatalk.yml      # Installed for fileserver
 - include: ../roles/znc.yml           # Installed for znc
+- include: ../roles/cassandra.yml      # Installed for cassandra

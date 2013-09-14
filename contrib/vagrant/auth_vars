@@ -35,3 +35,5 @@ users:
 keys:
   - user: vagrant
     key: "TODO_SSH_key"
+  - user: TODO_String
+    key: "TODO_SSH_key"

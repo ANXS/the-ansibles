@@ -36,3 +36,6 @@ testbox
 
 [monit:children]
 testbox
+
+[cassandra:children]
+testbox
