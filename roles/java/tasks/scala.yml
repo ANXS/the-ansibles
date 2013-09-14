@@ -2,48 +2,36 @@
 
 - name: Java | scala | Download Scala
   command: wget http://www.scala-lang.org/files/archive/scala-$scala_version_download.tgz chdir=/tmp creates=/tmp/scala-$scala_version_download.tgz
-  sudo: yes
 
 - name: Java | scala | Unpack the compressed Scala binaries
   command: tar -xvzf /tmp/scala-$scala_version_download.tgz chdir=/usr/local/java creates=/usr/local/java/scala-$scala_version_download
-  sudo: yes
 
 - name: Java | scala | Set the permissions on the Scala binaries
   file: path=/usr/local/java/scala-$scala_version_download/bin state=directory mode=0755 recurse=yes
-  sudo: yes
 
 - name: Java | scala | Update the symbolic link to the Scala install
   file: path=/usr/local/java/scala src=/usr/local/java/scala-$scala_version_download state=link force=yes
-  sudo: yes
 
 - name: Java | scala | Add the Scala binary to the system path (/etc/profile) - pt. 1
   lineinfile: dest=/etc/profile regexp='^SCALA_HOME=/usr/local/java/scala' line="SCALA_HOME=/usr/local/java/scala" state=present
-  sudo: yes
 
 - name: Java | scala | Add the Scala binary to the system path (/etc/profile) - pt. 2
   lineinfile: dest=/etc/profile regexp='^PATH=.*SCALA_HOME.*' line="PATH=$PATH:$SCALA_HOME/bin" state=present
-  sudo: yes
 
 - name: Java | scala | Inform the system where Scala is located - pt. 1
   command: update-alternatives --install "/usr/bin/scala" "scala" "/usr/local/java/scala/bin/scala" 1
-  sudo: yes
 
 - name: Java | scala | Inform the system where Scala is located - pt. 2
   command: update-alternatives --install "/usr/bin/scalac" "scalac" "/usr/local/java/scala/bin/scalac" 1
-  sudo: yes
 
 - name: Java | scala | Inform the system where Scala is located - pt. 3
   command: update-alternatives --install "/usr/bin/scalap" "scalap" "/usr/local/java/scala/bin/scalap" 1
-  sudo: yes
 
 - name: Java | scala | Set the system default for Scala - pt. 1
   command: update-alternatives --set scala /usr/local/java/scala/bin/scala
-  sudo: yes
 
 - name: Java | scala | Set the system default for Scala - pt. 2
   command: update-alternatives --set scalac /usr/local/java/scala/bin/scalac
-  sudo: yes
 
 - name: Java | scala | Set the system default for Scala - pt. 3
   command: update-alternatives --set scalap /usr/local/java/scala/bin/scalap
-  sudo: yes
