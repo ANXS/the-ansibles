@@ -4,44 +4,47 @@
 [vagrant:children]
 testbox
 
+[cassandra:children]
+testbox
+
 [firewall:children]
-testbox
-
-[python:children]
-testbox
-
-[nginx:children]
 testbox
 
 [java:children]
 testbox
 
-[mysql:children]
-testbox
-
-[nodejs:children]
-testbox
-
-[vpn:children]
+[kafka:children]
 testbox
 
 [mail:children]
 testbox
 
+[monit:children]
+testbox
+
+[mysql:children]
+testbox
+
+[nginx:children]
+testbox
+
+[nodejs:children]
+testbox
+
+[python:children]
+testbox
+
+[vpn:children]
+testbox
+
 [fileserver:children]
+testbox
+
+[zeromq:children]
 testbox
 
 [znc:children]
 testbox
 
-[monit:children]
-testbox
-
-[cassandra:children]
-testbox
-
 [zookeeper:children]
-testbox
-
-[zeromq:children]
 testbox

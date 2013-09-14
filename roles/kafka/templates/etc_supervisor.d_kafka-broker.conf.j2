@@ -1,0 +1,13 @@
+[program:kafka-broker]
+command=env JMX_PORT={{kafka_server_JMX_PORT}} /usr/local/etc/kafka/bin/kafka-server-start.sh /usr/local/etc/kafka/config/server.properties
+user={{kafka_user}}
+autostart=true
+autorestart=true
+stopasgroup=true
+startsecs=30
+startretries=999
+log_stdout=true
+log_stderr=true
+logfile=/var/log/kafka/broker.out
+logfile_maxbytes=20MB
+logfile_backups=10

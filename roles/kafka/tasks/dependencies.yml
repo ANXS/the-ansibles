@@ -1,0 +1,5 @@
+# file: roles/kafka/tasks/dependencies.yml
+
+- name: Kafka | Make sure the kafka dependencies are installed
+  apt: pkg=$item
+  with_items: $kafka_dependencies

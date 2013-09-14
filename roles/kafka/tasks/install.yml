@@ -1,0 +1,28 @@
+# file: roles/kafka/tasks/install.yml
+
+- name: Kafka | Download the kafka source from the git repo
+  git: repo=$kafka_repo_url dest=/tmp/kafka-$kafka_version version=$kafka_version
+
+- name: Kafka | Copy the kafka source in /usr/local/etc
+  command: rsync --exclude ".git/" --exclude ".git*" -av --no-perms /tmp/kafka-$kafka_version /usr/local/etc creates=/usr/local/etc/kafka-$kafka_version
+
+- name: Kafka | Patch the kafka source for scala version compatibility
+  command: sed -i "s/2.8.0/$scala_version/g" bin/kafka-run-class.sh chdir=/usr/local/etc/kafka-$kafka_version
+
+- name: Kafka | Package the kafka source - pt. 1
+  shell: ./sbt update chdir=/usr/local/etc/kafka-$kafka_version creates=/usr/local/etc/kafka-$kafka_version/target
+
+- name: Kafka | Package the kafka source - pt. 2
+  shell: ./sbt "++$scala_version package" chdir=/usr/local/etc/kafka-$kafka_version
+
+- name: Kafka | Package the kafka source - pt. 3
+  shell: ./sbt "++$scala_version assembly-package-dependency" chdir=/usr/local/etc/kafka-$kafka_version
+
+- name: Kafka | Update the kafka install permissions
+  file: path=/usr/local/etc/kafka-$kafka_version owner=$kafka_user group=$kafka_user state=directory recurse=yes
+
+- name: Kafka | Update the symbolic link to the kafka install
+  file: path=/usr/local/etc/kafka src=/usr/local/etc/kafka-$kafka_version state=link force=yes
+
+- name: Kafka | Make sure the local working directory for kafka is present
+  file: path=$kafka_local_dir owner=$kafka_user group=$kafka_group mode=0750 state=directory

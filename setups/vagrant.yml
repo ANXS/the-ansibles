@@ -20,3 +20,4 @@
 - include: ../roles/cassandra.yml     # Installed for cassandra
 - include: ../roles/zookeeper.yml     # Installed for zookeeper
 - include: ../roles/zeromq.yml        # Installed for zeromq
+- include: ../roles/kafka.yml         # Installed for kafka

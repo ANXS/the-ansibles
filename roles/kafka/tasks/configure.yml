@@ -1,0 +1,4 @@
+# file: roles/kafka/tasks/configure.yml
+
+- name: Kafka | Update the kafka configuration
+  template: src=usr_local_etc_kafka_config_server.properties.j2 dest=/usr/local/etc/kafka/config/server.properties owner=$kafka_user group=$kafka_group mode=0644

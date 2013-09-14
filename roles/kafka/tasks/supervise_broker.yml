@@ -1,0 +1,6 @@
+# file: roles/kafka/tasks/supervise_broker.yml
+
+- name: Kafka | Install the supervisord kafka broker script
+  template: src=etc_supervisor.d_kafka-broker.conf.j2 dest=/etc/supervisor.d/kafka-broker.conf owner=root group=root mode=0644
+  notify:
+    - restart supervisor
