@@ -13,7 +13,7 @@ Ordered alphabetically. Some have [instructions](docs/) (so *RTFM*).
 
 | Role | Contents |
 | --- | --- |
-| cassandra | installs & configures [cassandra](http://cassandra.apache.org/) |
+| cassandra | installs & configures [Cassandra](http://cassandra.apache.org/) |
 | common | sets/makes/updates hostname, timezone, directories and apt AND installs & configures essentials (g++, build-essential, automake, ack, ...), tools (curl, debconf, [dmidecode](http://www.nongnu.org/dmidecode/), [htop](http://htop.sourceforge.net/), [iftop](http://www.ex-parrot.com/pdw/iftop/), iotop, [nmap](http://nmap.org/), [tshark](http://www.wireshark.org/docs/man-pages/tshark.html), [tmux](http://tmux.sourceforge.net/), [mosh](http://mosh.mit.edu/), ...), git, vim, cron, logwatch, tmpreaper, ssh and [pdns](https://www.powerdns.com/) |
 | firewall | installs & configures [ferm](http://ferm.foo-projects.org/) - don't forget to update /etc/ferm/ferm.conf |
 | java | installs JVM 'related' languages and tools ([Oracle JDK](http://docs.oracle.com/javase/), [Scala](http://www.scala-lang.org/), [Clojure](http://clojure.org/) & [Maven](http://maven.apache.org/)) |
@@ -28,6 +28,7 @@ Ordered alphabetically. Some have [instructions](docs/) (so *RTFM*).
 | supervisor | installs & configures [supervisord](http://supervisord.org/) |
 | vpn | installs & configures [OpenVPN](http://openvpn.net/index.php/open-source.html) |
 | znc | installs & configures [ZNC](http://wiki.znc.in/) IRC bouncer |
+| zookeeper | installs & configures [Zookeeper](http://zookeeper.apache.org/) |
 
 
 # Contrib

@@ -114,3 +114,13 @@ cassandra_group: "cassandra"
 cassandra_uid: 3050
 cassandra_gid: 3050
 
+# --- zookeeper
+zookeeper_version: 3.4.5
+zookeeper_user: zookeeper
+zookeeper_group: zookeeper
+zookeeper_uid: 3030
+zookeeper_gid: 3030
+zookeeper_id: 1
+zookeeper_servers:
+  1: localhost
+

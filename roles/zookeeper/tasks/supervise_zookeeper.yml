@@ -1,0 +1,6 @@
+# file: roles/zookeeper/tasks/supervise_zookeeper.yml
+
+- name: Zookeeper | Install the supervisord zookeeper script
+  template: src=etc_supervisor.d_zookeeper.conf.j2 dest=/etc/supervisor.d/zookeeper.conf owner=root group=root mode=0644
+  notify:
+    - restart supervisor

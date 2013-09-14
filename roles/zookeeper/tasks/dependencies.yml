@@ -1,0 +1,5 @@
+# file: roles/zookeeper/tasks/dependencies.yml
+
+- name: Zookeeper | Make sure the zookeeper dependencies are installed
+  apt: pkg=$item
+  with_items: $zookeeper_dependencies

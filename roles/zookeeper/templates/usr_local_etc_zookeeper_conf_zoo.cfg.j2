@@ -1,0 +1,14 @@
+dataDir={{zookeeper_data_dir}}
+clientPort={{zookeeper_client_port}}
+tickTime={{zookeeper_tick_time}}
+
+initLimit={{zookeeper_init_limit}}
+syncLimit={{zookeeper_sync_limit}}
+
+{% for key, value in zookeeper_servers.items() %}
+server.{{key}}={{value}}:2888:3888
+{% endfor %}
+
+# Enable regular purging of old data and transaction logs every 24 hours
+autopurge.purgeInterval={{zookeeper_autopurge_purge_interval}}
+autopurge.snapRetainCount={{zookeeper_autopurge_snap_retain_count}}

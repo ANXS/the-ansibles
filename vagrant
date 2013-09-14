@@ -39,3 +39,6 @@ testbox
 
 [cassandra:children]
 testbox
+
+[zookeeper:children]
+testbox

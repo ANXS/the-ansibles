@@ -1,0 +1,16 @@
+# file: roles/zookeeper/tasks/user.yml
+
+- name: Zookeeper | Make sure the storm group is present
+  action: group gid=$zookeeper_gid name=$zookeeper_group state=present
+
+- name: Zookeeper | Make sure the zookeeper user directory is present
+  action: file path="/app/home/$zookeeper_user" state=directory
+
+- name: Zookeeper | Make sure the zookeeper user is present
+  user: uid=$zookeeper_uid name=$zookeeper_user group=$zookeeper_group home="/app/home/$zookeeper_user" shell=/bin/bash state=present comment="Zookeeper user"
+
+- name: Zookeeper | Set the right zookeeper user directory permissions
+  action: file path="/app/home/$zookeeper_user" owner=$zookeeper_user group=$zookeeper_group mode=0700 state=directory
+
+- name: Zookeeper | Set the right expiration on the zookeeper user
+  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 $zookeeper_user"

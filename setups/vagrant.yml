@@ -17,4 +17,5 @@
 - include: ../roles/nodejs.yml        # Installed for nodejs
 - include: ../roles/netatalk.yml      # Installed for fileserver
 - include: ../roles/znc.yml           # Installed for znc
-- include: ../roles/cassandra.yml      # Installed for cassandra
+- include: ../roles/cassandra.yml     # Installed for cassandra
+- include: ../roles/zookeeper.yml     # Installed for zookeeper
