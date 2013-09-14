@@ -1,0 +1,4 @@
+# file: roles/supervisor/tasks/start.yml
+
+- name: Supervisor | Start supervisor
+  service: name=supervisor state=started

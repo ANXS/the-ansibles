@@ -1,0 +1,45 @@
+[unix_http_server]
+file=/var/run//supervisor.sock   ; (the path to the socket file)
+chmod=0700                       ; sockef file mode (default 0700)
+
+{% if supervisor_inet_port %}
+[inet_http_server]
+port={{supervisor_inet_port}}
+{% if supervisor_inet_username %}
+username={{supervisor_inet_username}}
+{% if supervisor_inet_password %}
+password={{supervisor_inet_password}}
+{% endif %}
+{% endif %}
+{% endif %}
+
+[supervisord]
+logfile={{supervisor_log_dir}}/supervisord.log   ; (main log file;default $CWD/supervisord.log)
+logfile_maxbytes={{supervisor_logfile_maxbytes}} ; maximum size of logfile before rotation
+logfile_backups={{supervisor_logfile_backups}}   ; number of backed up logfiles
+loglevel={{supervisor_loglevel}}                 ; critical, error, warn, info, debug, trace, blather
+pidfile=/var/run/supervisord.pid                 ; (supervisord pidfile;default supervisord.pid)
+childlogdir={{supervisor_log_dir}}               ; ('AUTO' child log dir, default $TEMP)
+
+
+; minfds & minprocs first appeared in supervisord 3.0
+minfds = {{supervisor_minfds}}
+minprocs = {{supervisor_minprocs}}
+
+; the below section must remain in the config file for RPC
+; (supervisorctl/web interface) to work, additional interfaces may be
+; added by defining them in separate rpcinterface: sections
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///var/run//supervisor.sock ; use a unix:// URL  for a unix socket
+
+; The [include] section can just contain the "files" setting.  This
+; setting can list multiple files (separated by whitespace or
+; newlines).  It can also contain wildcards.  The filenames are
+; interpreted as relative to this file.  Included files *cannot*
+; include files themselves.
+
+[include]
+files = {{supervisor_dir}}/*.conf
