@@ -19,7 +19,7 @@
   shell: ./sbt "++$scala_version assembly-package-dependency" chdir=/usr/local/etc/kafka-$kafka_version
 
 - name: Kafka | Update the kafka install permissions
-  file: path=/usr/local/etc/kafka-$kafka_version owner=$kafka_user group=$kafka_user state=directory recurse=yes
+  file: path=/usr/local/etc/kafka-$kafka_version owner=$kafka_user group=$kafka_group state=directory recurse=yes
 
 - name: Kafka | Update the symbolic link to the kafka install
   file: path=/usr/local/etc/kafka src=/usr/local/etc/kafka-$kafka_version state=link force=yes
