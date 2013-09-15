@@ -15,6 +15,7 @@ Ordered alphabetically. Some have [instructions](docs/) (so *RTFM*).
 | --- | --- |
 | cassandra | installs & configures [Cassandra](http://cassandra.apache.org/) |
 | common | sets/makes/updates hostname, timezone, directories and apt AND installs & configures essentials (g++, build-essential, automake, ack, ...), tools (curl, debconf, [dmidecode](http://www.nongnu.org/dmidecode/), [htop](http://htop.sourceforge.net/), [iftop](http://www.ex-parrot.com/pdw/iftop/), iotop, [nmap](http://nmap.org/), [tshark](http://www.wireshark.org/docs/man-pages/tshark.html), [tmux](http://tmux.sourceforge.net/), [mosh](http://mosh.mit.edu/), ...), git, vim, cron, logwatch, tmpreaper, ssh and [pdns](https://www.powerdns.com/) |
+| elasticsearch | installs & configures [elasticsearch](http://www.elasticsearch.org/) |
 | firewall | installs & configures [ferm](http://ferm.foo-projects.org/) - don't forget to update /etc/ferm/ferm.conf |
 | java | installs JVM 'related' languages and tools ([Oracle JDK](http://docs.oracle.com/javase/), [Scala](http://www.scala-lang.org/), [Clojure](http://clojure.org/) & [Maven](http://maven.apache.org/)) |
 | [kafka](docs/kafka.md) | installs & configures [apache kafka](http://kafka.apache.org/) |
