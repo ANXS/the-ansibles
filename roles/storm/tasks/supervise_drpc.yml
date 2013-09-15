@@ -1,0 +1,6 @@
+# file: roles/storm/tasks/supervise_drpc.yml
+
+- name: Storm | Install the supervisord storm-drpc script
+  template: src=etc_supervisor.d_storm-drpc.conf.j2 dest=/etc/supervisor.d/storm-drpc.conf owner=root group=root mode=0644
+  notify:
+    - restart supervisor

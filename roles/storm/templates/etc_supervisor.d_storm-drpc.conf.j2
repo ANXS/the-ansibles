@@ -1,0 +1,12 @@
+[program:storm-drpc]
+command=/usr/local/etc/storm/bin/storm drpc
+user={{storm_user}}
+autostart=true
+autorestart=true
+startsecs=20
+startretries=999
+log_stdout=true
+log_stderr=true
+logfile=/var/log/storm/drpc.out
+logfile_maxbytes=20MB
+logfile_backups=10

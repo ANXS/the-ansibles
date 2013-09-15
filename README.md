@@ -26,6 +26,7 @@ Ordered alphabetically. Some have [instructions](docs/) (so *RTFM*).
 | python | installs python & dependencies (python, python-dev, libevent-dev, cython, python3) |
 | security | installs & configures [fail2ban](http://www.fail2ban.org/), [rkhunter](http://rkhunter.sourceforge.net/) and [lynis](http://www.rootkit.nl/projects/lynis.html) |
 | [ssl](docs/ssl.md) | moves ssl certificates to the host (dependency for other roles) |
+| storm | installs & configures [twitter storm](http://storm-project.net/) |
 | supervisor | installs & configures [supervisord](http://supervisord.org/) |
 | [vpn](docs/vpn.md) | installs & configures [OpenVPN](http://openvpn.net/index.php/open-source.html) |
 | zeromq | installs [ØMQ](http://zeromq.org/) socket library (dependency for other roles) |

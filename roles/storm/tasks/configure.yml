@@ -1,0 +1,4 @@
+# file: roles/storm/tasks/configure.yml
+
+- name: Storm | Update the storm configuration
+  template: src=usr_local_etc_storm_conf_storm.yaml.j2 dest=/usr/local/etc/storm/conf/storm.yaml owner=$storm_user group=$storm_group mode=0644

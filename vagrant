@@ -48,3 +48,15 @@ testbox
 
 [zookeeper:children]
 testbox
+
+[storm:children]
+testbox
+
+[storm-nimbus:children]
+testbox
+
+[storm-drpc:children]
+testbox
+
+[storm-supervisor:children]
+testbox

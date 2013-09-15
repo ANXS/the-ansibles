@@ -1,0 +1,26 @@
+storm.zookeeper.servers:
+{% for server in storm_zookeeper_servers %}
+  - {{server}}
+{% endfor %}
+
+storm.zookeeper.port: {{storm_zookeeper_port}}
+
+nimbus.host: {{storm_nimbus_host}}
+nimbus.childopts: {{storm_nimbus_childopts}}
+
+ui.childopts: {{storm_ui_childopts}}
+
+supervisor.childopts: {{storm_supervisor_childopts}}
+worker.childopts: {{storm_worker_childopts}}
+
+supervisor.slots.ports:
+{% for port in storm_supervisor_slots_ports %}
+  - {{port}}
+{% endfor %}
+
+storm.local.dir: {{storm_local_dir}}
+
+drpc.servers:
+{% for server in storm_drpc_servers %}
+  - {{server}}
+{% endfor %}
