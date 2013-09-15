@@ -1,0 +1,12 @@
+[program:elasticsearch]
+command=/usr/local/etc/elasticsearch/bin/elasticsearch -f
+user={{elasticsearch_user}}
+autostart=true
+autorestart=true
+startsecs=25
+startretries=999
+log_stdout=true
+log_stderr=true
+logfile=/var/log/elasticsearch/elasticsearch.out
+logfile_maxbytes=20MB
+logfile_backups=10

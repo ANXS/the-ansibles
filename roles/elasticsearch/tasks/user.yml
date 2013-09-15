@@ -1,0 +1,16 @@
+# file: roles/elasticsearch/tasks/user.yml
+
+- name: Elasticsearch | Make sure the elasticsearch group is present
+  action: group gid=$elasticsearch_gid name=$elasticsearch_group state=present
+
+- name: Elasticsearch | Make sure the elasticsearch user directory is present
+  action: file path="/app/home/$elasticsearch_user" state=directory
+
+- name: Elasticsearch | Make sure the elasticsearch user is present
+  user: uid=$elasticsearch_uid name=$elasticsearch_user group=$elasticsearch_group home="/app/home/$elasticsearch_user" shell=/bin/bash state=present comment="elasticsearch user"
+
+- name: Elasticsearch | Set the right elasticsearch user directory permissions
+  action: file path="/app/home/$elasticsearch_user" owner=$elasticsearch_user group=$elasticsearch_group mode=0700 state=directory
+
+- name: Elasticsearch | Set the right expiration on the elasticsearch user
+  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 $elasticsearch_user"

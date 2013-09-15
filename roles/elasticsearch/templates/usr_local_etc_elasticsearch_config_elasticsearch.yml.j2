@@ -1,0 +1,117 @@
+######################### ElasticSearch Configuration #########################
+
+################################### Cluster ###################################
+
+{% if elasticsearch_cluster_name %}cluster.name: {{elasticsearch_cluster_name}}{% endif %}
+
+
+#################################### Node #####################################
+
+{% if elasticsearch_node_name %}node.name: {{elasticsearch_node_name}}{% endif %}
+
+{% if elasticsearch_node_master %}node.master: {{elasticsearch_node_master}}{% endif %}
+
+{% if elasticsearch_node_data %}node.data: {{elasticsearch_node_data}}{% endif %}
+
+{% if elasticsearch_node_rack %}node.rack: {{elasticsearch_node_rack}}{% endif %}
+
+{% if elasticsearch_node_max_local_storage_nodes %}node.max_local_storage_nodes: {{elasticsearch_node_max_local_storage_nodes}}{% endif %}
+
+
+#################################### Index ####################################
+
+{% if elasticsearch_index_number_of_shards %}index.number_of_shards: {{elasticsearch_index_number_of_shards}}{% endif %}
+
+{% if elasticsearch_index_number_of_replicas %}index.number_of_replicas: {{elasticsearch_index_number_of_replicas}}{% endif %}
+
+
+#################################### Paths ####################################
+
+{% if elasticsearch_path_conf %}path.conf: {{elasticsearch_path_conf}}{% endif %}
+
+{% if elasticsearch_path_data %}path.data: {{elasticsearch_path_data}}{% endif %}
+
+{% if elasticsearch_path_work %}path.work: {{elasticsearch_path_work}}{% endif %}
+
+{% if elasticsearch_path_logs %}path.logs: {{elasticsearch_path_logs}}{% endif %}
+
+{% if elasticsearch_path_plugins %}path.plugins: {{elasticsearch_path_plugins}}{% endif %}
+
+
+#################################### Plugin ###################################
+
+{% if elasticsearch_plugin_mandatory %}plugin.mandatory: {{elasticsearch_plugin_mandatory}}{% endif %}
+
+
+################################### Memory ####################################
+
+{% if elasticsearch_bootstrap_mlockall %}bootstrap.mlockall: {{elasticsearch_bootstrap_mlockall}}{% endif %}
+
+
+############################## Network And HTTP ###############################
+
+{% if elasticsearch_network_bind_host %}network.bind_host: {{elasticsearch_network_bind_host}}{% endif %}
+
+{% if elasticsearch_network_publish_host %}network.publish_host: {{elasticsearch_network_publish_host}}{% endif %}
+
+{% if elasticsearch_network_host %}network.host: {{elasticsearch_network_host}}{% endif %}
+
+{% if elasticsearch_transport_tcp_port %}transport.tcp.port: {{elasticsearch_transport_tcp_port}}{% endif %}
+
+{% if elasticsearch_transport_tcp_compress %}transport.tcp.compress: {{elasticsearch_transport_tcp_compress}}{% endif %}
+
+{% if elasticsearch_http_port %}http.port: {{elasticsearch_http_port}}{% endif %}
+
+{% if elasticsearch_http_max_content_length %}http.max_content_length: {{elasticsearch_http_max_content_length}}{% endif %}
+
+{% if elasticsearch_http_enabled %}http.enabled: {{elasticsearch_http_enabled}}{% endif %}
+
+
+################################### Gateway ###################################
+
+{% if elasticsearch_gateway_type %}gateway.type: {{elasticsearch_gateway_type}}{% endif %}
+
+{% if elasticsearch_gateway_recover_after_nodes %}gateway.recover_after_nodes: {{elasticsearch_gateway_recover_after_nodes}}{% endif %}
+
+{% if elasticsearch_gateway_recover_after_time %}gateway.recover_after_time: {{elasticsearch_gateway_recover_after_time}}{% endif %}
+
+{% if elasticsearch_gateway_expected_nodes %}gateway.expected_nodes: {{elasticsearch_gateway_expected_nodes}}{% endif %}
+
+
+############################# Recovery Throttling #############################
+
+{% if elasticsearch_cluster_routing_allocation_node_initial_primaries_recoveries %}cluster.routing.allocation.node_initial_primaries_recoveries: {{elasticsearch_cluster_routing_allocation_node_initial_primaries_recoveries}}{% endif %}
+
+{% if elasticsearch_cluster_routing_allocation_node_concurrent_recoveries %}cluster.routing.allocation.node_concurrent_recoveries: {{elasticsearch_cluster_routing_allocation_node_concurrent_recoveries}}{% endif %}
+
+{% if elasticsearch_indices_recovery_max_bytes_per_sec %}indices.recovery.max_bytes_per_sec: {{elasticsearch_indices_recovery_max_bytes_per_sec}}{% endif %}
+
+{% if elasticsearch_indices_recovery_concurrent_streams %}indices.recovery.concurrent_streams: {{elasticsearch_indices_recovery_concurrent_streams}}{% endif %}
+
+
+################################## Discovery ##################################
+
+{% if elasticsearch_discovery_zen_minimum_master_nodes %}discovery.zen.minimum_master_nodes: {{elasticsearch_discovery_zen_minimum_master_nodes}}{% endif %}
+
+{% if elasticsearch_discovery_zen_ping_timeout %}discovery.zen.ping.timeout: {{elasticsearch_discovery_zen_ping_timeout}}{% endif %}
+
+{% if elasticsearch_discovery_zen_ping_multicast_enabled %}discovery.zen.ping.multicast.enabled: {{elasticsearch_discovery_zen_ping_multicast_enabled}}{% endif %}
+
+{% if elasticsearch_discovery_zen_ping_unicast_hosts %}discovery.zen.ping.unicast.hosts: {{elasticsearch_discovery_zen_ping_unicast_hosts}}{% endif %}
+
+
+################################## Slow Log ##################################
+
+{% for line in elasticsearch_slowlog_settings %}
+{{line}}
+{% endfor %}
+
+################################## GC Logging ################################
+
+{% for line in elasticsearch_gc_logging_settings %}
+{{line}}
+{% endfor %}
+
+
+
+

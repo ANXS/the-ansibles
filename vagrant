@@ -60,3 +60,6 @@ testbox
 
 [storm-supervisor:children]
 testbox
+
+[elasticsearch:children]
+testbox

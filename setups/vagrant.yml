@@ -21,5 +21,6 @@
 - include: ../roles/zookeeper.yml     # Installed for zookeeper
 - include: ../roles/kafka.yml         # Installed for kafka
 - include: ../roles/storm.yml         # Installed for storm
+- include: ../roles/elasticsearch.yml # Installed for elasticsearch
 
 #- include: ../roles/zeromq.yml        # Installed for zeromq

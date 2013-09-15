@@ -158,3 +158,16 @@ storm_supervisor_slots_ports:
   - "6703"
 storm_drpc_servers:
   - "localhost"
+
+# --- elasticsearch
+elasticsearch_version: 0.90.3
+elasticsearch_user: elasticsearch
+elasticsearch_group: elasticsearch
+elasticsearch_uid: 3060
+elasticsearch_gid: 3060
+elasticsearch_transport_tcp_port: 9300
+elasticsearch_http_port: 9200
+elasticsearch_local_dir: /app/elasticsearch
+elasticsearch_path_data: /app/elasticsearch/data
+elasticsearch_path_work: /app/elasticsearch/work
+elasticsearch_path_logs: /app/elasticsearch/logs

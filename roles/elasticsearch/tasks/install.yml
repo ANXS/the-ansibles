@@ -1,0 +1,16 @@
+# file: roles/elasticsearch/tasks/install.yml
+
+- name: Download the elasticsearch source in /tmp if not yet present
+  command: wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-$elasticsearch_version.tar.gz chdir=/tmp creates=/tmp/elasticsearch-$elasticsearch_version.tar.gz
+
+- name: Untar the elasticsearch source in /usr/local/etc
+  command: tar -xvzf /tmp/elasticsearch-$elasticsearch_version.tar.gz chdir=/usr/local/etc creates=/usr/local/etc/elasticsearch-$elasticsearch_version
+
+- name: Update the elasticsearch install permissions
+  file: path=/usr/local/etc/elasticsearch-$elasticsearch_version owner=$elasticsearch_user group=$elasticsearch_group state=directory recurse=yes
+
+- name: Update the symbolic link to the elasticsearch install
+  file: path=/usr/local/etc/elasticsearch src=/usr/local/etc/elasticsearch-$elasticsearch_version state=link force=yes
+
+- name: Make sure the local working directory for elasticsearch is present
+  file: path=$elasticsearch_local_dir owner=$elasticsearch_user group=$elasticsearch_group mode=0750 state=directory

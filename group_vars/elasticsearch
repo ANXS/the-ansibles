@@ -1,0 +1,86 @@
+
+elasticsearch_version: 0.90.3
+elasticsearch_user: elasticsearch
+elasticsearch_group: elasticsearch
+elasticsearch_uid: 3060
+elasticsearch_gid: 3060
+elasticsearch_local_dir: /app/elasticsearch
+
+######################### elasticsearch.yml - Cluster #########################
+#elasticsearch_cluster_name: elasticsearch
+
+########################## elasticsearch.yml - Node ###########################
+#elasticsearch_node_name: "Franz Kafka"
+#elasticsearch_node_master: true
+#elasticsearch_node_data: true
+#elasticsearch_node_rack: rack314
+#elasticsearch_node_max_local_storage_nodes: 1
+
+########################## elasticsearch.yml - Index ##########################
+#elasticsearch_index_number_of_shards: 5
+#elasticsearch_index_number_of_replicas: 0
+
+########################## elasticsearch.yml - Paths ##########################
+#elasticsearch_path_conf: /path/to/conf
+elasticsearch_path_data: /app/elasticsearch/data
+elasticsearch_path_work: /app/elasticsearch/work
+elasticsearch_path_logs: /app/elasticsearch/logs
+#elasticsearch_path_plugins: /path/to/plugins
+
+######################### elasticsearch.yml - Plugin ##########################
+#elasticsearch_plugin_mandatory: mapper-attachments,lang-groovy
+
+######################### elasticsearch.yml - Memory ##########################
+#elasticsearch_bootstrap_mlockall: true
+
+#################### elasticsearch.yml - Network and HTTP #####################
+#elasticsearch_network_bind_host: 192.168.0.1
+#elasticsearch_network_publish_host: 192.168.0.1
+#elasticsearch_network_host: 192.168.0.1
+#elasticsearch_transport_tcp_port: 9300
+#elasticsearch_transport_tcp_compress: true
+#elasticsearch_http_port: 9200
+#elasticsearch_http_max_content_length: 100mb
+#elasticsearch_http_enabled: false
+
+######################### elasticsearch.yml - Gateway #########################
+#elasticsearch_gateway_type: local
+#elasticsearch_gateway_recover_after_nodes: 1
+#elasticsearch_gateway_recover_after_time: 5m
+#elasticsearch_gateway_expected_nodes: 2
+
+################### elasticsearch.yml - Recovery Throttling ###################
+#elasticsearch_cluster_routing_allocation_node_initial_primaries_recoveries: 4
+#elasticsearch_cluster_routing_allocation_node_concurrent_recoveries: 2
+#elasticsearch_indices_recovery_max_bytes_per_sec: 20mb
+#elasticsearch_indices_recovery_concurrent_streams: 5
+
+######################## elasticsearch.yml - Discovery ########################
+#elasticsearch_discovery_zen_minimum_master_nodes: 1
+#elasticsearch_discovery_zen_ping_timeout: 3s
+#elasticsearch_discovery_zen_ping_multicast_enabled: false
+#elasticsearch_discovery_zen_ping_unicast_hosts: ["host1", "host2:port", "host3[portX-portY]"]
+
+######################## elasticsearch.yml - Slow Log #########################
+elasticsearch_slowlog_settings:
+  - "#index.search.slowlog.threshold.query.warn: 10s"
+  - "#index.search.slowlog.threshold.query.info: 5s"
+  - "#index.search.slowlog.threshold.query.debug: 2s"
+  - "#index.search.slowlog.threshold.query.trace: 500ms"
+  - "#index.search.slowlog.threshold.fetch.warn: 1s"
+  - "#index.search.slowlog.threshold.fetch.info: 800ms"
+  - "#index.search.slowlog.threshold.fetch.debug: 500ms"
+  - "#index.search.slowlog.threshold.fetch.trace: 200ms"
+  - "#index.indexing.slowlog.threshold.index.warn: 10s"
+  - "#index.indexing.slowlog.threshold.index.info: 5s"
+  - "#index.indexing.slowlog.threshold.index.debug: 2s"
+  - "#index.indexing.slowlog.threshold.index.trace: 500ms"
+
+####################### elasticsearch.yml - GC Logging ########################
+elasticsearch_gc_logging_settings:
+  - "#monitor.jvm.gc.ParNew.warn: 1000ms"
+  - "#monitor.jvm.gc.ParNew.info: 700ms"
+  - "#monitor.jvm.gc.ParNew.debug: 400ms"
+  - "#monitor.jvm.gc.ConcurrentMarkSweep.warn: 10s"
+  - "#monitor.jvm.gc.ConcurrentMarkSweep.info: 5s"
+  - "#monitor.jvm.gc.ConcurrentMarkSweep.debug: 2s"
