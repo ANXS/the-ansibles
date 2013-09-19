@@ -6,7 +6,7 @@ groups:
 users:
   - name: vagrant
     passwd: '$6$yamanote$gSPglFOaTkiWBH.LuUAJXC/Q/uYOigfI.Ydy8jGbUHD9JgUMVl7nMAWAoICrNToYMqcT.Gfw9/EBh5xEX2WK20'
-    comment: vagrant
+    comment: 'vagrant'
     uid: 1000
     shell: /bin/bash
     groups:
@@ -23,7 +23,7 @@ users:
     append: no
   - name: TODO_String
     passwd: 'TODO_pw_hash'
-    comment: TODO_String
+    comment: 'TODO_String'
     uid: 2000
     shell: /bin/bash
     groups:

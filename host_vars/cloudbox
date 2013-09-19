@@ -6,7 +6,7 @@ groups:
 users:
   - name: TODO
     passwd: 'TODO'
-    comment: TODO
+    comment: 'TODO'
     uid: 2000
     shell: /bin/bash
     groups:
