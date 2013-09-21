@@ -6,9 +6,6 @@
 
 - hosts: all
   roles:
-    - role: auth
-      tags:
-        - auth
     - role: common
       tags:
         - common

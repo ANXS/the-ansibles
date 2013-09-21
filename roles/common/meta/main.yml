@@ -8,7 +8,6 @@ dependencies:
   - { role: vim }
   - { role: build }
   - { role: cron }
-  - { role: vim }
   - { role: logwatch }
   - { role: tmpreaper }
   - { role: ssh }

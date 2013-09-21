@@ -13,24 +13,38 @@ Ordered alphabetically. Some have [instructions](docs/) (so *RTFM*).
 
 | Role | Contents |
 | --- | --- |
+| apt | updates the aptitude sources list, updates the cache, and upgrades all packages |
+| auth | setting up users and groups |
+| build | makes sure essential build/make/config/compiler packages (g++, build-essential, automake, ack, ...) are installed |
 | cassandra | installs & configures [Cassandra](http://cassandra.apache.org/) |
-| common | sets/makes/updates hostname, timezone, directories and apt AND installs & configures essentials (g++, build-essential, automake, ack, ...), tools (curl, debconf, [dmidecode](http://www.nongnu.org/dmidecode/), [htop](http://htop.sourceforge.net/), [iftop](http://www.ex-parrot.com/pdw/iftop/), iotop, [nmap](http://nmap.org/), [tshark](http://www.wireshark.org/docs/man-pages/tshark.html), [tmux](http://tmux.sourceforge.net/), [mosh](http://mosh.mit.edu/), ...), git, vim, cron, logwatch, tmpreaper, ssh and [pdns](https://www.powerdns.com/) |
+| clojure | installs the [clojure](http://clojure.org/) language binaries |
+| common | runs over dependency roles (hostname, timezone, directories, apt, vim, build, cron, logwatch, tmpreaper, ssh, powerdns) and installs a set of tools to help you manage a server (curl, debconf, [dmidecode](http://www.nongnu.org/dmidecode/), [htop](http://htop.sourceforge.net/), [iftop](http://www.ex-parrot.com/pdw/iftop/), iotop, [nmap](http://nmap.org/), [tshark](http://www.wireshark.org/docs/man-pages/tshark.html), [tmux](http://tmux.sourceforge.net/), [mosh](http://mosh.mit.edu/), ...) |
+| cron | installs cron |
+| directories | makes sure 'default' and 'additional' directories, and their auth settings, are present |
 | elasticsearch | installs & configures [elasticsearch](http://www.elasticsearch.org/) |
 | firewall | installs & configures [ferm](http://ferm.foo-projects.org/) - don't forget to update /etc/ferm/ferm.conf |
-| java | installs JVM 'related' languages and tools ([Oracle JDK](http://docs.oracle.com/javase/), [Scala](http://www.scala-lang.org/), [Clojure](http://clojure.org/) & [Maven](http://maven.apache.org/)) |
+| jdk | installs [Oracle JDK](http://docs.oracle.com/javase/) binaries |
 | [kafka](docs/kafka.md) | installs & configures [apache kafka](http://kafka.apache.org/) |
 | [mail](docs/mail.md) | installs & configures a *full-featured mailserver* with [SMTP](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) over SSL via [Postfix](http://www.postfix.org/), [IMAP](https://en.wikipedia.org/wiki/Internet_Message_Access_Protocol) over SSL via [Dovecot](http://dovecot.org/), Full-text search in your imbox powered by [solr](https://lucene.apache.org/solr/), [DNSBLs](https://en.wikipedia.org/wiki/DNSBL) to redirect spam even before it hits your filters, [DSPAM](http://dspam.sourceforge.net/) and [Postgrey](http://postgrey.schweikert.ch/) for spam-fencing and [OpenDKIM](http://www.opendkim.org/) mail server verification |
+| maven | installs the [Maven](http://maven.apache.org/) build manager for JVM language projects |
 | monit | installs & configures [monit](http://mmonit.com/monit/) |
 | mysql | installs, configures & hardens [MySql](http://dev.mysql.com/) |
+| netatalk | installs & configures netatalk |
 | nginx | installs & configures [nginx](http://nginx.org/) - You can choose to install it through a package, or build it from source, and fine-tune which modules to ex/include |
 | nodejs | installs [nodejs](http://nodejs.org/) - You can choose to install it through a package, or build it from source |
+| powerdns | installs & the configures [powerdns](https://www.powerdns.com/) dns recursor |
 | python | installs python & dependencies (python, python-dev, libevent-dev, cython, python3) |
+| scala | installs the [Scala](http://www.scala-lang.org/) language binaries |
 | security | installs & configures [fail2ban](http://www.fail2ban.org/), [rkhunter](http://rkhunter.sourceforge.net/) and [lynis](http://www.rootkit.nl/projects/lynis.html) |
-| [ssl](docs/ssl.md) | moves ssl certificates to the host (dependency for other roles) |
-| storm | installs & configures [twitter storm](http://storm-project.net/) |
+| ssh | configures (hardens!) the machines ssh |
+| [ssl](docs/ssl.md) | moves (wildcard) ssl certificates to the host |
+| storm | (common, drpc, nimbus, supervisor) installs & configures [twitter storm](http://storm-project.net/) |
 | supervisor | installs & configures [supervisord](http://supervisord.org/) |
+| timezone | sets the systems timezone |
+| tmpreaper | installs and configures [tmpreaper] |
+| vim | makes sure the 'right' version of vim is installed and configured |
 | [vpn](docs/vpn.md) | installs & configures [OpenVPN](http://openvpn.net/index.php/open-source.html) |
-| zeromq | installs [ØMQ](http://zeromq.org/) socket library (dependency for other roles) |
+| zeromq | installs [ØMQ](http://zeromq.org/) socket library |
 | [znc](docs/znc.md) | installs & configures [ZNC](http://wiki.znc.in/) IRC bouncer |
 | zookeeper | installs & configures [Zookeeper](http://zookeeper.apache.org/) |
 
