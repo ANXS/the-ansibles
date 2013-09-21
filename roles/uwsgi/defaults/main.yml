@@ -1,0 +1,3 @@
+---
+uwsgi_version: "1.9.16"
+uwsgi_download_url: "http://projects.unbit.it/downloads/"

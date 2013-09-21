@@ -1,0 +1,19 @@
+---
+#
+# one day that we have more up-to-date packages for Debian life will be much easier
+#
+
+- name: Checking for uwsgi version...
+  shell: "[ -x /usr/local/bin/uwsgi ] && /usr/local/bin/uwsgi --version || echo 0"
+  ignore_errors: True
+  register: cmdresult
+  changed_when: "cmdresult.stdout.find(uwsgi_version) == -1"
+  always_run: yes
+
+#- debug: msg="Found uwsgi version {{ cmdresult.stdout }}. Needed {{ uwsgi_version }}"
+
+- include: packages.yml
+  when: "cmdresult.stdout.find(uwsgi_version) == -1"
+
+- include: install-uwsgi.yml
+  when: "cmdresult.stdout.find(uwsgi_version) == -1"

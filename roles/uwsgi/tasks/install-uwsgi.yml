@@ -1,0 +1,22 @@
+---
+- name: Getting uwsgi...
+  get_url: dest=/tmp url={{ uwsgi_download_url }}/uwsgi-{{ uwsgi_version }}.tar.gz
+
+- name: Unpacking uwsgi...
+  command: chdir=/tmp /bin/tar xvf uwsgi-{{ uwsgi_version }}.tar.gz creates=/tmp/uwsgi-{{ uwsgi_version }}
+
+- name: Pushing uwsgi build config...
+  copy: src=uwsgibuild.ini dest=/tmp/uwsgi-{{ uwsgi_version }}/buildconf/uwsgibuild.ini
+
+- name: Making sure uwsgi plugin directory exists...
+  file: state=directory path=/usr/local/lib/uwsgi mode=0755
+
+- name: Building uwsgi...
+  shell: chdir=/tmp/uwsgi-{{ uwsgi_version }} python2.7 uwsgiconfig.py --build uwsgibuild
+  environment:
+      UWSGICONFIG_RUBYPATH: ruby1.9.1
+      UWSGICONFIG_PHPLIBDIR: /usr/lib/php5
+
+- name: Installing uwsgi...
+  command: chdir=/tmp/uwsgi-{{ uwsgi_version }} install -s -m 0755 uwsgi /usr/local/bin/uwsgi
+

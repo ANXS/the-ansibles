@@ -1,0 +1,19 @@
+---
+- name: Making sure uwsgi dependencies are installed from apt...
+  apt: pkg={{ item }} state=present
+  with_items:
+    - build-essential
+    - libonig-dev
+    - libqdbm-dev
+    - libbz2-dev
+    - libxml2-dev
+    - libkrb5-dev
+    - libpcre3-dev
+    - libdb5.1-dev
+    - python2.7
+    - python2.7-dev
+    - ruby1.9.1-dev
+    - libphp5-embed
+    - php5-dev
+    - libcap-dev
+    - liblua5.1-0-dev
