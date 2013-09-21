@@ -118,8 +118,8 @@ cassandra_gid: 3050
 zookeeper_version: 3.4.5
 zookeeper_user: zookeeper
 zookeeper_group: zookeeper
-zookeeper_uid: 3030
-zookeeper_gid: 3030
+zookeeper_uid: 3040
+zookeeper_gid: 3040
 zookeeper_id: 1
 zookeeper_servers:
   1: localhost

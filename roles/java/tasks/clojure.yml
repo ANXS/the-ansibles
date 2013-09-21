@@ -1,4 +1,0 @@
-# file: roles/java/tasks/clojure.yml
-
-- name: Java | clojure | Make sure clojure is installed
-  apt: pkg=clojure force=yes

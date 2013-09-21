@@ -1,0 +1,10 @@
+# file: roles/cassandra/tasks/main.yml
+
+- name: Cassandra | Make sure cassandra is not running under supervisord
+  supervisorctl: name=cassandra state=stopped
+
+- include: dependencies.yml
+- include: user.yml
+- include: install.yml
+- include: configure.yml
+- include: supervise_cassandra.yml

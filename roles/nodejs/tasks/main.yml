@@ -1,0 +1,7 @@
+# file: roles/nodejs/tasks/main.yml
+
+- include: dependencies.yml
+- include: source_install.yml
+  when: nodejs_install_method == "source"
+- include: package_install.yml
+  when: nodejs_install_method == "package"

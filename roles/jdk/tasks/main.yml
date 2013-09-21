@@ -1,0 +1,40 @@
+# file: roles/jdk/tasks/main.yml
+
+- name: JDK | Oracle JDK | Make sure openjdk is uninstalled
+  apt: pkg=openjdk state=absent purge=true
+
+- name: JDK | Oracle JDK | Make a directory that holds the Java binaries
+  file: path=/usr/local/java state=directory
+
+- name: JDK | Oracle JDK | Download Oracle JDK
+  command: wget --no-cookies --header 'Cookie:gpw_e24=http' '$jdk_download_url' chdir=/tmp creates=/tmp/$jdk_download_filename
+
+- name: JDK | Oracle JDK | Unpack the compressed JDK binaries
+  command: tar -xvzf /tmp/$jdk_download_filename chdir=/usr/local/java creates=/usr/local/java/$jdk_version
+
+- name: JDK | Oracle JDK | Update the symbolic link to the JDK install
+  file: path=/usr/local/java/jdk src=/usr/local/java/$jdk_version state=link force=yes
+
+- name: JDK | Oracle JDK | Add the JDK binaries to the system path (/etc/profile)
+  lineinfile: $item
+  with_items:
+    - dest=/etc/profile regexp='^JAVA_HOME=/usr/local/java/jdk' line="JAVA_HOME=/usr/local/java/jdk" state=present
+    - dest=/etc/profile regexp='^PATH=.*JAVA_HOME.*' line="PATH=$PATH:$HOME/bin:$JAVA_HOME/bin" state=present
+
+- name: JDK | Oracle JDK | Inform the system where Oracle JDK is located
+  command: $item
+  with_items:
+    - update-alternatives --install "/usr/bin/java" "java" "/usr/local/java/jdk/bin/java" 1
+    - update-alternatives --install "/usr/bin/javac" "javac" "/usr/local/java/jdk/bin/javac" 1
+    - update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/local/java/jdk/bin/javaws" 1
+    - update-alternatives --install "/usr/bin/javah" "javah" "/usr/local/java/jdk/bin/javah" 1
+    - update-alternatives --install "/usr/bin/jar" "jar" "/usr/local/java/jdk/bin/jar" 1
+
+- name: JDK | Oracle JDK | Inform the system that Oracle JDK must be the default
+  command: $item
+  with_items:
+    - update-alternatives --set java /usr/local/java/jdk/bin/java
+    - update-alternatives --set javac /usr/local/java/jdk/bin/javac
+    - update-alternatives --set javaws /usr/local/java/jdk/bin/javaws
+    - update-alternatives --set javah /usr/local/java/jdk/bin/javah
+    - update-alternatives --set jar /usr/local/java/jdk/bin/jar

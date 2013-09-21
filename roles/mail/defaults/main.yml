@@ -1,0 +1,28 @@
+# file: roles/mail/defaults/main.yml
+
+mailserver_user: vmail
+mailserver_group: vmail
+mailserver_uid: 3020
+mailserver_gid: 3020
+
+mail_server_hostname: pjan.io
+
+# these should NOT be changed if you don't know what you're doing (may cause issues down the line...)
+mail_mysql_username: mailuser
+mail_mysql_password: mailuserpass
+mail_mysql_database: mailserver
+
+mail_virtual_domains:
+  - name: TODO_String
+    pk_id: TODO_Int
+    primary_user: TODO_String
+  - name: TODO
+    pk_id: TODO_Int
+    primary_user: TODO_String
+mail_virtual_users:
+  - address: TODO_email
+    password_hash: TODO_password_sha_hashed
+    domain_pk_id: TODO_Int
+  - address: TODO_email
+    password_hash: TODO_password_sha_hashed
+    domain_pk_id: TODO_Int

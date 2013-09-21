@@ -1,0 +1,9 @@
+# file: roles/mail/meta/main.yml
+
+dependencies:
+  - { role: hostname }
+  - { role: build }
+  - { role: python }
+  - { role: mysql }
+  - { role: ssl }
+  - { role: monit }

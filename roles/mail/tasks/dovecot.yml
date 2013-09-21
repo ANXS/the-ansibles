@@ -2,7 +2,11 @@
 
 - name: Mail | dovecot | Make sure dovecot and its dependencies are installed
   apt: pkg=$item state=installed
-  with_items: $dovecote_packages
+  with_items:
+    - dovecot-core
+    - dovecot-imapd
+    - dovecot-mysql
+    - dovecot-lmtpd
 
 - name: Mail | dovecot | Ensure mail directories are in place
   file: state=directory path=/srv/data/mail/decrypted/${item.name}/${item.primary_user} owner=$mailserver_user group=dovecot

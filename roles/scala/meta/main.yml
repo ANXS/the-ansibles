@@ -1,0 +1,4 @@
+# file: roles/scala/meta/main.yml
+
+dependencies:
+  - { role: jdk }

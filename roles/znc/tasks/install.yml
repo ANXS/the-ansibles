@@ -2,7 +2,13 @@
 
 - name: ZNC | Install znc dependencies
   apt: pkg=$item state=installed
-  with_items: $znc_dependencies
+  with_items:
+    - checkinstall
+    - libperl-dev
+    - libsasl2-dev
+    - openssl
+    - pkg-config
+    - swig
 
 - name: ZNC | Download the znc source tarball
   get_url: url=http://znc.in/releases/znc-${znc_version}.tar.gz dest=/tmp/znc-${znc_version}.tar.gz
@@ -11,7 +17,7 @@
   command: tar xzf /tmp/znc-${znc_version}.tar.gz chdir=/tmp creates=/tmp/znc-${znc_version}/configure
 
 - name: ZNC | Configure/make/make install znc
-  shell: ./configure --enable-python ; make ; make install executable=/bin/bash chdir=/tmp/znc-${znc_version} creates=/usr/local/bin/znc
+  shell: ./configure --enable-python ; make ; sudo make install executable=/bin/bash chdir=/tmp/znc-${znc_version} creates=/usr/local/bin/znc
 
 - name: ZNC | Copy the znc upstart script (/etc/init.d/znc)
   template: src=etc_init.d_znc.j2 dest=/etc/init.d/znc owner=root group=root mode=0755

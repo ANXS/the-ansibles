@@ -1,0 +1,6 @@
+# file: roles/mail/handlers/main.yml
+
+- include: postfix.yml
+- include: dovecot.yml
+- include: opendkim.yml
+- include: solr.yml

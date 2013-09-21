@@ -2,7 +2,13 @@
 
 - name: Mail | postfix | Make sure postfix and its dependencies are installed
   apt: pkg=$item state=installed
-  with_items: $postfix_packages
+  with_items:
+    - postfix
+    - postfix-pcre
+    - postfix-mysql
+    - libsasl2-modules
+    - sasl2-bin
+    - postgrey
 
 - name: Mail | postfix | Create database user for mail server
   mysql_user: user=$mail_mysql_username password=$mail_mysql_password state=present priv="mailserver.*:ALL"

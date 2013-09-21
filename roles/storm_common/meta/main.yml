@@ -1,0 +1,11 @@
+# file: roles/storm_common/meta/main.yml
+
+dependencies:
+  - { role: hostname }
+  - { role: build }
+  - { role: python }
+  - { role: jdk }
+  - { role: clojure }
+  - { role: maven }
+  - { role: supervisor }
+  - { role: zeromq }

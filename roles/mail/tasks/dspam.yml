@@ -2,7 +2,11 @@
 
 - name: Mail | dspam | Make sure dspam and its dependencies are installed
   apt: pkg=$item state=installed
-  with_items: $dspam_packages
+  with_items:
+    - dspam
+    - dovecot-antispam
+    - postfix-pcre
+    - dovecot-sieve
 
 - name: Mail | dspam | Create dspam directory
   file: state=directory path=/srv/data/mail/decrypted/dspam group=dspam owner=dspam

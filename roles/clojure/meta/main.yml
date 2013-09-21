@@ -1,0 +1,4 @@
+# file: roles/clojure/meta/main.yml
+
+dependencies:
+  - { role: jdk }

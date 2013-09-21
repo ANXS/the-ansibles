@@ -1,4 +1,0 @@
-# file: roles/ssl/tasks/znc.yml
-
-- name: Copy znc combined SSL cert into place (/etc/ssl/znc-combined.pem)
-  copy: src=znc/etc_ssl_znc-combined.pem dest=/etc/ssl/znc-combined.pem owner=znc group=znc

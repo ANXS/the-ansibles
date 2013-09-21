@@ -1,0 +1,7 @@
+# file: roles/cron/tasks/main.yml
+
+- name: Cron | Make sure cron is installed
+  apt: pkg=cron
+
+- name: Cron | Make sure cron is enabled
+  action: service name=cron state=restarted enabled=yes

@@ -1,5 +1,0 @@
-# file: roles/common/tasks/hostname.yml
-
-- name: Common | logwatch | Make sure logwatch and its dependencies are installed
-  apt: pkg=$item
-  with_items: $logwatch_packages

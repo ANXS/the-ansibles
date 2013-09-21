@@ -1,0 +1,5 @@
+# file: roles/security/tasks/main.yml
+
+- include: fail2ban.yml
+- include: lynis.yml
+- include: rkhunter.yml

@@ -1,0 +1,15 @@
+# file: roles/storm_common/tasks/main.yml
+
+- name: Storm | Make sure storm is not running under supervisord
+  supervisorctl: name=$item state=stopped
+  with_items:
+    - storm-drpc
+    - storm-nimbus
+    - storm-ui
+    - storm-supervisor
+
+- include: jzmq.yml
+- include: dependencies.yml
+- include: user.yml
+- include: install.yml
+- include: configure.yml

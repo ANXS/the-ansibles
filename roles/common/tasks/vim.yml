@@ -1,7 +1,0 @@
-# file: roles/common/tasks/vim.yml
-
-- name: Common | vim | Make sure vim-tiny is uninstalled
-  apt: pkg=vim-tiny state=absent purge=true
-
-- name: Common | vim | Make sure vim-nox is installed
-  apt: pkg=vim-nox

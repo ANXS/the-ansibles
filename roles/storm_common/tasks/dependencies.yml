@@ -1,0 +1,8 @@
+# file: roles/storm_common/tasks/dependencies.yml
+
+- name: Storm | Make sure the storm dependencies are installed
+  apt: pkg=$item
+  with_items:
+    - unzip
+    - libboost-all-dev
+    - libboost-dev

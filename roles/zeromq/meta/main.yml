@@ -1,0 +1,4 @@
+# file: roles/zeromq/meta/main.yml
+
+dependencies:
+  - { role: build }

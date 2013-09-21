@@ -1,0 +1,13 @@
+# file: roles/nginx/tasks/main.yml
+
+- include: dependencies.yml
+- include: user.yml
+- include: source_install.yml
+  when: nginx_install_method == "source"
+- include: package_install.yml
+  when: nginx_install_method == "package"
+- include: configure.yml
+- include: default.yml
+  when: nginx_setup_default == true
+- include: monit.yml
+  when: monit_protection == true

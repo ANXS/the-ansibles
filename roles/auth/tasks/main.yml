@@ -1,0 +1,4 @@
+# file: roles/auth/tasks/main.yml
+
+- include: users.yml
+- include: keys.yml

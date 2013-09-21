@@ -1,0 +1,20 @@
+# file: roles/zookeeper/defaults/main.yml
+
+zookeeper_version: 3.4.5
+zookeeper_user: zookeeper
+zookeeper_group: zookeeper
+zookeeper_uid: 3040
+zookeeper_gid: 3040
+
+zookeeper_id: 1
+
+zookeeper_data_dir: /app/zookeeper
+zookeeper_client_port: 2181
+zookeeper_tick_time: 2000
+zookeeper_init_limit: 10
+zookeeper_sync_limit: 2
+zookeeper_servers:
+  1: localhost
+
+zookeeper_autopurge_purge_interval: 24
+zookeeper_autopurge_snap_retain_count: 5

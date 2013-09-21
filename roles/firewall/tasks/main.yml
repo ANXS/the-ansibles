@@ -1,0 +1,3 @@
+# file: roles/firewall/tasks/main.yml
+
+- include: ferm.yml

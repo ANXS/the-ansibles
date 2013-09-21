@@ -1,0 +1,15 @@
+# file: roles/common/meta/main.yml
+
+dependencies:
+  - { role: hostname }
+  - { role: timezone }
+  - { role: directories }
+  - { role: apt }
+  - { role: vim }
+  - { role: build }
+  - { role: cron }
+  - { role: vim }
+  - { role: logwatch }
+  - { role: tmpreaper }
+  - { role: ssh }
+  - { role: powerdns }

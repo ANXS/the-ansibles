@@ -1,0 +1,7 @@
+# file: roles/nodejs/defaults/main.yml
+
+machine_cpu_count: 1
+
+nodejs_install_method: "source"   # "package" also possible
+
+nodejs_version: 0.10.18

@@ -1,0 +1,123 @@
+# file: setups/site.yml
+
+- name: Collecting facts
+  hosts: all
+  gather_facts: yes
+
+- hosts: all
+  roles:
+    - role: auth
+      tags:
+        - auth
+    - role: common
+      tags:
+        - common
+    - role: security
+      tags:
+        - security
+    - role: supervisor
+      tags:
+        - supervisor
+    - role: monit
+      tags:
+        - monit
+
+- hosts: firewall
+  roles:
+    - role: firewall
+      tags:
+        - firewall
+
+- hosts: nginx
+  roles:
+    - role: nginx
+      tags:
+        - nginx
+
+- hosts: java-lang
+  roles:
+    - role: java
+      tags:
+        - java
+    - role: scala
+      tags:
+        - scala
+    - role: clojure
+      tags:
+        - clojure
+    - role: maven
+      tags:
+        - maven
+
+- hosts: mysql
+  roles:
+    - role: mysql
+      tags:
+        - myqsl
+
+- hosts: nodejs
+  roles:
+    - role: nodejs
+      tags:
+        - nodejs
+
+- hosts: znc
+  roles:
+    - role: znc
+      tags:
+        - znc
+
+- hosts: cassandra
+  roles:
+    - role: cassandra
+      tags:
+        - cassandra
+
+- hosts: zookeeper
+  roles:
+    - role: zookeeper
+      tags:
+        - zookeeper
+
+- hosts: kafka
+  roles:
+    - role: kafka
+      tags:
+        - kafka
+
+- hosts: storm
+  roles:
+    - role: storm_common
+      tags:
+        - storm
+    - role: storm_drpc
+      tags:
+        - storm
+    - role: storm_nimbus
+      tags:
+        - storm
+    - role: storm_supervisor
+      tags:
+        - storm
+
+- hosts: elasticsearch
+  roles:
+    - role: elasticsearch
+      tags:
+        - elasticsearch
+
+- hosts: vpn
+  roles:
+    - role: vpn
+      tags:
+        - vpn
+
+- hosts: mail
+  roles:
+    - role: mail
+      tags:
+        - mail
+
+- hosts: netatalk
+  roles:
+    - role: netatalk

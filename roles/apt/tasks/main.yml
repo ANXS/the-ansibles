@@ -1,0 +1,12 @@
+# file: roles/apt/tasks/main.yml
+
+- name: Aptitude | Update the sources list (/etc/apt/sources.list)
+  copy: src=etc_apt_sources.list dest=/etc/apt/sources.list owner=root group=root mode=0644
+
+- name: Aptitude | Update the apt cache
+  apt: update_cache=yes
+
+- name: Aptitude | Upgrade the installed packages
+  apt: upgrade=yes
+
+- debug: msg="If on vagrant - reboot the machine; login; run `sudo /etc/init.d/vboxadd setup` to repare the vagrant specifics."

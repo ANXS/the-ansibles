@@ -1,0 +1,10 @@
+# file: roles/hostname/tasks/main.yml
+
+- name: Hostname | Update the hostname (pt. 1) - hostname cmd
+  command: sudo hostname -v $hostname
+
+- name: Hostname | Update the hostname (pt. 2) - (/etc/hostname)
+  template: src=etc_hostname.j2 dest=/etc/hostname owner=root group=root mode=064
+
+- name: Hostname | Update the hostname (pt. 3) - (/etc/hosts)
+  lineinfile: dest=/etc/hosts regexp="^127.0.0.1    $fqdn    $hostname" line="127.0.0.1    $fqdn    $hostname" state=present

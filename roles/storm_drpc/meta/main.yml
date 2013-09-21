@@ -1,0 +1,5 @@
+# file: roles/storm_drpc/meta/main.yml
+
+dependencies:
+  - { role: storm_common }
+  - { role: supervisor }

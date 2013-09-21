@@ -21,11 +21,11 @@
 - name: Node.js | Update the symbolic link to the nodejs install
   file: path=/usr/local/node/current src=/usr/local/node/node-v$nodejs_version state=link force=yes
 
-- name: Node.js | Add the node binary to the system path (/etc/profile) - pt. 1
-  lineinfile: dest=/etc/profile regexp='^NODE_HOME=/usr/local/node/current' line="NODE_HOME=/usr/local/node/current" state=present
-
-- name: Node.js | Add the node binary to the system path (/etc/profile) - pt. 2
-  lineinfile: dest=/etc/profile regexp='^PATH=.*NODE_HOME.*' line="PATH=$PATH:$NODE_HOME/bin" state=present
+- name: Node.js | Add the node binary to the system path (/etc/profile)
+  lineinfile: $item
+  with_items:
+    - dest=/etc/profile regexp='^NODE_HOME=/usr/local/node/current' line="NODE_HOME=/usr/local/node/current" state=present
+    - dest=/etc/profile regexp='^PATH=.*NODE_HOME.*' line="PATH=$PATH:$NODE_HOME/bin" state=present
 
 - name: Node.js | Inform the system where Node is located
   shell: update-alternatives --install "/usr/bin/node" "node" "/usr/local/node/current/bin/node" 1

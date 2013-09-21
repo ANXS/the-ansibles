@@ -1,0 +1,4 @@
+# file: roles/python/meta/main.yml
+
+dependencies:
+  - { role: build }

@@ -1,0 +1,4 @@
+# file: roles/maven/tasks/main.yml
+
+- name: Maven | Make sure maven is installed
+  apt: pkg=maven

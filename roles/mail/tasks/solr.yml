@@ -2,7 +2,9 @@
 
 - name: Install Solr and related packages
   apt: pkg=$item state=installed
-  with_items: $solr_packages
+  with_items:
+    - solr-tomcat
+    - dovecot-solr
 
 - name: Correct a Debian bug by moving the Solr schema file (/etc/solr/conf/schema.xml)
   copy: src=solr/etc_solr_conf_schema.xml dest=/etc/solr/conf/schema.xml group=root owner=root

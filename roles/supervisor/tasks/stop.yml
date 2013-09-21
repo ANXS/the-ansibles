@@ -1,4 +1,0 @@
-# file: roles/supervisor/tasks/stop.yml
-
-- name: Supervisor | Stop supervisor
-  service: name=supervisor state=stopped

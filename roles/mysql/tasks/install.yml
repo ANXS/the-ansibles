@@ -2,4 +2,7 @@
 
 - name: MySql | Make sure the MySql packages are installed
   apt: pkg=$item
-  with_items: $mysql_packages
+  with_items:
+    - mysql-server
+    - mysql-client
+    - python-mysqldb

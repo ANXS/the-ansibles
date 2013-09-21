@@ -1,5 +1,4 @@
 # file: roles/nodejs/tasks/dependencies.yml
 
 - name: Node.js | Make sure the nodejs dependencies are installed
-  apt: pkg=$item
-  with_items: $nodejs_dependencies
+  apt: pkg=python-software-properties

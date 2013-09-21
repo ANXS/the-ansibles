@@ -1,0 +1,4 @@
+# file: roles/vpn/meta/main.yml
+
+dependencies:
+  - { role: hostname }

@@ -1,0 +1,10 @@
+# file: roles/vpn/defaults/main.yml
+
+openvpn_key_country: TO_DO
+openvpn_key_province: TO_DO
+openvpn_key_city: TO_DO
+openvpn_key_org: TO_DO
+openvpn_key_email: TO_DO
+openvpn_key_ou: TO_DO
+openvpn_key_cn: TO_DO
+openvpn_key_name: TO_DO

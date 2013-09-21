@@ -1,0 +1,9 @@
+file: roles/powerdns/defaults/main.yml
+
+pdns_user: pdns
+pdns_group: pdns
+pdns_allow_from: 127.0.0.0/8, 10.0.0.0/8, 10.8.0.0/24, 192.168.0.0/16, 172.16.0.0/12, ::1/128, e80::/10
+pdns_auth_zones: ' '
+pdns_forward_zones: ' '
+pdns_forward_zones_recurse: ' '
+pdns_local_port: 53

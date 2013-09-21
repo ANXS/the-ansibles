@@ -1,0 +1,13 @@
+# file: roles/directories/tasks/main.yml
+
+directories_default:
+  - path: /srv/www
+    owner: www-data
+    group: www-data
+    mode: '0644'
+
+directories_additional:
+  - path: /srv/data
+    owner: root
+    group: root
+    mode: '0755'

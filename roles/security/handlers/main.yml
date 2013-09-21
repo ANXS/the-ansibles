@@ -1,0 +1,3 @@
+# file: roles/firewall/handlers/main.yml
+
+- include: fail2ban.yml

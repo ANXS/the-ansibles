@@ -2,7 +2,9 @@
 
 - name: Mail | opendkim | Make sure OpenDKIM and dependencies are installed
   apt: pkg=$item state=installed
-  with_items: $opendkim_packages
+  with_items:
+    - opendkim
+    - opendkim-tools
 
 - name: Mail | opendkim | Make sure the OpenDKIM config directory is present
   file: state=directory path=/etc/opendkim group=opendkim owner=opendkim

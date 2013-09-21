@@ -1,0 +1,12 @@
+# file: roles/tmpreaper/tasks/main.yml
+
+- name: Tmpreaper | Make sure tmpreaper is installed
+  apt: pkg=tmpreaper
+
+- name: Tmpreaper | Update the tmpreaper configuration (/etc/tmpreaper.conf)
+  template: src=etc_tmpreaper.conf.j2 dest=/etc/tmpreaper.conf owner=root group=root mode=0644
+
+- name: Tmpreaper | Set the tmpreaper cron
+  cron: name=tmpreaper hour=$tmpreaper_cron_hour minute=$tmpreaper_cron_minute job=/usr/sbin/tmpreaper
+  notify:
+    - restart cron

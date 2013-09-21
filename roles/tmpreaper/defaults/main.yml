@@ -1,0 +1,9 @@
+# file: roles/tmpreaper/defaults/main.yml
+
+tmpreaper_show_warning: false
+tmpreaper_protect_extra: /tmp/*.sock /tmp/hsperfdata_*
+tmpreaper_dirs: /tmp/. /var/tmp/.
+tmpreaper_delay: 256
+tmpreaper_additional_options: --all
+tmpreaper_cron_hour: 2
+tmpreaper_cron_minute: 15

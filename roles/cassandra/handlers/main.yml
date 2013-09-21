@@ -1,0 +1,4 @@
+# file: roles/cassandra/handlers/main.yml
+
+- name: restart cassandra
+  supervisorctl: name=cassandra state=restarted

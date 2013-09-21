@@ -2,4 +2,8 @@
 
 - name: Kafka | Make sure the kafka dependencies are installed
   apt: pkg=$item
-  with_items: $kafka_dependencies
+  with_items:
+    - git
+    - libboost-all-dev
+    - libboost-dev
+    - pkg-config

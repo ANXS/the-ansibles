@@ -1,0 +1,10 @@
+# file: roles/kafka/tasks/main.yml
+
+- name: Kafka | Make sure kafka is not running under supervisord
+  supervisorctl: name=kafka state=stopped
+
+- include: dependencies.yml
+- include: user.yml
+- include: install.yml
+- include: configure.yml
+- include: supervise_broker.yml

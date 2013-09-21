@@ -1,0 +1,9 @@
+#file: roles/elasticsearch/tasks/main.yml
+
+- name: Elasticsearch | Make sure elasticsearch is not running under supervisord
+  supervisorctl: name=elasticsearch state=stopped
+
+- include: user.yml
+- include: install.yml
+- include: configure.yml
+- include: supervise_elasticsearch.yml

@@ -2,20 +2,15 @@
 
 - name: Nginx | Make sure the nginx directory exists
   file: path=$nginx_dir owner=root group=root mode=0755 recurse=yes state=directory
-  sudo: yes
 
 - name: Nginx | Make sure the nginx log directory exists
   file: path=$nginx_log_dir owner=root group=root mode=0755 recurse=yes state=directory
-  sudo: yes
 
 - name: Nginx | Make sure the nginx sites-available directory exists
   file: path=$nginx_dir/sites-available owner=root group=root mode=0755 state=directory
-  sudo: yes
 
 - name: Nginx | Make sure the nginx sites-enabled directory exists
   file: path=$nginx_dir/sites-enabled owner=root group=root mode=0755 state=directory
-  sudo: yes
 
 - name: Nginx | Make sure the nginx conf.d directory exists
   file: path=$nginx_dir/conf.d owner=root group=root mode=0755 state=directory
-  sudo: yes

@@ -1,6 +1,0 @@
-# file: roles/common/tasks/ssh.yml
-
-- name: Common | ssh | Update the ssh security configuration (/etc/ssh/sshd_config)
-  template: src=ssh/sshd_config.j2 dest=/etc/ssh/sshd_config owner=root group=root mode=0644
-  notify:
-    - restart ssh

@@ -1,0 +1,3 @@
+# file: roles/timezone/defaults/main.yml
+
+timezone: UTC

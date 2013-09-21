@@ -1,0 +1,12 @@
+# file: roles/powerdns/tasks/main.yml
+
+- name: PowerDNS | Make sure powerdns/pdns-recursor is installed
+  apt: pkg=pdns-recursor
+
+- name: PowerDNS | Make sure pdns-recursor is enabled
+  action: service name=pdns-recursor enabled=yes
+
+- name: PowerDNS | Update the pdns-recursor configuration (/etc/powerdns/recursor.conf)
+  template: src=etc_powerdns_recursor.conf.j2 dest=/etc/powerdns/recursor.conf owner=root group=root mode=0644
+  notify:
+    - restart pdns

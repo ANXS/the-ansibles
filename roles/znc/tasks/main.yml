@@ -1,0 +1,6 @@
+# file: roles/znc/tasks/main.yml
+
+- include: user.yml
+- include: install.yml
+- include: monit.yml
+  when: monit_protection == true

@@ -1,4 +1,0 @@
-# file: roles/supervisor/tasks/enable.yml
-
-- name: Supervisor | Enable supervisor
-  service: name=supervisor enabled=yes

@@ -1,0 +1,9 @@
+# file: roles/mail/tasks/main.yml
+
+- include: postfix.yml
+- include: dovecot.yml
+- include: opendkim.yml
+- include: dspam.yml
+- include: solr.yml
+- include: monit.yml
+  when: monit_protection == true

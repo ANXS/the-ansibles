@@ -1,0 +1,4 @@
+# file: roles/zookeeper/handlers/main.yml
+
+- name: restart zookeeper
+  supervisorctl: name=zookeeper state=restarted

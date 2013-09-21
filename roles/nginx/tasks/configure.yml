@@ -2,11 +2,9 @@
 
 - name: Nginx | Make sure the mime.types file is up to date
   copy: dest=$nginx_dir/mime.types src=mime.types owner=root group=root mode=0644
-  sudo: yes
 
 - name: Nginx | Make sure the nginx.conf file is up to date
   template: src=nginx.conf.j2 dest=$nginx_dir/nginx.conf owner=root group=root mode=0644
-  sudo: yes
   notify:
     - restart nginx
 

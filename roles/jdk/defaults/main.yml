@@ -1,0 +1,5 @@
+# file: roles/jdk/defaults/main.yml
+
+jdk_download_url: "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz"
+jdk_download_filename: jdk-7u25-linux-x64.tar.gz
+jdk_version: jdk1.7.0_25

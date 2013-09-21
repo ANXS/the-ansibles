@@ -1,4 +1,0 @@
-# file: roles/common/handlers/cron.yml
-
-- name: restart cron
-  action: service name=cron state=restarted

@@ -1,0 +1,13 @@
+# file: roles/supervisor/defaults.main.yml
+
+supervisor_version: 3.0b2
+supervisor_inet_port: 8010
+supervisor_inet_username: supervisor
+supervisor_inet_password: supervisor
+supervisor_dir: /etc/supervisor.d/
+supervisor_log_dir: /var/log/supervisor
+supervisor_logfile_maxbytes: 10MB
+supervisor_logfile_backups: 10
+supervisor_loglevel: info
+supervisor_minfds: 1024
+supervisor_minprocs: 200

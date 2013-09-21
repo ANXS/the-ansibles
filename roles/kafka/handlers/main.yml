@@ -1,0 +1,4 @@
+# file: roles/kafka/handlers/main.yml
+
+- name: restart kafka
+  supervisorctl: name=kafka-broker state=restarted

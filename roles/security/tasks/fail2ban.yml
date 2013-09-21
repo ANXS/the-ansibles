@@ -2,14 +2,13 @@
 
 - name: Security | fail2ban | Make sure fail2ban is installed
   apt: pkg=fail2ban
-  sudo: yes
 
 - name: Security | fail2ban | Copy the fail2ban configuration - Pt. 1
-  copy: src=fail2ban/fail2ban.conf dest=/etc/fail2ban/fail2ban.conf owner=root group=root mode=0644
+  copy: src=fail2ban/etc_fail2ban_fail2ban.conf dest=/etc/fail2ban/fail2ban.conf owner=root group=root mode=0644
   notify:
     - restart fail2ban
 
 - name: Security | fail2ban | Copy the fail2ban configuration - Pt. 1
-  copy: src=fail2ban/jail.conf dest=/etc/fail2ban/jail.conf owner=root group=root mode=0644
+  copy: src=fail2ban/etc_fail2ban_jail.conf dest=/etc/fail2ban/jail.conf owner=root group=root mode=0644
   notify:
     - restart fail2ban

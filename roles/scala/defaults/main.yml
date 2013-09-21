@@ -1,0 +1,4 @@
+# file: roles/scala/defaults/main.yml
+
+scala_version: 2.9.2            # 2.8.0
+scala_version_download: 2.9.2   # 2.8.0.final

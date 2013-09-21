@@ -1,0 +1,6 @@
+# file: roles/znc/meta/main.yml
+
+dependencies:
+  - { role: hostname }
+  - { role: build }
+  - { role: python }

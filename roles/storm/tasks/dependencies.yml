@@ -1,5 +1,0 @@
-# file: roles/storm/tasks/dependencies.yml
-
-- name: Storm | Make sure the storm dependencies are installed
-  apt: pkg=$item
-  with_items: $storm_dependencies

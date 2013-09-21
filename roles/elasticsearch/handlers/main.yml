@@ -1,0 +1,4 @@
+#file: roles/elasticsearch/handlers/main.yml
+
+- name: restart elasticsearch
+  supervisorctl: name=elasticsearch state=restarted

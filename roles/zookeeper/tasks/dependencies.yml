@@ -2,4 +2,6 @@
 
 - name: Zookeeper | Make sure the zookeeper dependencies are installed
   apt: pkg=$item
-  with_items: $zookeeper_dependencies
+  with_items:
+    - pkg-config
+    - connect-proxy

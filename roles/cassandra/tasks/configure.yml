@@ -5,3 +5,5 @@
   with_items:
     - "cassandra.yaml"
     - "cassandra-env.sh"
+  notify:
+    - restart cassandra

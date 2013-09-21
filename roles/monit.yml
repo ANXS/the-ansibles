@@ -1,7 +1,0 @@
-# file: role/monit.yml
-
-- hosts: monit
-  name: monit
-  tasks:
-    - include: monit/tasks/install.yml
-      when: monit_protection == true

@@ -1,0 +1,10 @@
+# file: roles/kafka/meta/main.yml
+
+dependencies:
+  - { role: hostname }
+  - { role: build }
+  - { role: python }
+  - { role: jdk }
+  - { role: scala }
+  - { role: maven }
+  - { role: supervisor }

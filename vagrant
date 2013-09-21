@@ -1,25 +1,16 @@
 [testbox]
 192.168.111.111
 
-[vagrant:children]
-testbox
-
-[cassandra:children]
-testbox
-
 [firewall:children]
 testbox
 
-[java:children]
+[java-lang:children]
 testbox
 
 [kafka:children]
 testbox
 
 [mail:children]
-testbox
-
-[monit:children]
 testbox
 
 [mysql:children]
@@ -37,10 +28,7 @@ testbox
 [vpn:children]
 testbox
 
-[fileserver:children]
-testbox
-
-[zeromq:children]
+[netatalk:children]
 testbox
 
 [znc:children]
@@ -52,14 +40,8 @@ testbox
 [storm:children]
 testbox
 
-[storm-nimbus:children]
-testbox
-
-[storm-drpc:children]
-testbox
-
-[storm-supervisor:children]
-testbox
-
 [elasticsearch:children]
+testbox
+
+[vpn:children]
 testbox
