@@ -1,8 +1,0 @@
-# file: roles/netatalk.yml
-
-- hosts: netatalk
-  name: netatalk
-  tasks:
-    - include: netatalk/tasks/netatalk.yml
-  handlers:
-    - include: netatalk/handlers/netatalk.yml
