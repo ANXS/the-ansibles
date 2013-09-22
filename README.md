@@ -49,7 +49,7 @@ Ordered alphabetically. Some have [instructions](docs/) (so *RTFM*).
 | zookeeper | installs & configures [Zookeeper](http://zookeeper.apache.org/) |
 
 
-** Requirements
+## Requirements
 
 - ansible > 1.3, and it's dependencies
 
