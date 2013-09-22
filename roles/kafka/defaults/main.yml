@@ -4,8 +4,8 @@ kafka_repo_url: https://github.com/apache/kafka.git
 kafka_version: 0.8.0-beta1
 kafka_user: kafka
 kafka_group: kafka
-kafka_uid: 3032
-kafka_gid: 3032
+kafka_uid: 3070
+kafka_gid: 3070
 kafka_local_dir: /app/kafka
 
 # server.properties required settings

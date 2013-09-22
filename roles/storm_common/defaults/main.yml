@@ -3,8 +3,8 @@
 storm_version: 0.9.0-wip21
 storm_user: storm
 storm_group: storm
-storm_uid: 3031
-storm_gid: 3031
+storm_uid: 3060
+storm_gid: 3060
 
 storm_zookeeper_servers:
   - "localhost"
