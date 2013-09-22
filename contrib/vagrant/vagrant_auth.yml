@@ -8,5 +8,4 @@
   vars_files:
     - auth_vars
   tasks:
-    - include: ../../roles/auth/tasks/users.yml
-    - include: ../../roles/auth/tasks/keys.yml
+    - include: ../../roles/auth/tasks/main.yml

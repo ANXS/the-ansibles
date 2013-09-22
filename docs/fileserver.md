@@ -1,2 +1,0 @@
-
-addgroup <user> shared

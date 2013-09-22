@@ -1,0 +1,30 @@
+# file: cloudbox.yml
+
+- name: Cloudbox
+  hosts: all
+  gather_facts: yes
+  roles:
+    - role: auth
+      tags: step1
+    - role: common
+      tags: step1
+    - role: security
+      tags: step2
+    - role: ssl
+      tags: step2
+    - role: monit
+      tags: step2
+    - role: python
+      tags: step2
+    - role: nginx
+      tags: step2
+    - role: mysql
+      tags: step2
+    - role: mail
+      tags: step2
+    - role: vpn
+      tags: step2
+    - role: znc
+      tags: step2
+    - role: firewall
+      tags: step2

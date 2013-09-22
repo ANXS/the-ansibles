@@ -67,7 +67,7 @@ Try it out:
 
 1. edit the `contrib/vagrant/Vagrantfile`, `contrib/vagrant/auth_vars`, and `host_vars/192.168.111.111` to your liking
 2. `vagrant up`
-3. `ansible-playbook -i vagrant setups/vagrant.yml --sudo`
+3. `ansible-playbook -i vagrant vagrant.yml --sudo`
 
 ## contrib/deprecated?
 

@@ -1,4 +1,4 @@
-# file: setups/site.yml
+# file: vagrant.yml
 
 - name: Collecting facts
   hosts: all
@@ -33,9 +33,9 @@
 
 - hosts: java-lang
   roles:
-    - role: java
+    - role: jdk
       tags:
-        - java
+        - jdk
     - role: scala
       tags:
         - scala

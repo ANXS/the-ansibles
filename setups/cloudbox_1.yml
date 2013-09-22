@@ -1,8 +1,0 @@
-# file: setups/cloudbox_1.yml
-
-- name: Collecting facts
-  hosts: all
-  gather_facts: yes
-
-- include: ../roles/auth.yml
-- include: ../roles/common.yml

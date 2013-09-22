@@ -53,14 +53,14 @@ Unfortunately, it still isn't a one-click solution, but we're getting close :-).
 <USER>    a user that has sudo access to the machine. This can be the same as the user above, but it cannot be root anymore (if that was the case)
 ```
 
-1. Put the content of the SSL files in `roles/ssl/files/wildcard` directory. You can reuse the pem for your ZNC and put it in `roles/ssl/files/znc` or create and self-sign a new one ([same instructions](docs/ssl.md)).
+1. Put the content of the SSL files in `roles/ssl/files/wildcard` directory. You can reuse the pem for your ZNC and put it in `roles/znc/files` or create and self-sign a new one ([same instructions](docs/ssl.md)). Both need to be present.
 
-2. Run through `host_vars/cloudbox` replace the variables as you feel necessary (the required ones are marked with TODO, including the required type). All possible options are marked in the `group_vars/` files if you want additional tweaking. (In that case, you should copy the lines and put them in the `host_vars/cloudbox` file, where you edit them.) Some need to be computed. Follow the instructions to see how:
+2. Run through `host_vars/cloudbox` replace the variables as you feel necessary (the required ones are marked with TODO, including the required type). All possible options are marked in the `<role-name>/defaults/main.yml` files if you want additional tweaking. (In that case, you should copy the lines and put them in the `host_vars/cloudbox` file, where you edit them.) Some need to be computed. Follow the instructions to see how:
   - [auth_vars](auth.md) configuration: `passwd`
   - [mail](mail.md): `password_hash`
   - [ZNC](znc.md): `Pass`
 
-3. Change the filename of `host_vars/cloudbox` to `<IP>`. At the same time, change the second line of `cloudbox` to `<IP>` as well. (Adding other roles to the configuration is done through these 2 too, as well as through `setups/cloudbox_2.yml`).
+3. Change the filename of `host_vars/cloudbox` to `<IP>`. At the same time, change the second line of `cloudbox` to `<IP>` as well. (Adding additional roles can be done in the cloudbox.yml file).
 
 4. Review the firewall rules in `roles/firewall/files/etc_ferm_ferm.conf`. They are configured for exactly this install, but it is always wise to check whether all of this is correct.
 
@@ -71,7 +71,7 @@ Unfortunately, it still isn't a one-click solution, but we're getting close :-).
 2. Point the first part of your ansible setup to the machine:
 
   ```
-ansible-playbook -i cloudbox setups/cloudbox_1.yml -u <RA_USER> --sudo
+ansible-playbook -i cloudbox cloudbox.yml -u <RA_USER> --sudo --tags step1
 ```
 
 3. ssh into the machine, and setup the on-disk encryption for your mail. Instructions can be found [here](mail.md).
@@ -79,7 +79,7 @@ ansible-playbook -i cloudbox setups/cloudbox_1.yml -u <RA_USER> --sudo
 4. Point the second part of your ansible setup to the machine:
 
   ```
-ansible-playbook -i cloudbox setups/cloudbox_2.yml -u <USER> --sudo (--ask-sudo-pass)
+ansible-playbook -i cloudbox cloudbox.yml -u <USER> --sudo (--ask-sudo-pass) --tags step2
 ```
 
 ### Post-install
