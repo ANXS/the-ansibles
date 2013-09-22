@@ -41,7 +41,7 @@ cassandra_key_cache_save_period: 14400
 cassandra_row_cache_size_in_mb: 0
 cassandra_row_cache_save_period: 0
 cassandra_memory_allocator: NativeAllocator
-#cassandra_row_cache_provider: SerializingCacheProvider
+cassandra_row_cache_provider: SerializingCacheProvider
 cassandra_commitlog_sync: periodic
 cassandra_commitlog_sync_period_in_ms: 10000
 cassandra_commitlog_segment_size_in_mb: 32
