@@ -1,6 +1,6 @@
 # file: roles/cassandra/defaults/main.yml
 
-cassandra_version: "1.2.8"
+cassandra_version: "2.0.0"
 cassandra_user: "cassandra"
 cassandra_group: "cassandra"
 cassandra_uid: 3050
@@ -40,7 +40,8 @@ cassandra_key_cache_size_in_mb: " "
 cassandra_key_cache_save_period: 14400
 cassandra_row_cache_size_in_mb: 0
 cassandra_row_cache_save_period: 0
-cassandra_row_cache_provider: SerializingCacheProvider
+cassandra_memory_allocator: NativeAllocator
+#cassandra_row_cache_provider: SerializingCacheProvider
 cassandra_commitlog_sync: periodic
 cassandra_commitlog_sync_period_in_ms: 10000
 cassandra_commitlog_segment_size_in_mb: 32
@@ -70,6 +71,7 @@ cassandra_compaction_preheat_key_cache: true
 cassandra_read_request_timeout_in_ms: 10000
 cassandra_range_request_timeout_in_ms: 10000
 cassandra_write_request_timeout_in_ms: 10000
+cassandra_cas_contention_timeout_in_ms: 1000
 cassandra_truncate_request_timeout_in_ms: 60000
 cassandra_request_timeout_in_ms: 10000
 cassandra_cross_node_timeout: false
@@ -80,3 +82,4 @@ cassandra_request_scheduler: org.apache.cassandra.scheduler.NoScheduler
 cassandra_index_interval: 128
 cassandra_internode_compression: all
 cassandra_inter_dc_tcp_nodelay: true
+cassandra_preheat_kernel_page_cache: false

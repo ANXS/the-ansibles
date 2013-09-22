@@ -7,7 +7,7 @@
 
 # The name of the cluster. This is mainly used to prevent machines in
 # one logical cluster from joining another.
-cluster_name: {{cassandra_cluster_name}}
+cluster_name: '{{cassandra_cluster_name}}'
 
 # This defines the number of tokens randomly assigned to this node on the ring
 # The more tokens, relative to other nodes, the larger the proportion of data
@@ -174,23 +174,18 @@ row_cache_save_period: {{cassandra_row_cache_save_period}}
 # Disabled by default, meaning all keys are going to be saved
 # row_cache_keys_to_save: 100
 
-# The provider for the row cache to use.
+# The off-heap memory allocator.  Affects storage engine metadata as
+# well as caches.  Experiments show that JEMAlloc saves some memory
+# than the native GCC allocator (i.e., JEMalloc is more
+# fragmentation-resistant).
 #
-# Supported values are: ConcurrentLinkedHashCacheProvider, SerializingCacheProvider
+# Supported values are: NativeAllocator, JEMallocAllocator
 #
-# SerializingCacheProvider serialises the contents of the row and stores
-# it in native memory, i.e., off the JVM Heap. Serialized rows take
-# significantly less memory than "live" rows in the JVM, so you can cache
-# more rows in a given memory footprint.  And storing the cache off-heap
-# means you can use smaller heap sizes, reducing the impact of GC pauses.
-# Note however that when a row is requested from the row cache, it must be
-# deserialized into the heap for use.
+# If you intend to use JEMallocAllocator you have to install JEMalloc as library and
+# modify cassandra-env.sh as directed in the file.
 #
-# It is also valid to specify the fully-qualified class name to a class
-# that implements org.apache.cassandra.cache.IRowCacheProvider.
-#
-# Defaults to SerializingCacheProvider
-row_cache_provider: {{cassandra_row_cache_provider}}
+# Defaults to NativeAllocator
+memory_allocator: {{cassandra_memory_allocator}}
 
 # saved caches
 saved_caches_directory: {{cassandra_data_root_dir}}/saved_caches
@@ -233,31 +228,6 @@ seed_provider:
           # seeds is actually a comma-delimited list of addresses.
           # Ex: "<ip1>,<ip2>,<ip3>"
           - seeds: {{ cassandra_seeds|join(', ') }}
-
-# emergency pressure valve: each time heap usage after a full (CMS)
-# garbage collection is above this fraction of the max, Cassandra will
-# flush the largest memtables.
-#
-# Set to 1.0 to disable.  Setting this lower than
-# CMSInitiatingOccupancyFraction is not likely to be useful.
-#
-# RELYING ON THIS AS YOUR PRIMARY TUNING MECHANISM WILL WORK POORLY:
-# it is most effective under light to moderate load, or read-heavy
-# workloads; under truly massive write load, it will often be too
-# little, too late.
-flush_largest_memtables_at: {{cassandra_flush_largest_memtables_at}}
-
-# emergency pressure valve #2: the first time heap usage after a full
-# (CMS) garbage collection is above this fraction of the max,
-# Cassandra will reduce cache maximum _capacity_ to the given fraction
-# of the current _size_.  Should usually be set substantially above
-# flush_largest_memtables_at, since that will have less long-term
-# impact on the system.
-#
-# Set to 1.0 to disable.  Setting this lower than
-# CMSInitiatingOccupancyFraction is not likely to be useful.
-reduce_cache_sizes_at: {{cassandra_reduce_cache_sizes_at}}
-reduce_cache_capacity_to: {{cassandra_reduce_cache_capacity_to}}
 
 # For workloads with more data than can fit in memory, Cassandra's
 # bottleneck will be reads that need to fetch data from
@@ -490,6 +460,9 @@ read_request_timeout_in_ms: {{cassandra_read_request_timeout_in_ms}}
 range_request_timeout_in_ms: {{cassandra_range_request_timeout_in_ms}}
 # How long the coordinator should wait for writes to complete
 write_request_timeout_in_ms: {{cassandra_write_request_timeout_in_ms}}
+# How long a coordinator should continue to retry a CAS operation
+# that contends with other proposals for the same row
+cas_contention_timeout_in_ms: {{cassandra_cas_contention_timeout_in_ms}}
 # How long the coordinator should wait for truncates to complete
 # (This can be much longer, because unless auto_snapshot is disabled
 # we need to flush first so we can snapshot before removing the data.)
@@ -498,8 +471,10 @@ truncate_request_timeout_in_ms: {{cassandra_truncate_request_timeout_in_ms}}
 request_timeout_in_ms: {{cassandra_request_timeout_in_ms}}
 
 # Enable operation timeout information exchange between nodes to accurately
-# measure request timeouts, If disabled cassandra will assuming the request
-# was forwarded to the replica instantly by the coordinator
+# measure request timeouts.  If disabled, replicas will assume that requests
+# were forwarded to them instantly by the coordinator, which means that
+# under overload conditions we will waste that much extra time processing
+# already-timed-out requests.
 #
 # Warning: before enabling this property make sure to ntp is installed
 # and the times are synchronized between the nodes.
@@ -688,3 +663,9 @@ internode_compression: {{cassandra_internode_compression}}
 # reducing overhead from the TCP protocol itself, at the cost of increasing
 # latency if you block for cross-datacenter responses.
 inter_dc_tcp_nodelay: {{cassandra_inter_dc_tcp_nodelay}}
+
+# Enable or disable kernel page cache preheating from contents of the key cache after compaction.
+# When enabled it would preheat only first "page" (4KB) of each row to optimize
+# for sequential access. Note: This could be harmful for fat rows, see CASSANDRA-4937
+# for further details on that topic.
+preheat_kernel_page_cache: {{cassandra_preheat_kernel_page_cache}}
