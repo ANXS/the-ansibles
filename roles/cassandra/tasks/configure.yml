@@ -6,4 +6,4 @@
     - "cassandra.yaml"
     - "cassandra-env.sh"
   notify:
-    - restart cassandra
+    - restart supervisor

@@ -6,4 +6,4 @@
 - name: Elasticsearch | Update the elasticsearch configuration
   template: src=usr_local_etc_elasticsearch_config_elasticsearch.yml.j2 dest=/usr/local/etc/elasticsearch/config/elasticsearch.yml owner=$elasticsearch_user group=$elasticsearch_group mode=0644
   notify:
-    - restart elasticsearch
+    - restart supervisor
