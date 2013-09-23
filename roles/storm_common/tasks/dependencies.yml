@@ -6,3 +6,4 @@
     - unzip
     - libboost-all-dev
     - libboost-dev
+    - pkg-config

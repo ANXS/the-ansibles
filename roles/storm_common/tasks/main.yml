@@ -8,8 +8,8 @@
     - storm-ui
     - storm-supervisor
 
-- include: jzmq.yml
 - include: dependencies.yml
+- include: jzmq.yml
 - include: user.yml
 - include: install.yml
 - include: configure.yml
