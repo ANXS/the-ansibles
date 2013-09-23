@@ -2,7 +2,7 @@
 
 ## Background
 
-Inspired by inspired by [Drew Crawford](https://twitter.com/drewcrawford)'s [post](http://sealedabstract.com/code/nsa-proof-your-e-mail-in-2-hours/), and [al3x](https://twitter.com/al3x)'s [sovereign](https://github.com/al3x/sovereign/) repo, I have created a similarly complete set that gives you a personal (mail/web/...)server.
+Inspired by [Drew Crawford](https://twitter.com/drewcrawford)'s [post](http://sealedabstract.com/code/nsa-proof-your-e-mail-in-2-hours/), and [al3x](https://twitter.com/al3x)'s [sovereign](https://github.com/al3x/sovereign/) repo, I have created a similarly complete set that gives you a personal (mail/web/...)server.
 
 The set-up of the scripts are different (mainly because I recycled what I had + I have a slightly different approach so I there is a better fallback mechanism for default values), as is the content of what it installs (nginx instead of apache, no owncloud due to some nasty experiences with it in the past, ...)
 
