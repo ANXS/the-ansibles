@@ -22,7 +22,7 @@ elasticsearch_local_dir: /app/elasticsearch
 #elasticsearch_index_number_of_replicas: 0
 
 ########################## elasticsearch.yml - Paths ##########################
-#elasticsearch_path_conf: /path/to/conf
+#elasticsearch_path_conf: /usr/local/etc/elasticsearch/config
 elasticsearch_path_data: /app/elasticsearch/data
 elasticsearch_path_work: /app/elasticsearch/work
 elasticsearch_path_logs: /app/elasticsearch/logs
