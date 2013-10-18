@@ -1,0 +1,35 @@
+---
+#
+# one day that we have more up-to-date packages for Debian life will be much easier
+#
+
+- name: Checking for uwsgi version...
+  shell: "[ -x /usr/local/bin/uwsgi ] && /usr/local/bin/uwsgi --version || echo 0"
+  ignore_errors: True
+  register: cmdresult
+  changed_when: "cmdresult.stdout.find(uwsgi_version) == -1"
+  always_run: yes
+
+#- debug: msg="Found uwsgi version {{ cmdresult.stdout }}. Needed {{ uwsgi_version }}"
+
+- include: packages.yml
+  when: "cmdresult.stdout.find(uwsgi_version) == -1"
+
+- include: install-uwsgi.yml
+  when: "cmdresult.stdout.find(uwsgi_version) == -1"
+
+- name: Making sure uwsgi config directories are there...
+  file: path=/etc/{{ item }} state=directory mode=0755
+  with_items:
+      - uwsgi
+      - uwsgi/vassals
+
+- name: Making sure there's uwsgi emperor configuration...
+  template: src=emperor.ini dest=/etc/uwsgi/emperor.ini mode=0644 owner=root group=root
+  notify: restart the uwsgi emperor
+
+- name: Create a separate directory for uwsgi log files
+  file: state=directory path=/var/log/uwsgi mode=0750 owner=root group=root
+
+- name: Setup crontab to run uwsgi emperor on reboot
+  cron: name="run uwsgi emperor" special_time=reboot job="/usr/local/bin/uwsgi --ini /etc/uwsgi/emperor.ini"

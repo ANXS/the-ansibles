@@ -1,0 +1,4 @@
+---
+# try to restart the emperor, never mind if it fails
+- name: restart the uwsgi emperor
+  shell: "[ -e /run/uwsgi-emperor.pid ] && /usr/local/bin/uwsgi --reload /run/uwsgi-emperor.pid || true"
