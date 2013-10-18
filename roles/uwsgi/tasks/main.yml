@@ -17,3 +17,19 @@
 
 - include: install-uwsgi.yml
   when: "cmdresult.stdout.find(uwsgi_version) == -1"
+
+- name: Making sure uwsgi config directories are there...
+  file: path=/etc/{{ item }} state=directory mode=0755
+  with_items:
+      - uwsgi
+      - uwsgi/vassals
+
+- name: Making sure there's uwsgi emperor configuration...
+  template: src=emperor.ini dest=/etc/uwsgi/emperor.ini mode=0644 owner=root group=root
+  notify: restart the uwsgi emperor
+
+- name: Create a separate directory for uwsgi log files
+  file: state=directory path=/var/log/uwsgi mode=0750 owner=root group=root
+
+- name: Setup crontab to run uwsgi emperor on reboot
+  cron: name="run uwsgi emperor" special_time=reboot job="/usr/local/bin/uwsgi --ini /etc/uwsgi/emperor.ini"
