@@ -27,6 +27,15 @@ CREATE TABLE IF NOT EXISTS `virtual_aliases` (
     FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `recipient_bcc` (
+    `id` int(11) NOT NULL auto_increment,
+    `domain_id` int(11) NOT NULL,
+    `source` varchar(100) NOT NULL,
+    `destination` varchar(100) NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 {% for virtual_domain in mail_virtual_domains %}
     INSERT INTO `{{mail_mysql_database}}`.`virtual_domains` (`id`, `name`)
     VALUES
@@ -37,4 +46,16 @@ CREATE TABLE IF NOT EXISTS `virtual_aliases` (
     INSERT INTO `{{mail_mysql_database}}`.`virtual_users`  (`domain_id`, `password` , `email`)
     VALUES
     ('{{ virtual_user.domain_pk_id }}', '{{ virtual_user.password_hash }}', '{{ virtual_user.address }}');
+{% endfor %}
+
+{% for virtual_alias in mail_virtual_aliases %}
+    INSERT INTO `{{mail_mysql_database}}`.`virtual_aliases` (`domain_id`, `source`, `destination`)
+    VALUES
+    ('{{virtual_alias.domain_pk_id}}', '{{virtual_alias.source}}', '{{virtual_alias.destination}}');
+{% endfor %}
+
+{% for bcc_recipient in mail_bcc_recipients %}
+    INSERT INTO `{{mail_mysql_database}}`.`bcc_recpients` (`domain_id`, `source`, `destination`)
+    VALUES
+    ('{{virtual_alias.domain_pk_id}}', '{{virtual_alias.source}}', '{{virtual_alias.destination}}');
 {% endfor %}

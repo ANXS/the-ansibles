@@ -95,6 +95,7 @@ virtual_mailbox_domains = mysql:/etc/postfix/mysql-virtual-mailbox-domains.cf
 virtual_mailbox_maps = mysql:/etc/postfix/mysql-virtual-mailbox-maps.cf
 virtual_alias_maps = mysql:/etc/postfix/mysql-virtual-alias-maps.cf
 local_recipient_maps = $virtual_mailbox_maps
+recipient_bcc_maps = mysql:/etc/postfix/mysql-recipient-bcc-maps.cf
 
 # OpenDKIM
 smtpd_milters = inet:127.0.0.1:8891
