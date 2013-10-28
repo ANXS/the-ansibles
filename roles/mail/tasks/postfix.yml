@@ -51,3 +51,8 @@
   template: src=postfix/etc_postfix_mysql-virtual-alias-maps.cf.j2 dest=/etc/postfix/mysql-virtual-alias-maps.cf owner=root group=root
   notify:
     - restart postfix
+
+- name: Mail | postfix | Update the postfix config files - pt. 7 (/etc/postfix/mysql-recipient-bcc-maps.cf)
+  template: src=postfix/etc_postfix_mysql-recipient-bcc-maps.cf.j2 dest=/etc/postfix/mysql-recipient-bcc-maps.cf owner=root group=root
+  notify:
+    - restart postfix

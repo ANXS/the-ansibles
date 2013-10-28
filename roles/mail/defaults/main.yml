@@ -26,3 +26,17 @@ mail_virtual_users:
   - address: TODO_email
     password_hash: TODO_password_sha_hashed
     domain_pk_id: TODO_Int
+mail_virtual_aliases:
+  - domain_pk_id: TODO_Int
+    source: TODO_email
+    destination: TODO_email
+  - domain_pk_id: TODO_Int
+    source: TODO_email
+    desintation: TODO_email
+mail_bcc_recipients:
+  - domain_pk_id: TODO_Int
+    source: TODO_email
+    destination: TODO_email
+  - domain_pk_id: TODO_Int
+    source: TODO_email
+    desintation: TODO_email
