@@ -78,6 +78,13 @@ Try it out:
 
 Scripts I've written, yet don't consider that useful to myself. Mainly here for reference purposes. Happy if they're useful to others.
 
+# Thanks
+
+To all contributors:
+
+* [Greg Tangey](https://github.com/Ruxton)
+* [Tim Vandecasteele](https://github.com/tim-vandecasteele)
+
 # Feedback, bug-reports, requests, ...
 
 Are [welcome](https://github.com/pjan/the-ansibles/issues)! Everyone benefits, really...
