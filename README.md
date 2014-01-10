@@ -82,6 +82,7 @@ Scripts I've written, yet don't consider that useful to myself. Mainly here for 
 
 To all contributors:
 
+* [Adrian Simmons](https://github.com/adrinux)
 * [Greg Tangey](https://github.com/Ruxton)
 * [Tim Vandecasteele](https://github.com/tim-vandecasteele)
 
