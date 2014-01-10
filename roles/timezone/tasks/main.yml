@@ -4,10 +4,10 @@
   file: path=/etc/localtime state=absent
 
 - name: Timezone | Symlink the correct localtime - pt.2 (/etc/localtime)
-  file: src=/usr/share/zoneinfo/$timezone dest=/etc/localtime state=link owner=root group=root mode=0644
+  file: src=/usr/share/zoneinfo/{{ timezone }} dest=/etc/localtime state=link owner=root group=root mode=0644
 
 - name: Timezone | Make sure the dependencies are installed
-  apt: pkg=$item
+  apt: name={{ item }} state=installed
   with_items:
     - tzdata
     - ntp
