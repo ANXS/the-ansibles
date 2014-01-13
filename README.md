@@ -89,6 +89,7 @@ And use the roles in playbooks as normal. Roles in your playbook directory will 
 
 To all contributors:
 
+* [Adrian Simmons](https://github.com/adrinux)
 * [Greg Tangey](https://github.com/Ruxton)
 * [Tim Vandecasteele](https://github.com/tim-vandecasteele)
 
