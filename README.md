@@ -78,6 +78,13 @@ Try it out:
 
 Scripts I've written, yet don't consider that useful to myself. Mainly here for reference purposes. Happy if they're useful to others.
 
+## Using the-ansibles as a role library
+Ansible 1.4 introduced the **roles_path** environment variable (See Ansible [configuration docs](http://docs.ansible.com/intro_configuration.html#roles-path) on roles_path). This allows for the-ansibles to be used as a library of roles. Clone the repository as normal, then set roles_path in your ansible.cfg to the roles subdirectory of the-ansibles something like this:
+```
+roles_path= /path/to/the-ansibles/roles
+```
+And use the roles in playbooks as normal. Roles in your playbook directory will override those with the same name in the-ansibles allowing for selective overrides where required.
+
 # Thanks
 
 To all contributors:
