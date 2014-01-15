@@ -1,4 +1,6 @@
 # file: roles/hostname/defaults/main.yml
 
-fqdn: localhost
-hostname: localhost
+# If public_ip is undefined use the same loopback IP as Ubuntu installer
+public_ip: 127.0.1.1
+fqdn: ""
+hostname: ubuntu

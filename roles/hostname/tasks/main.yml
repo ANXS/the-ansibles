@@ -7,4 +7,4 @@
   template: src=etc_hostname.j2 dest=/etc/hostname owner=root group=root mode=064
 
 - name: Hostname | Update the hostname (pt. 3) - (/etc/hosts)
-  lineinfile: dest=/etc/hosts regexp="^127.0.0.1    {{ fqdn }}    {{ hostname }}" line="127.0.0.1    {{ fqdn }}    {{ hostname }}" state=present
+  template: src=etc_hosts.j2 dest=/etc/hosts owner=root group=root mode=064
