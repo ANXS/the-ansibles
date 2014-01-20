@@ -1,9 +1,9 @@
 # file: roles/elaticsearch/tasks/configure.yml
 
 - name: Elasticsearch | Make sure the config directory exists
-  file: path=/usr/local/etc/elasticsearch/config/ state=directory owner=$elasticsearch_user group=$elasticsearch_group mode=0755
+  file: path=/usr/local/etc/elasticsearch/config/ state=directory owner={{ elasticsearch_user }} group={{ elasticsearch_group }} mode=0755
 
 - name: Elasticsearch | Update the elasticsearch configuration
-  template: src=usr_local_etc_elasticsearch_config_elasticsearch.yml.j2 dest=/usr/local/etc/elasticsearch/config/elasticsearch.yml owner=$elasticsearch_user group=$elasticsearch_group mode=0644
+  template: src=usr_local_etc_elasticsearch_config_elasticsearch.yml.j2 dest=/usr/local/etc/elasticsearch/config/elasticsearch.yml owner={{ elasticsearch_user }} group={{ elasticsearch_group }} mode=0644
   notify:
     - restart supervisor

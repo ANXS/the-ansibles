@@ -1,16 +1,16 @@
 # file: roles/cassandra/tasks/user.yml
 
 - name: Cassandra | Make sure the cassandra group is present
-  action: group gid=$cassandra_gid name=$cassandra_group state=present
+  action: group gid={{ cassandra_gid }} name={{ cassandra_group }} state=present
 
 - name: Cassandra | Make sure the cassandra user directory is present
-  action: file path="/app/home/$cassandra_user" state=directory
+  action: file path="/app/home/{{ cassandra_user }}" state=directory
 
 - name: Cassandra | Make sure the cassandra user is present
-  user: uid=$cassandra_uid name=$cassandra_user group=$cassandra_group home="/app/home/$cassandra_user" shell=/bin/bash state=present comment="Cassandra user"
+  user: uid={{ cassandra_uid }} name={{ cassandra_user }} group={{ cassandra_group }} home="/app/home/{{ cassandra_user }}" shell=/bin/bash state=present comment="Cassandra user"
 
 - name: Cassandra | Set the right cassandra user directory permissions
-  action: file path="/app/home/$cassandra_user" owner=$cassandra_user group=$cassandra_group mode=0700 state=directory
+  action: file path="/app/home/{{ cassandra_user }}" owner={{ cassandra_user }} group={{ cassandra_group }} mode=0700 state=directory
 
 - name: Cassandra | Set the right expiration on the cassandra user
-  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 $cassandra_user"
+  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 {{ cassandra_user }}"

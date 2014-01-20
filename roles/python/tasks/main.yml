@@ -1,7 +1,7 @@
 # file: roles/python/tasks/main.yml
 
 - name: Python | Make sure python packages are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - cython
     - libevent-dev

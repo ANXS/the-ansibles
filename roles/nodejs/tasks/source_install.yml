@@ -4,25 +4,25 @@
   file: path=/usr/local/node state=directory mode=0755
 
 - name: Node.js | Download the nodejs source archive
-  shell: wget http://nodejs.org/dist/v$nodejs_version/node-v$nodejs_version.tar.gz chdir=/tmp creates=/tmp/node-v$nodejs_version.tar.gz
+  shell: wget http://nodejs.org/dist/v{{ nodejs_version }}/node-v{{ nodejs_version }}.tar.gz chdir=/tmp creates=/tmp/node-v{{ nodejs_version }}.tar.gz
 
 - name: Node.js | Set the rights of the nodejs source binary archive
-  file: path=/tmp/node-v$nodejs_version.tar.gz mode=0644
+  file: path=/tmp/node-v{{ nodejs_version }}.tar.gz mode=0644
 
 - name: Node.js | Unpack the nodejs source archive
-  shell: tar -xvzf /tmp/node-v$nodejs_version.tar.gz chdir=/tmp creates=/tmp/node-v$nodejs_version
+  shell: tar -xvzf /tmp/node-v{{ nodejs_version }}.tar.gz chdir=/tmp creates=/tmp/node-v{{ nodejs_version }}
 
 - name: Node.js | configure and make the nodejs source
-  shell: cd /tmp/node-v$nodejs_version && PATH="/usr/local/bin:/usr/bin:bin" && sudo ./configure --prefix=/usr/local/node/node-v$nodejs_version && sudo make -j $machine_cpu_count creates=/usr/local/node/node-v$nodejs_version
+  shell: cd /tmp/node-v{{ nodejs_version }} && PATH="/usr/local/bin:/usr/bin:bin" && sudo ./configure --prefix=/usr/local/node/node-v{{ nodejs_version }} && sudo make -j $machine_cpu_count creates=/usr/local/node/node-v{{ nodejs_version }}
 
 - name: Node.js | make install nodejs
-  shell: cd /tmp/node-v$nodejs_version && PATH="/usr/local/bin:/usr/bin:bin" && sudo make install creates=/usr/local/node/node-v$nodejs_version
+  shell: cd /tmp/node-v{{ nodejs_version }} && PATH="/usr/local/bin:/usr/bin:bin" && sudo make install creates=/usr/local/node/node-v{{ nodejs_version }}
 
 - name: Node.js | Update the symbolic link to the nodejs install
-  file: path=/usr/local/node/current src=/usr/local/node/node-v$nodejs_version state=link force=yes
+  file: path=/usr/local/node/current src=/usr/local/node/node-v{{ nodejs_version }} state=link force=yes
 
 - name: Node.js | Add the node binary to the system path (/etc/profile)
-  lineinfile: $item
+  lineinfile: {{ item }}
   with_items:
     - dest=/etc/profile regexp='^NODE_HOME=/usr/local/node/current' line="NODE_HOME=/usr/local/node/current" state=present
     - dest=/etc/profile regexp='^PATH=.*NODE_HOME.*' line="PATH=$PATH:$NODE_HOME/bin" state=present

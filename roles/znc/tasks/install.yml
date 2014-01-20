@@ -1,7 +1,7 @@
 # file: roles/znc/tasks/install.yml
 
 - name: ZNC | Install znc dependencies
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - checkinstall
     - libperl-dev

@@ -1,7 +1,7 @@
 # file: roles/zookeeper/tasks/dependencies.yml
 
 - name: Zookeeper | Make sure the zookeeper dependencies are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - pkg-config
     - connect-proxy

@@ -1,7 +1,7 @@
 # file: roles/mailserver/tasks/dspam.yml
 
 - name: Mail | dspam | Make sure dspam and its dependencies are installed
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - dspam
     - dovecot-antispam
@@ -30,13 +30,13 @@
     - restart dovecot
 
 - name: Mail | dspam | Put dspam configuration files in place - pt. 4
-  copy: src=dovecot/etc_dovecot_conf.d_20-imap.conf dest=/etc/dovecot/conf.d/20-imap.conf owner=$mailserver_user group=dovecot
+  copy: src=dovecot/etc_dovecot_conf.d_20-imap.conf dest=/etc/dovecot/conf.d/20-imap.conf owner={{ mailserver_user }} group=dovecot
   notify:
     - restart postfix
     - restart dovecot
 
 - name: Mail | dspam | Put dspam configuration files in place - pt. 5
-  copy: src=dovecot/etc_dovecot_conf.d_90-plugin.conf dest=/etc/dovecot/conf.d/90-plugin.conf owner=$mailserver_user group=dovecot
+  copy: src=dovecot/etc_dovecot_conf.d_90-plugin.conf dest=/etc/dovecot/conf.d/90-plugin.conf owner={{ mailserver_user }} group=dovecot
   notify:
     - restart postfix
     - restart dovecot
@@ -48,9 +48,9 @@
     - restart dovecot
 
 - name: Mail | dspam | Put dspam configuration files in place - pt. 6
-  copy: src=dspam/dot_dovecot.sieve dest=/srv/data/mail/decrypted/${item.name}/${item.primary_user}/.dovecot.sieve owner=$mailserver_user group=dovecot
+  copy: src=dspam/dot_dovecot.sieve dest=/srv/data/mail/decrypted/{{ item.name }}/{{item.primary_user}}/.dovecot.sieve owner={{ mailserver_user }} group=dovecot
   with_items:
-    - ${mail_virtual_domains}
+    - {{ mail_virtual_domains }}
   notify:
     - restart postfix
     - restart dovecot

@@ -1,7 +1,7 @@
 # file: roles/mailserver/tasks/dovecot.yml
 
 - name: Mail | dovecot | Make sure dovecot and its dependencies are installed
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - dovecot-core
     - dovecot-imapd
@@ -9,9 +9,9 @@
     - dovecot-lmtpd
 
 - name: Mail | dovecot | Ensure mail directories are in place
-  file: state=directory path=/srv/data/mail/decrypted/${item.name}/${item.primary_user} owner=$mailserver_user group=dovecot
+  file: state=directory path=/srv/data/mail/decrypted/{{ item.name }}/{{ item.primary_user }} owner={{ mailserver_user }} group=dovecot
   with_items:
-    - ${mail_virtual_domains}
+    - {{ mail_virtual_domains }}
 
 - name: Mail | dovecot | Update the dovecot configuration - pt. 1 (/etc/dovecot/dovecot.conf)
   copy: src=dovecot/etc_dovecot_dovecot.conf dest=/etc/dovecot/dovecot.conf
@@ -54,7 +54,7 @@
     - restart dovecot
 
 - name: Mail | dovecot | Ensure correct permissions on Dovecot config directory - pt. 1
-  shell: chown -R $mailserver_user:dovecot /etc/dovecot
+  shell: chown -R {{ mailserver_user }}:dovecot /etc/dovecot
   notify:
     - restart dovecot
 

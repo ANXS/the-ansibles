@@ -1,7 +1,7 @@
 # file: roles/mailserver/tasks/postfix.yml
 
 - name: Mail | postfix | Make sure postfix and its dependencies are installed
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - postfix
     - postfix-pcre
@@ -11,16 +11,16 @@
     - postgrey
 
 - name: Mail | postfix | Create database user for mail server
-  mysql_user: user=$mail_mysql_username password=$mail_mysql_password state=present priv="mailserver.*:ALL"
+  mysql_user: user={{ mail_mysql_username }} password={{ mail_mysql_password }} state=present priv="mailserver.*:ALL"
 
 - name: Mail | postfix | Create database for mail server
-  mysql_db: name=$mail_mysql_database state=present
+  mysql_db: name={{ mail_mysql_database }} state=present
 
 - name: Mail | postfix | Copy the sql file for sql postfix provisioning
   template: src=postfix/etc_postfix_mailserver.sql.j2 dest=/etc/postfix/mailserver.sql owner=root group=root mode=0600
 
 - name: Mail | postfix | Provision the sql database for postfix
-  mysql_db: name=$mail_mysql_database state=import target=/etc/postfix/mailserver.sql
+  mysql_db: name={{ mail_mysql_database }} state=import target=/etc/postfix/mailserver.sql
 
 - name: Mail | postfix | Update the postfix config files - pt. 1 (/etc/postfix/main.cf)
   template: src=postfix/etc_postfix_main.cf.j2 dest=/etc/postfix/main.cf owner=root group=root

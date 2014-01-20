@@ -10,7 +10,7 @@
   file: path=/srv/data/shared state=directory owner=root group=shared mode=0775
 
 - name: Netatalk | Update the netatalk configuration
-  copy: $item
+  copy: {{ item }}
   with_items:
     - src=etc_default_netatalk dest=/etc/default/netatalk owner=root group=root mode=0644
     - src=etc_netatalk_AppleVolumes.default dest=/etc/netatalk/AppleVolumes.default owner=root group=root mode=0644
