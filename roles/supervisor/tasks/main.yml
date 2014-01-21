@@ -1,16 +1,16 @@
 # file: roles/supervisor/tasks/main.yml
 
 - name: Supervisor | Make sure supervisor is installed
-  pip: name=supervisor version=$supervisor_version
+  pip: name=supervisor version={{ supervisor_version }}
 
 - name: Supervisor | Make sure the supervisor conf dir exists
-  file: path=$supervisor_dir state=directory mode=0755 owner=root group=root
+  file: path={{ supervisor_dir }} state=directory mode=0755 owner=root group=root
 
 - name: Supervisor | Update the global supervisor configuration
   template: src=etc_supervisord.conf.j2 dest=/etc/supervisord.conf owner=root group=root mode=0644
 
 - name: Supervisor | Make sure the supervisor log dir exists
-  file: path=$supervisor_log_dir state=directory owner=root group=root mode=0755 recurse=yes
+  file: path={{ supervisor_log_dir }} state=directory owner=root group=root mode=0755 recurse=yes
 
 - name: Supervisor | Install the supervisor runit script
   template: src=etc_init.d_supervisor.j2 dest=/etc/init.d/supervisor owner=root group=root mode=0755

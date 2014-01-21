@@ -1,11 +1,11 @@
 # file: roles/zookeeper/tasks/configure.yml
 
 - name: Zookeeper | Update the zookeeper configuration
-  template: src=usr_local_etc_zookeeper_conf_zoo.cfg.j2 dest=/usr/local/etc/zookeeper/conf/zoo.cfg owner=$zookeeper_user group=$zookeeper_group mode=0644
+  template: src=usr_local_etc_zookeeper_conf_zoo.cfg.j2 dest=/usr/local/etc/zookeeper/conf/zoo.cfg owner={{ zookeeper_user }} group={{ zookeeper_group }} mode=0644
   notify:
     - restart zookeeper
 
 - name: Zookeeper | Update the zookeeper myid identifier
-  template: src=myid.j2 dest=$zookeeper_data_dir/myid owner=$zookeeper_user group=$zookeeper_group mode=0644
+  template: src=myid.j2 dest={{ zookeeper_data_dir }}/myid owner={{ zookeeper_user }} group={{ zookeeper_group }} mode=0644
   notify:
     - restart zookeeper
