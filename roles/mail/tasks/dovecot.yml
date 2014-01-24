@@ -11,7 +11,7 @@
 - name: Mail | dovecot | Ensure mail directories are in place
   file: state=directory path=/srv/data/mail/decrypted/{{ item.name }}/{{ item.primary_user }} owner={{ mailserver_user }} group=dovecot
   with_items:
-    - {{ mail_virtual_domains }}
+    - "{{ mail_virtual_domains }}"
 
 - name: Mail | dovecot | Update the dovecot configuration - pt. 1 (/etc/dovecot/dovecot.conf)
   copy: src=dovecot/etc_dovecot_dovecot.conf dest=/etc/dovecot/dovecot.conf

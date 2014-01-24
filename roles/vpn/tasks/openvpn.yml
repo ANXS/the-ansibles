@@ -22,7 +22,7 @@
   template: src=openvpn/etc_openvpn_server.conf.j2 dest=/etc/openvpn/server.conf
 
 - name: VPN | openvpn | Allow OpenVPN through firewall
-  shell: {{ item }}
+  shell: "{{ item }}"
   with_items:
     - iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
     - iptables -A FORWARD -s 10.8.0.0/24 -j ACCEPT

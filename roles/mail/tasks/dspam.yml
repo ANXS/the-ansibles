@@ -50,7 +50,7 @@
 - name: Mail | dspam | Put dspam configuration files in place - pt. 6
   copy: src=dspam/dot_dovecot.sieve dest=/srv/data/mail/decrypted/{{ item.name }}/{{item.primary_user}}/.dovecot.sieve owner={{ mailserver_user }} group=dovecot
   with_items:
-    - {{ mail_virtual_domains }}
+    - "{{ mail_virtual_domains }}"
   notify:
     - restart postfix
     - restart dovecot

@@ -5,13 +5,13 @@
 # to be completed...
 
 - name: download the upload_progress_module source in /tmp if not yet present
-  command: wget https://github.com/masterzen/nginx-upload-progress-module/archive/v$nginx_upload_progress_version.tar.gz -O /tmp/nginx-upload-progress-module-$nginx_upload_progress_version.tar.gz chdir=/tmp creates=/tmp/nginx-upload-progress-module-$nginx_upload_progress_version.tar.gz
+  command: wget https://github.com/masterzen/nginx-upload-progress-module/archive/v{{ nginx_upload_progress_version }}.tar.gz -O /tmp/nginx-upload-progress-module-{{ nginx_upload_progress_version }}.tar.gz chdir=/tmp creates=/tmp/nginx-upload-progress-module-{{ nginx_upload_progress_version }}.tar.gz
   sudo: yes
 
 - name: Expand the upload_progress_module source in /tmp
-  command: tar -xvzf /tmp/nginx-upload-progress-module-$nginx_upload_progress_version.tar.gz chdir=/tmp creates=/tmp/nginx-upload-progress-module-$nginx_upload_progress_version
+  command: tar -xvzf /tmp/nginx-upload-progress-module-{{ nginx_upload_progress_version }}.tar.gz chdir=/tmp creates=/tmp/nginx-upload-progress-module-{{ nginx_upload_progress_version }}
   sudo: yes
 
 - name: Copy the source folder
-  command: sudo cp -R /tmp/nginx-upload-progress-module-$nginx_upload_progress_version /tmp/nginx-upload-progress-module
+  command: sudo cp -R /tmp/nginx-upload-progress-module-{{ nginx_upload_progress_version }} /tmp/nginx-upload-progress-module
   sudo: yes
