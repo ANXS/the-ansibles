@@ -1,15 +1,15 @@
 # file: roles/nginx/tasks/configure.yml
 
 - name: Nginx | Make sure the mime.types file is up to date
-  copy: dest=$nginx_dir/mime.types src=mime.types owner=root group=root mode=0644
+  copy: dest={{ nginx_dir }}/mime.types src=mime.types owner=root group=root mode=0644
 
 - name: Nginx | Make sure the nginx.conf file is up to date
-  template: src=nginx.conf.j2 dest=$nginx_dir/nginx.conf owner=root group=root mode=0644
+  template: src=nginx.conf.j2 dest={{ nginx_dir }}/nginx.conf owner=root group=root mode=0644
   notify:
     - restart nginx
 
 #- name: Update the default site configuration
-#  template: src=default.site.j2 dest=$nginx_dir/sites-available/default owner=root group=root mode=0644
+#  template: src=default.site.j2 dest={{ nginx_dir }}/sites-available/default owner=root group=root mode=0644
 
 #- name: Enable the default site
-#  file: path=$nginx_dir/sites-enabled/default src=$nginx_dir/sites-available/default state=link
+#  file: path={{ nginx_dir }}/sites-enabled/default src={{ nginx_dir }}/sites-available/default state=link

@@ -1,7 +1,7 @@
 # file: roles/kafka/tasks/dependencies.yml
 
 - name: Kafka | Make sure the kafka dependencies are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - git
     - libboost-all-dev

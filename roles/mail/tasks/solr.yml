@@ -1,7 +1,7 @@
 # file: roles/mailserver/tasks/solr.yml
 
 - name: Install Solr and related packages
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - solr-tomcat
     - dovecot-solr

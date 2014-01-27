@@ -1,28 +1,28 @@
 # file: roles/mysql/tasks/secure.yml
 
 - name: MySQL | Set the root password.
-  action: mysql_user user=root password=$mysql_root_password host=localhost
+  action: mysql_user user=root password={{ mysql_root_password }} host=localhost
 
 - name: MySQL | Configure MySql for easy access as root user
   action: template src=root_dot_my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0644
 
 - name: MySQL | Remove anonymous MySQL server user for the hostname
-  action: mysql_user user="" host="$hostname" state="absent"
+  action: mysql_user user="" host="{{ hostname }}" state="absent"
 
 - name: MySQL | Delete the anonymous MySQL server user for localhost
   action: mysql_user user="" state="absent"
 
 - name: MySQL | Secure the MySQL root user for IPV6 localhost (::1)
-  action: mysql_user user="root" password="$mysql_root_password" host="::1"
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="::1"
 
 - name: MySQL | Secure the MySQL root user for IPV4 localhost (127.0.0.1)
-  action: mysql_user user="root" password="$mysql_root_password" host="127.0.0.1"
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="127.0.0.1"
 
 - name: MySQL | Secure the MySQL root user for localhost domain (localhost)
-  action: mysql_user user="root" password="$mysql_root_password" host="localhost"
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="localhost"
 
 - name: MySQL | Secure the MySQL root user for the hostname domain
-  action: mysql_user user="root" password="$mysql_root_password" host="$hostname"
+  action: mysql_user user="root" password="{{ mysql_root_password }}" host="{{ hostname }}"
 
 - name: MySQL | Remove the MySQL test database
   action: mysql_db db=test state=absent

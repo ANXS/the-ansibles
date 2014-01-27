@@ -7,7 +7,7 @@
   copy: src=etc_monit_monitrc dest=/etc/monit/monitrc
 
 - name: Monit | Copy the sshd/ntp/chron monit service files
-  template: src=etc_monit_conf.d_$item.j2 dest=/etc/monit/conf.d/$item
+  template: src=etc_monit_conf.d_{{ item }}.j2 dest=/etc/monit/conf.d/{{ item }}
   with_items:
     - sshd
     - cron

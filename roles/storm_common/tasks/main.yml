@@ -1,7 +1,7 @@
 # file: roles/storm_common/tasks/main.yml
 
 - name: Storm | Make sure storm is not running under supervisord
-  supervisorctl: name=$item state=stopped
+  supervisorctl: name={{ item }} state=stopped
   with_items:
     - storm-drpc
     - storm-nimbus

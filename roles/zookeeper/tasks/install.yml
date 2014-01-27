@@ -1,16 +1,16 @@
 # file: roles/zookeeper/tasks/install.yml
 
 - name: Zookeeper | Download the zookeeper source in /tmp if not yet present
-  command: wget http://mirror.derwebwolf.net/apache/zookeeper/zookeeper-$zookeeper_version/zookeeper-$zookeeper_version.tar.gz chdir=/tmp creates=/tmp/zookeeper-$zookeeper_version.tar.gz
+  command: wget http://mirror.derwebwolf.net/apache/zookeeper/zookeeper-{{ zookeeper_version }}/zookeeper-{{ zookeeper_version }}.tar.gz chdir=/tmp creates=/tmp/zookeeper-{{ zookeeper_version }}.tar.gz
 
 - name: Zookeeper | Untar the zookeeper source in /usr/local/etc
-  command: tar -xvzf /tmp/zookeeper-$zookeeper_version.tar.gz chdir=/usr/local/etc creates=/usr/local/etc/zookeeper-$zookeeper_version
+  command: tar -xvzf /tmp/zookeeper-{{ zookeeper_version }}.tar.gz chdir=/usr/local/etc creates=/usr/local/etc/zookeeper-{{ zookeeper_version }}
 
 - name: Zookeeper | Update the zookeeper install permissions
-  file: path=/usr/local/etc/zookeeper-$zookeeper_version owner=$zookeeper_user group=$zookeeper_group state=directory recurse=yes
+  file: path=/usr/local/etc/zookeeper-{{ zookeeper_version }} owner={{ zookeeper_user }} group={{ zookeeper_group }} state=directory recurse=yes
 
 - name: Zookeeper | Update the symbolic link to the zookeeper install
-  file: path=/usr/local/etc/zookeeper src=/usr/local/etc/zookeeper-$zookeeper_version state=link force=yes
+  file: path=/usr/local/etc/zookeeper src=/usr/local/etc/zookeeper-{{ zookeeper_version }} state=link force=yes
 
 - name: Zookeeper | Make sure the local working directory for zookeeper is present
-  file: path=$zookeeper_data_dir owner=$zookeeper_user group=$zookeeper_group mode=0750 state=directory
+  file: path={{ zookeeper_data_dir }} owner={{ zookeeper_user }} group={{ zookeeper_group }} mode=0750 state=directory

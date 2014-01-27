@@ -1,16 +1,16 @@
 # file: roles/storm_common/tasks/user.yml
 
 - name: Storm | Make sure the storm group is present
-  action: group gid=$storm_gid name=$storm_group state=present
+  action: group gid={{ storm_gid }} name={{ storm_group }} state=present
 
 - name: Storm | Make sure the storm user directory is present
-  action: file path="/app/home/$storm_user" state=directory
+  action: file path="/app/home/{{ storm_user }}" state=directory
 
 - name: Storm | Make sure the storm user is present
-  user: uid=$storm_uid name=$storm_user group=$storm_group home="/app/home/$storm_user" shell=/bin/bash state=present comment="Storm user"
+  user: uid={{ storm_uid }} name={{ storm_user }} group={{ storm_group }} home="/app/home/{{ storm_user }}" shell=/bin/bash state=present comment="Storm user"
 
 - name: Storm | Set the right storm user directory permissions
-  action: file path="/app/home/$storm_user" owner=$storm_user group=$storm_group mode=0700 state=directory
+  action: file path="/app/home/{{ storm_user }}" owner={{ storm_user }} group={{ storm_group }} mode=0700 state=directory
 
 - name: Storm | Set the right expiration on the storm user
-  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 $storm_user"
+  command: "sudo chage -I -1 -E -1 -m -1 -M -1 -W -1 -E -1 {{ storm_user }}"
