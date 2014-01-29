@@ -1,7 +1,7 @@
 # file: roles/logwatch/tasks/main.yml
 
 - name: Logwatch | Make sure logwatch and its dependencies are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - logwatch
     - libdate-manip-perl

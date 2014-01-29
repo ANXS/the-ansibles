@@ -1,7 +1,7 @@
 # file: roles/nginx/tasks/dependencies.yml
 
 - name: Nginx | Make sure the nginx dependencies are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - git
     - libgoogle-perftools-dev

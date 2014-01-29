@@ -5,9 +5,9 @@
 - include: _authorized_ips.yml
 
 - name: Make sure the nginx status configuration is updated
-  template: src=../../../templates/modules/nginx.status.j2 dest=$nginx_dir/sites-available/nginx_status owner=root group=root mode=0644
+  template: src=../../../templates/modules/nginx.status.j2 dest={{ nginx_dir }}/sites-available/nginx_status owner=root group=root mode=0644
   sudo: yes
 
 - name: Enable the status stub site
-  file: path=$nginx_dir/sites-enabled/nginx_status src=$nginx_dir/sites-available/nginx_status state=link
+  file: path={{ nginx_dir }}/sites-enabled/nginx_status src={{ nginx_dir }}/sites-available/nginx_status state=link
   sudo: yes

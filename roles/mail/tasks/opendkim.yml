@@ -1,7 +1,7 @@
 # file: roles/mailserver/tasks/opendkim.yml
 
 - name: Mail | opendkim | Make sure OpenDKIM and dependencies are installed
-  apt: pkg=$item state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - opendkim
     - opendkim-tools
@@ -10,12 +10,12 @@
   file: state=directory path=/etc/opendkim group=opendkim owner=opendkim
 
 - name: Mail | opendkim | Make sure the OpenDKIM key directories are present
-  file: state=directory path=/etc/opendkim/keys/${item.name} group=opendkim owner=opendkim
+  file: state=directory path=/etc/opendkim/keys/{{ item.name }} group=opendkim owner=opendkim
   with_items:
     - $mail_virtual_domains
 
 - name: Mail | opendkim | Generate OpenDKIM keys
-  command: opendkim-genkey -r -d ${item.name} -D /etc/opendkim/keys/${item.name}/ creates=/etc/opendkim/keys/${item.name}/default.private
+  command: opendkim-genkey -r -d {{ item.name }} -D /etc/opendkim/keys/{{ item.name }}/ creates=/etc/opendkim/keys/{{ item.name }}/default.private
   with_items:
     - $mail_virtual_domains
 

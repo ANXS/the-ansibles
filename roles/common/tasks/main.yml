@@ -1,7 +1,7 @@
 # file: roles/commons/tasks/main.yml
 
 - name: Common | Make sure some basic tools are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - command-not-found
     - curl
@@ -21,7 +21,7 @@
   apt: pkg=git
 
 - name: Common | Make sure encfs and dependencies are installed
-  apt: pkg=$item
+  apt: pkg={{ item }}
   with_items:
     - encfs
     - libfuse-dev

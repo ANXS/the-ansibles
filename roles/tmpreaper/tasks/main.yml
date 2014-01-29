@@ -7,6 +7,6 @@
   template: src=etc_tmpreaper.conf.j2 dest=/etc/tmpreaper.conf owner=root group=root mode=0644
 
 - name: Tmpreaper | Set the tmpreaper cron
-  cron: name=tmpreaper hour=$tmpreaper_cron_hour minute=$tmpreaper_cron_minute job=/usr/sbin/tmpreaper
+  cron: name=tmpreaper hour={{ tmpreaper_cron_hour }} minute={{ tmpreaper_cron_minute }} job=/usr/sbin/tmpreaper
   notify:
     - restart cron

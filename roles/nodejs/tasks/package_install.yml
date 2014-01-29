@@ -4,4 +4,4 @@
   apt_repository: repo=ppa:chris-lea/node.js
 
 - name: Node.js | Make sure nodejs is installed
-  apt: pkg=nodejs=$nodejs_version
+  apt: pkg=nodejs={{ nodejs_version }}

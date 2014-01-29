@@ -1,16 +1,16 @@
 # file: roles/storm_common/tasks/install.yml
 
 - name: Storm | Download the storm source zip in /tmp if not yet present
-  command: wget https://dl.dropbox.com/u/133901206/storm-$storm_version.zip chdir=/tmp creates=/tmp/storm-$storm_version.zip
+  command: wget https://dl.dropbox.com/u/133901206/storm-{{ storm_version }}.zip chdir=/tmp creates=/tmp/storm-{{ storm_version }}.zip
 
 - name: Storm | Unzip the storm source in /usr/local/etc
-  command: unzip /tmp/storm-$storm_version.zip chdir=/usr/local/etc creates=/usr/local/etc/storm-$storm_version
+  command: unzip /tmp/storm-{{ storm_version }}.zip chdir=/usr/local/etc creates=/usr/local/etc/storm-{{ storm_version }}
 
 - name: Storm | Update the storm install permissions
-  file: path=/usr/local/etc/storm-$storm_version owner=$storm_user group=$storm_group state=directory recurse=yes
+  file: path=/usr/local/etc/storm-{{ storm_version }} owner={{ storm_user }} group={{ storm_group }} state=directory recurse=yes
 
 - name: Storm | Update the symbolic link to the storm install
-  file: path=/usr/local/etc/storm src=/usr/local/etc/storm-$storm_version state=link force=yes
+  file: path=/usr/local/etc/storm src=/usr/local/etc/storm-{{ storm_version }} state=link force=yes
 
 - name: Storm | Make sure the local working directory for storm is present
-  file: path=$storm_local_dir owner=$storm_user group=$storm_group mode=0750 state=directory
+  file: path={{ storm_local_dir }} owner={{ storm_user }} group={{ storm_group }} mode=0750 state=directory
