@@ -57,7 +57,7 @@ Vagrant.configure("2") do |config|
 
   # CONFIGURATION
 
-  config.vm.box = "precise64"
+  config.vm.box = BOX_IMAGE
 
   config.vm.network :private_network, ip: BOX_IP_ZONE + "." + BOX_IP_END
   config.vm.network :forwarded_port, guest: 22, host: ("9" + BOX_IP_END).to_i
