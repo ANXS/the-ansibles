@@ -8,7 +8,7 @@
   service: name=supervisor state=started
   sudo: yes
 
-- name: start supervisor
+- name: stop supervisor
   service: name=supervisor state=stopped
   sudo: yes
 
