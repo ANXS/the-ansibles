@@ -1,7 +1,7 @@
 # file: roles/cassandra/tasks/install.yml
 
 - name: Cassandra | Download the cassandra source in /tmp if not yet present
-  command: wget http://archive.apache.org/dist/cassandra/{{ cassandra_version }}/apache-cassandra-{{ {{ cassandra_version }} }}-bin.tar.gz chdir=/tmp creates=/tmp/apache-cassandra-{{ cassandra_version }}-bin.tar.gz
+  command: wget https://archive.apache.org/dist/cassandra/{{ cassandra_version }}/apache-cassandra-{{ {{ cassandra_version }} }}-bin.tar.gz chdir=/tmp creates=/tmp/apache-cassandra-{{ cassandra_version }}-bin.tar.gz
 
 - name: Cassandra | Expand the cassandra source in /usr/local/etc
   command: tar -xvzf /tmp/apache-cassandra-{{ cassandra_version }}-bin.tar.gz chdir=/usr/local/etc creates=/usr/local/etc/apache-cassandra-{{ cassandra_version }}
