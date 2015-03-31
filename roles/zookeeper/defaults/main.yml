@@ -1,6 +1,6 @@
 # file: roles/zookeeper/defaults/main.yml
 
-zookeeper_version: 3.4.5
+zookeeper_version: 3.4.6
 zookeeper_user: zookeeper
 zookeeper_group: zookeeper
 zookeeper_uid: 3040
