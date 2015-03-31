@@ -3,7 +3,7 @@
 - name: Build | Make sure essential build/dev tools and compilers are installed/up-to-date
   apt: pkg={{ item }}
   with_items:
-    - ack
+    - ack-grep
     - acl
     - apticron
     - automake
