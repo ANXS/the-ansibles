@@ -1,5 +1,7 @@
 # The Ansibles
 
+*Note*: This repo is only here for historical/reference purposes. Most roles have been extracted and can be found in the github [ANXS](https://github.com/ANXS) organization, as well as on Ansible Galaxy. Many of these will have been updated and are actively maintained.
+
 Mainly a (growing) collection of [ansible roles](roles/) I have been writing. I present them here for reuse and educational purposes, since extensive examples are currently sparse, and I would've benefited from these when I started out. I hope they'll benefit others now. They're targetted and tested for Ubuntu (precise), so might not work on all systems (at least not out of the box).
 
 I have a couple of other ones, and will update the repository when I manage to clean them up. Meanwhile, feel free to send in pull requests with fixes, updates, new roles. I'll happily review and add them.
