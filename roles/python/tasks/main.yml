@@ -11,10 +11,10 @@
 
 # Ubuntu's python-setuptools, python-pip and python-virtualenv packages ar broken
 - name: Python | Get the setuptools install-script
-  get_url: dest=/tmp url=http://python-distribute.org/distribute_setup.py mode=0644
+  get_url: dest=/tmp url=https://bootstrap.pypa.io/ez_setup.py mode=0644
 
 - name: Python | Make sure pip is installed (from script)
-  shell: python distribute_setup.py && /usr/local/bin/easy_install pip chdir=/tmp
+  shell: python ez_setup.py && /usr/local/bin/easy_install pip chdir=/tmp
 
 - name: Python | Make sure virtualenv is installed
   pip: name=virtualenv

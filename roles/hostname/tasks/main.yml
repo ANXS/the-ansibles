@@ -1,7 +1,7 @@
 # file: roles/hostname/tasks/main.yml
 
 - name: Hostname | Update the hostname (pt. 1) - hostname cmd
-  command: sudo hostname -v {{ hostname }}
+  command: sudo hostname {{ hostname }}
 
 - name: Hostname | Update the hostname (pt. 2) - (/etc/hostname)
   template: src=etc_hostname.j2 dest=/etc/hostname owner=root group=root mode=064

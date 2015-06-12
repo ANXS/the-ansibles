@@ -16,10 +16,10 @@
   file: path=/usr/local/java/jdk src=/usr/local/java/{{ jdk_version }} state=link force=yes
 
 - name: JDK | Oracle JDK | Add the JDK binaries to the system path (/etc/profile)
-  lineinfile: "{{ item }}"
+  lineinfile: "dest={{item.dest}} line={{item.line}} state={{item.state}} regexp={{item.regexp}}"
   with_items:
-    - dest=/etc/profile regexp='^JAVA_HOME=/usr/local/java/jdk' line="JAVA_HOME=/usr/local/java/jdk" state=present
-    - dest=/etc/profile regexp='^PATH=.*JAVA_HOME.*' line="PATH=$PATH:$HOME/bin:$JAVA_HOME/bin" state=present
+  - { dest: "/etc/profile", regexp: "'^JAVA_HOME=/usr/local/java/jdk'", line: "JAVA_HOME=/usr/local/java/jdk", state: "present"}
+  - { dest: '/etc/profile', regexp: "'^PATH=.*JAVA_HOME.*'", line: "PATH=$PATH:$HOME/bin:$JAVA_HOME/bin", state: 'present'}
 
 - name: JDK | Oracle JDK | Inform the system where Oracle JDK is located
   command: "{{ item }}"

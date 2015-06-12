@@ -13,20 +13,20 @@
   file: path=/usr/local/java/scala src=/usr/local/java/scala-{{ scala_version }}_download state=link force=yes
 
 - name: Scala | Add the Scala binary to the system path (/etc/profile)
-  lineinfile: {{ item }}
+  lineinfile: "{{ item }}"
   with_items:
   - dest=/etc/profile regexp='^SCALA_HOME=/usr/local/java/scala' line="SCALA_HOME=/usr/local/java/scala" state=present
   - dest=/etc/profile regexp='^PATH=.*SCALA_HOME.*' line="PATH=$PATH:$SCALA_HOME/bin" state=present
 
 - name: Scala | Inform the system where Scala is located
-  command: {{ item }}
+  command: "{{ item }}"
   with_items:
     - update-alternatives --install "/usr/bin/scala" "scala" "/usr/local/java/scala/bin/scala" 1
     - update-alternatives --install "/usr/bin/scalac" "scalac" "/usr/local/java/scala/bin/scalac" 1
     - update-alternatives --install "/usr/bin/scalap" "scalap" "/usr/local/java/scala/bin/scalap" 1
 
 - name: Scala | Set the system default for Scala
-  command: {{ item }}
+  command: "{{ item }}"
   with_items:
     - update-alternatives --set scala /usr/local/java/scala/bin/scala
     - update-alternatives --set scalac /usr/local/java/scala/bin/scalac
